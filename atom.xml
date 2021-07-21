@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-07-21T06:14:29.758Z</updated>
+  <updated>2021-07-21T06:35:00.680Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,31 +17,31 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>ubuntu升级git</title>
-    <link href="http://example.com/2021/07/21/ubuntu%E5%8D%87%E7%BA%A7git/"/>
-    <id>http://example.com/2021/07/21/ubuntu%E5%8D%87%E7%BA%A7git/</id>
-    <published>2021-07-21T06:09:01.000Z</published>
-    <updated>2021-07-21T06:14:29.758Z</updated>
+    <title>如何在github上获取指定版本openwrt源码</title>
+    <link href="http://example.com/2021/07/21/%E5%A6%82%E4%BD%95%E5%9C%A8github%E4%B8%8A%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E7%89%88%E6%9C%ACopenwrt%E6%BA%90%E7%A0%81/"/>
+    <id>http://example.com/2021/07/21/%E5%A6%82%E4%BD%95%E5%9C%A8github%E4%B8%8A%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E7%89%88%E6%9C%ACopenwrt%E6%BA%90%E7%A0%81/</id>
+    <published>2021-07-21T06:32:24.000Z</published>
+    <updated>2021-07-21T06:35:00.680Z</updated>
     
-    <content type="html"><![CDATA[<p>1、查看git版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure><p>2、升级Git</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update  <span class="comment"># 更新源</span></span><br><span class="line">sudo apt install software-properties-common <span class="comment"># 安装 PPA 需要的依赖</span></span><br><span class="line">sudo add-apt-repository ppa:git-core/ppa    <span class="comment"># 向 PPA 中添加 git 的软件源</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>wrt和lede版本演进 </p><p><img src="https://www.right.com.cn/forum/forum.php?mod=attachment&aid=MjY3OTQ1fGY3NWRjYjZmfDE2MjY4NDkwMjV8NTk2NzU5fDQzMTkzNQ==&noupdate=yes" alt="img"></p><p>openwrt github主页<br><a href="https://github.com/openwrt">https://github.com/openwrt</a></p><p><img src="https://www.right.com.cn/forum/forum.php?mod=attachment&aid=MjY3OTQ2fDY3NzZlYTYxfDE2MjY4NDkwMjV8NTk2NzU5fDQzMTkzNQ==&noupdate=yes" alt="img"></p><p>下载lede与openwrt合并后的代码<br>git clone <a href="https://github.com/openwrt/openwrt.git">https://github.com/openwrt/openwrt.git</a></p><p><img src="https://www.right.com.cn/forum/forum.php?mod=attachment&aid=MjY3OTUwfGU5OTU0MjMxfDE2MjY4NDkwMjV8NTk2NzU5fDQzMTkzNQ==&noupdate=yes" alt="img"></p><p>openwrt与lede合并前的代码已经存档，包括</p><p>attitude adjustment、barrier breaker、chaos calmer等三个分支，可以按照以上介绍的方法去下载。</p><p><strong>下载地址</strong></p><p><a href="https://github.com/openwrt/openwrt.git">https://github.com/openwrt/archive.git</a></p><p><img src="https://www.right.com.cn/forum/forum.php?mod=attachment&aid=MjY3OTU2fGZlYjJmM2QxfDE2MjY4NDkwMjV8NTk2NzU5fDQzMTkzNQ==&noupdate=yes" alt="img"></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;1、查看git版本&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code</summary>
+    <summary type="html">&lt;p&gt;wrt和lede版本演进 &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.right.com.cn/forum/forum.php?mod=attachment&amp;aid=MjY3OTQ1fGY3NWRjYjZmfDE2MjY4NDkwMjV8NTk2NzU5fD</summary>
       
     
     
     
-    <category term="GIT使用技巧" scheme="http://example.com/categories/GIT%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
+    <category term="Openwrt系列" scheme="http://example.com/categories/Openwrt%E7%B3%BB%E5%88%97/"/>
     
     
-    <category term="Ubuntu" scheme="http://example.com/tags/Ubuntu/"/>
+    <category term="Openwrt版本" scheme="http://example.com/tags/Openwrt%E7%89%88%E6%9C%AC/"/>
     
-    <category term="Linux" scheme="http://example.com/tags/Linux/"/>
+    <category term="git" scheme="http://example.com/tags/git/"/>
     
-    <category term="Linux命令" scheme="http://example.com/tags/Linux%E5%91%BD%E4%BB%A4/"/>
+    <category term="Lede" scheme="http://example.com/tags/Lede/"/>
     
   </entry>
   
