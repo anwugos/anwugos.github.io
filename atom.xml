@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-07-21T03:07:33.131Z</updated>
+  <updated>2021-07-21T06:14:29.758Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ubuntu升级git</title>
+    <link href="http://example.com/2021/07/21/ubuntu%E5%8D%87%E7%BA%A7git/"/>
+    <id>http://example.com/2021/07/21/ubuntu%E5%8D%87%E7%BA%A7git/</id>
+    <published>2021-07-21T06:09:01.000Z</published>
+    <updated>2021-07-21T06:14:29.758Z</updated>
+    
+    <content type="html"><![CDATA[<p>1、查看git版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure><p>2、升级Git</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update  <span class="comment"># 更新源</span></span><br><span class="line">sudo apt install software-properties-common <span class="comment"># 安装 PPA 需要的依赖</span></span><br><span class="line">sudo add-apt-repository ppa:git-core/ppa    <span class="comment"># 向 PPA 中添加 git 的软件源</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;1、查看git版本&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code</summary>
+      
+    
+    
+    
+    <category term="GIT使用技巧" scheme="http://example.com/categories/GIT%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
+    
+    
+    <category term="Ubuntu" scheme="http://example.com/tags/Ubuntu/"/>
+    
+    <category term="Linux" scheme="http://example.com/tags/Linux/"/>
+    
+    <category term="Linux命令" scheme="http://example.com/tags/Linux%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
   
   <entry>
     <title>github代码如何定位到历史版本（历史commit点）</title>
