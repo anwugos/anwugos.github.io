@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-07-21T02:58:28.898Z</updated>
+  <updated>2021-07-21T03:01:54.796Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>openwrt基本编译</title>
+    <link href="http://example.com/2021/07/21/openwrt%E5%9F%BA%E6%9C%AC%E7%BC%96%E8%AF%91/"/>
+    <id>http://example.com/2021/07/21/openwrt%E5%9F%BA%E6%9C%AC%E7%BC%96%E8%AF%91/</id>
+    <published>2021-07-21T02:59:52.000Z</published>
+    <updated>2021-07-21T03:01:54.796Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文由明月永在原创，复制或者引用请注明出处<a href="https://www.myopenwrt.org/">www.myopenwrt.org</a>。</p><p>编译首先得搭建编译环境，一般推荐用Ubuntu系统，对新手较易上手，使用的人多，碰到问题也容易解决。</p><p>特别提醒 一下，编译是一个相当复杂的过程，尤其是新手可能会碰到N多的错误提示，所以提示全是英文的，如果英语水平，根本 看不懂提示内容，你还是不要玩编译的好，要玩几乎是在自虐。还有编译得用linux系统，要求有一定的linux基础，如果你连终端在哪里，隐藏文件怎么看，简单的一些命令都不懂，也不要玩了哈。</p><p>Ubuntu系统的安装可在自行搜索，也不难，主要注意下分区时，如果原来硬盘有文件，不要选择全部来安装，否则会数据丢失。</p><p>本人使用的是Ubuntu12.04 64位系统，当然也可以用新系统。要编译首先得弄好编译环境，也就是安装一些编译所必须用到的软件。编译openwrt一般是交叉编译，交叉编译就是指编译非x86的软件，和编译所用到的系统的架构不一样的。所编译出来的软件也不能直接在编译的系统里运行。</p><p>打开终端，输入以下命令sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf gettext texinfo unzip sharutils subversion libncurses5-dev ncurses-term zlib1g-dev gawk</p><p>这里需要提示一下，上面这个命令是针对Ubuntu12.04系统的，新的系统有些软件的版本可能不一样，比如旧的是1.0版本，Ubuntu14.10可能是1.5版本，所以不能完全生搬硬套。要灵活运用。还有些openwrt版本，比如开发版本，在编译时可能会提示少其它的软件，根据提示安装所缺少的软件即可，一般来说如果少一个aaa软件，安装时，最好把aaa.dev也同时装上。新安装的Ubuntu系统最好设置好并更新升级了所有软件后，才安装以上软件，要不可能会提示软件没有。</p><p>装好编译环境后，就到<br><a href="https://dev.openwrt.org/wiki/GetSource">https://dev.openwrt.org/wiki/GetSource</a><br>openwrt官网查找自己所需要的版本来编译。获取源码的方式 有两种，一种是用git，一种是svn，这两种方式 都得安装软件，如果没有就得搜索一下再安装好。本人一般都用svn来获取源码 。编译openwrt的过程里会生成很多的临时文件，体积非常大，虽然固件才几M，编译过程 所生成的文件一般是10G级的，如果你编译多个平台和多个型号，就需要更多的空间。加安装系统最少需要10G，至少 得预留40G+以上的空间。不然编译到一半时，提示没有空间，是非常郁闷的事。</p><p>以下的svn获取源码的命令：<br>attitude_adjustment就是所说的AA，上一个稳定版本，当前的稳定版本是barrier_breaker，trunk版本是大家所说的CC，建议用BB来编译。</p><h3 id="SVN"><a href="#SVN" class="headerlink" title="SVN"></a>SVN</h3><p>You can checkout the source from the OpenWrt Subversion repository using one of the following commands:</p><ul><li><p>Development branch:</p><p>ChangeLog</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn co svn://svn.openwrt.org/openwrt/trunk/</span><br></pre></td></tr></table></figure></li><li><p>Barrier Breaker 14.07 branch:</p><p>ChangeLog</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn co svn://svn.openwrt.org/openwrt/branches/barrier_breaker</span><br></pre></td></tr></table></figure></li><li><p>Attitude Adjustment 12.09 branch:</p><p>ChangeLog</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn co svn://svn.openwrt.org/openwrt/branches/attitude_adjustment</span><br></pre></td></tr></table></figure></li><li><p>Backfire 10.03 branch:</p><p>ChangeLog</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn co svn://svn.openwrt.org/openwrt/branches/backfire</span><br></pre></td></tr></table></figure></li><li><p>Kamikaze 8.09 branch:</p><p>ChangeLog</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn co svn://svn.openwrt.org/openwrt/branches/8.09</span><br></pre></td></tr></table></figure></li><li><p>Kamikaze 7.09 branch:</p><p>ChangeLog</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn co svn://svn.openwrt.org/openwrt/tags/kamikaze_7.09</span><br></pre></td></tr></table></figure></li></ul><p>如果用BB源码 ，则在终端输入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">svn co svn://svn.openwrt.org/openwrt/branches/barrier_breaker</span><br><span class="line">之后会，自动下载源码。</span><br><span class="line">源码下载完后</span><br><span class="line">cd barrier_breaker</span><br><span class="line">安装 luci，openwrt源码默认是不带luci的，得用命令来安装</span><br><span class="line">./scripts/feeds update -a </span><br><span class="line">./scripts/feeds install -a </span><br></pre></td></tr></table></figure><p>完成之后，就可以在终端执行make menuconfg来选择自己所需要的软件<br>软件选择可以参考一下恩山的教程<br><a href="http://www.right.com.cn/forum/thread-83746-1-1.html">http://www.right.com.cn/forum/thread-83746-1-1.html</a><br>当年我也是从这里起步的。<br>第一次编译不要选太多东西，选择好型号后，必选luci界面下的一些软件，要不登录会<br>没界面。其它软件可以尽量少选，先尝试下是否能编译出固件。能成功生成固件，说明编译环境没有问题。</p><p>配置好后退出 保存，建议用以下命令来编译</p><p>make -j5 V=99 2&gt;&amp;1 |tee build.log |grep -i error</p><p>这个命令可以生成日志，日志名为buil.log，保存在最高目录下。以方便出错查找原因。-j5参数是4核cpu使用的，其它cpu可以使用内核数量N+1来相应 修改。</p><p>输入这个命令后，经过漫长的等待就会出来固件，如果中途有错，查找日志解决后，再执行以上命令就行，一般不必要重新再来。</p><p>在编译的过程中，会自动下载应用软件的源码到dl目录下面，选择的软件越多，所需要下载的数据会越大，这些软件的源码 基本都在国外的，所以下载速度极其的慢，甚至有些软件被墙了的，根本下载不了。首次编译一般会耗时几小时，视网络下载速度而定。如果下载不了打看编译日志，来找到错误所在的地方，可以搜索***来定位，有错误的地方一般以这个为标示。然后再找到软件的下载网址，会在出错报告的前面，有ftp或者http链接，里面包含有相应软件名的网址，然后手动下载之后放到dl目录即可。</p><p>像我用四核的cpu，全部编译一个16M固件得花一个多小时，不包括下载的时间。由于很多源码在墙外，所以强烈建议大家在弄好翻wall之后，再编译。</p><p>新手应该还要注意，openwrt官方所设定的固件大小是按路由出厂的闪存来定的，起步为4M，小于4M的官方都不会支持。所以有一些型号，基本加不了软件，加了软件就会不出固件，因为超出了最大的体积。碰到这种情况，可以少选一些软件。如果已经硬 改过的，需要修改相应的文件来改变默认固件的大小。</p><p>还有新手在配置软件时，千万要注意一点，选择软件时会自动选上所依赖的文件，保存之后，下次再去除这个软件，所选的依赖文件并不会自动取消。这样会残留一些没有用的软件在固件里，对于空间非常小的闪存来说，这是很不应该的。所以配置一定要小心，弄好的配置做个备份。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;本文由明月永在原创，复制或者引用请注明出处&lt;a href=&quot;https://www.myopenwrt.org/&quot;&gt;www.myopenwrt.org&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;编译首先得搭建编译环境，一般推荐用Ubuntu系统，对新手较易上手，使用的人多，碰到问题也容易解决</summary>
+      
+    
+    
+    
+    <category term="openwrt系列" scheme="http://example.com/categories/openwrt%E7%B3%BB%E5%88%97/"/>
+    
+    
+    <category term="Ubuntu系统" scheme="http://example.com/tags/Ubuntu%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="SVN" scheme="http://example.com/tags/SVN/"/>
+    
+    <category term="openwrt编译" scheme="http://example.com/tags/openwrt%E7%BC%96%E8%AF%91/"/>
+    
+  </entry>
   
   <entry>
     <title>lean大神LEDE(openwrt)编译教程</title>
