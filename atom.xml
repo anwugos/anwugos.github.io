@@ -189,9 +189,9 @@
     <category term="openwrt系列" scheme="http://example.com/categories/openwrt%E7%B3%BB%E5%88%97/"/>
     
     
-    <category term="路由器编译" scheme="http://example.com/tags/%E8%B7%AF%E7%94%B1%E5%99%A8%E7%BC%96%E8%AF%91/"/>
-    
     <category term="openwrt编译" scheme="http://example.com/tags/openwrt%E7%BC%96%E8%AF%91/"/>
+    
+    <category term="路由器编译" scheme="http://example.com/tags/%E8%B7%AF%E7%94%B1%E5%99%A8%E7%BC%96%E8%AF%91/"/>
     
     <category term="git版本" scheme="http://example.com/tags/git%E7%89%88%E6%9C%AC/"/>
     
