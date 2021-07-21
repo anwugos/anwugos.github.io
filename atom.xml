@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-07-21T03:01:54.796Z</updated>
+  <updated>2021-07-21T03:07:33.131Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>github代码如何定位到历史版本（历史commit点）</title>
+    <link href="http://example.com/2021/07/21/github%E4%BB%A3%E7%A0%81%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%88%B0%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC%EF%BC%88%E5%8E%86%E5%8F%B2commit%E7%82%B9%EF%BC%89/"/>
+    <id>http://example.com/2021/07/21/github%E4%BB%A3%E7%A0%81%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%88%B0%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC%EF%BC%88%E5%8E%86%E5%8F%B2commit%E7%82%B9%EF%BC%89/</id>
+    <published>2021-07-21T03:03:39.000Z</published>
+    <updated>2021-07-21T03:07:33.131Z</updated>
+    
+    <content type="html"><![CDATA[<p>关于使用git在本地进行版本管理见linux下的版本管理</p><p>工作项目中git流程实操见git简明实操模板</p><p>想我们在写代码时候，数次修改并提交commit，如果在这个过程中我们后悔了，想回到当初的某一个commit点应该如何实现呢？</p><p>如果会用git bash的话，肯定首选命令行模式</p><p>三种方式：</p><p>1】以目标commit为基础新创建一个分支，并切换到分支上去，这样并不破坏base分支上的任何提交内容，包括你目标commit之前的提交，以及目标commit之后的提交。</p><p>例子：你有一个base分支，上面有1/2/3/4四个commit，你现在突然后悔提交了3/4两个commit，或者某种原因你需要以2commit为基础，进行另外某个功能的开发。这时候方法1执行 git checkout 2commitID -b div就是以base分支的2commit为基础，创建了子分支div，并切换到子分支上去，原来的base分支并没有受到影响，这时候你也就能在子分支div上看到你的历史代码了。</p><p>2】在当前分支上撤销目标commit之后的所有提交，类似于系统还原</p><p>例子：还是上面的base分支有1/2/3/4个commit，这时候执行git reset –hard 2commitID 就是放弃3/4commit，回退到2commit，这时候你也能看到历史代码，但是在2 commit之后的 3/4commit 就永久的丢失了（可以通过一些指令找回来的）。</p><p>3】以执行过的指令为目标，进行撤销操作，类似于第二种方法</p><p>git log (branch) 查看commit的ID号<br>git checkout commitId -b 新branch名称 （在指定commit的基础上创建新分支）</p><p>git log (branch)<br>git reset –hard (commit id) 版本回滚</p><p>git reflog<br>git reset –hard (command id) 命令撤销<br>如果刚开始接触git，对git的操作不熟悉，只习惯图形界面，那么按照以下方式进行操作</p><p><img src="https://img-blog.csdn.net/20180423155533474" alt="img"></p><p><img src="https://img-blog.csdn.net/20180423155554696" alt="img"></p><p><img src="https://img-blog.csdn.net/20180423155613969" alt="img"></p><p>————————————————<br>版权声明：本文为CSDN博主「半截木头渡海洋」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/ljl86400/article/details/80051507">https://blog.csdn.net/ljl86400/article/details/80051507</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;关于使用git在本地进行版本管理见linux下的版本管理&lt;/p&gt;
+&lt;p&gt;工作项目中git流程实操见git简明实操模板&lt;/p&gt;
+&lt;p&gt;想我们在写代码时候，数次修改并提交commit，如果在这个过程中我们后悔了，想回到当初的某一个commit点应该如何实现呢？&lt;/p&gt;
+&lt;p&gt;如</summary>
+      
+    
+    
+    
+    <category term="GIT使用技巧" scheme="http://example.com/categories/GIT%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
+    
+    
+    <category term="git回退" scheme="http://example.com/tags/git%E5%9B%9E%E9%80%80/"/>
+    
+    <category term="git技巧" scheme="http://example.com/tags/git%E6%8A%80%E5%B7%A7/"/>
+    
+    <category term="新手学git" scheme="http://example.com/tags/%E6%96%B0%E6%89%8B%E5%AD%A6git/"/>
+    
+  </entry>
   
   <entry>
     <title>openwrt基本编译</title>
