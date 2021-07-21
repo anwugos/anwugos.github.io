@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2021-07-21T02:21:14.000Z">
-<meta property="article:modified_time" content="2021-07-21T02:22:27.599Z">
+<meta property="article:modified_time" content="2021-07-21T02:29:12.163Z">
 <meta property="article:author" content="雕教授">
 <meta property="article:tag" content="路由器编译">
 <meta property="article:tag" content="openwrt路由">
@@ -160,7 +160,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~3.28K
+                        ~3.13K
                     
                     字
                 </li>
@@ -169,7 +169,7 @@
         </header>
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                本文最后编辑于 <time datetime="1626834147599"></time> 前，其中的内容可能需要更新。
+                本文最后编辑于 <time datetime="1626834552163"></time> 前，其中的内容可能需要更新。
             </div>
             
             <hr />
@@ -187,12 +187,11 @@
                  4.自备手工竹T(编译的过程中会自动下载包，有些包在国外，手工竹T会报错导致编译失败)（重要！！）（重要！！）（重要！！）                     
 </code></pre>
 <p>第一步进入操作系统</p>
+<p>​                         </p>
 <p>第二步更新一下系统软件               </p>
 <pre><code>                         sudo apt-get update （系统更新太慢，请自行替换ubuntu的源，自行百度。阿里的源不错）
-
-
-                        
 </code></pre>
+<p>​                            </p>
 <p>第三步安装openwrt编译需要的环境</p>
 <pre><code>                        sudo apt-get install gcc g++ build-essential asciidoc  binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch flex bison make autoconf texinfo unzip sharutils subversion ncurses-term zlib1g-dev ccache upx lib32gcc1 libc6-dev-i386 uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev libglib2.0-dev xmlto qemu-utils automake libtool  -y
 
@@ -205,51 +204,36 @@
                     cd        openwrt17.1            #进入目录
 
                     git clone -b lede-17.01 https://github.com/openwrt/openwrt.git source (源码更新所以跟下图会不一样)
-
-                        
 </code></pre>
+<p>​                            </p>
 <p>第五步更新软件</p>
 <pre><code>                           cd source
                           ./scripts/feeds update -a
                          ./scripts/feeds install -a
-                     
-
-                     
-                    
-
-
-                     做完以上五步准备工作完成，准备开始进行编译
+</code></pre>
+<p>​<br>​                        </p>
+<pre><code>                     做完以上五步准备工作完成，准备开始进行编译
 </code></pre>
 <p>第六步测试一下编译环境</p>
 <p>make  defconfig</p>
+<p>​                      </p>
 <p>第七步开始我们的编译之旅</p>
 <pre><code>                     make menuconfig
+</code></pre>
+<p>​                        </p>
+<pre><code>                     1.选择编译的平台以我的TP-6300为例子选择AR7XX/AR9XX
+</code></pre>
+<p>​                                      </p>
+<pre><code>                        2.选择编译机型                  
 
-
-                    
-
-
-
-                     1.选择编译的平台以我的TP-6300为例子选择AR7XX/AR9XX
-
-
-                                  
-
-
-
-
-                        2.选择编译机型                  
-                        
 
                           （我的TP-6300这里是没有的，但水星的1200跟他是一样的可以通用，所以我编译水星1200即可）
 
 
                            3.添加一个luci WEB界面
-                           
-                           
-                           
-
-                             ×表示编译进固件里面          M表示只编译但不写到固件里面去              （空） 留空表示不做任何操作
+</code></pre>
+<p>​<br>​                               </p>
+<pre><code>                             ×表示编译进固件里面          M表示只编译但不写到固件里面去              （空） 留空表示不做任何操作
 
 
 
@@ -257,26 +241,21 @@
 
 
                      4.给刚才的WEB界面添加一个中文语言包
-          
-                                 
-                              
-                              
-
-
-                             选择完以保存即可
+</code></pre>
+<p>​<br>​<br>​                                  </p>
+<pre><code>                             选择完以保存即可
 </code></pre>
 <p>第八步也是最后一步生成固件</p>
 <pre><code>             此步自备手工竹违禁词语(编译的过程中会自动下载包，有些包在国外，没手工竹违禁词语会报错导致编译失败)（重要！！）（重要！！）（重要！！）
                  如下图
-                                   
+
 
 
                    手工竹T已搭好请看下面直接编译即可
-
-                 
 </code></pre>
-<p>make -j8 download V=s  #下载dl库，编译成功率更高</p>
+<p>​<br>make -j8 download V=s  #下载dl库，编译成功率更高</p>
 <p>make V=99<br>复制代码</p>
+<p>​                      </p>
 <pre><code>                        已经在开始编译了，看机器和网络情况两到三小时不等该干嘛干嘛去吧
 
 
@@ -289,13 +268,9 @@
 
 
                        偷个懒吧，我之前已经编译好一个了直接上图吧，重新编译时间太久了，第二次编译就快很多了，半个小时就行了
-
-
-                        
-
-
-
-            编译到此结束了，直接拿去刷机即可
+</code></pre>
+<p>​                            </p>
+<pre><code>            编译到此结束了，直接拿去刷机即可
 </code></pre>
 <p>更新一下吧，关于openwrt编译中的误区，这也上了佐大的车才知道的，原来之前的操作有点傻逼，怪不得时好时坏<br>                   make  -j4 V=s</p>
 <pre><code>              make  -jn V=s
@@ -303,10 +278,8 @@
 
            这两条命令各位应该或多或少看到过或用过，问题就在这里根据佐大的意见，编译的时候最好不要-j，只有一些特殊的机器才会用到-j这个参数，其他机器起到的帮助微乎其微，有时候还会编译出错，
   不信的朋友可以去测试一下make V=99  和make -j4 V=s那个问题多点，想让openwrt变快也是有办法的，这里就不列举了，毕竟佐大的是收费教程，有兴趣可以去看下，就提到这里了
-
-
-              
 </code></pre>
+<p>​                  </p>
 <p>openwrt环境搭建脚本已经完成具体点击传送门</p>
 <p>自己写的几篇小帖子不清楚的可以去看下     传送门                                                           </p>
 <p>交流技术适当吹水群：667491026   （拒绝大爷公子伸手党）<br>by：ITdesk<br>2018年6月7日</p>
@@ -447,7 +420,7 @@
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HEXO%E7%B3%BB%E5%88%97/">HEXO系列</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/openwrt%E7%B3%BB%E5%88%97/">openwrt系列</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E6%9C%BA%E6%8A%80%E5%B7%A7/">玩机技巧</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HEXO%E7%B3%BB%E5%88%97/">HEXO系列</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/openwrt%E7%B3%BB%E5%88%97/">openwrt系列</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E6%9C%BA%E6%8A%80%E5%B7%A7/">玩机技巧</a><span class="category-list-count">1</span></li></ul>
   </aside>
 
 
