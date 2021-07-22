@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>Hexo为文章添加分类 | Eagmi</title>
+  <title>linux使用find命令和grep命令查找文件和文件内容 | Eagmi</title>
   <meta name="author" content="雕教授" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -13,21 +13,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="Hexo技巧, Hexo插件" />
+    <meta name="keywords" content="Linux技巧, Linux查找命令, find使用" />
   
-  <meta name="description" content="hexo next 添加分类页 新建一个页面，命名为 categories 。命令如下： 1hexo new page categories 编辑刚新建的页面，将页面的类型设置为 categories ，主题将自动为这个页面显示所有分类。 1234title: 分类date: 2014-12-22 12:39:04type: &quot;categories&quot;---  注意：如果有启用多">
+  <meta name="description" content="1【摘要】区别： 在使用linux时，经常需要进行文件查找。其中查找的命令主要有find和grep。两个命令是有区的。 find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。 grep是根据文件的内容进行查找，会对文件的每一行按照给定的模式(patter)进行匹配查找。 一.find命令 基本格式：find path expression 1.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo为文章添加分类">
-<meta property="og:url" content="http://example.com/2021/07/13/Hexo%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB/index.html">
+<meta property="og:title" content="linux使用find命令和grep命令查找文件和文件内容">
+<meta property="og:url" content="http://example.com/2021/07/22/linux%E4%BD%BF%E7%94%A8find%E5%91%BD%E4%BB%A4%E5%92%8Cgrep%E5%91%BD%E4%BB%A4%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/index.html">
 <meta property="og:site_name" content="Eagmi">
-<meta property="og:description" content="hexo next 添加分类页 新建一个页面，命名为 categories 。命令如下： 1hexo new page categories 编辑刚新建的页面，将页面的类型设置为 categories ，主题将自动为这个页面显示所有分类。 1234title: 分类date: 2014-12-22 12:39:04type: &quot;categories&quot;---  注意：如果有启用多">
+<meta property="og:description" content="1【摘要】区别： 在使用linux时，经常需要进行文件查找。其中查找的命令主要有find和grep。两个命令是有区的。 find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。 grep是根据文件的内容进行查找，会对文件的每一行按照给定的模式(patter)进行匹配查找。 一.find命令 基本格式：find path expression 1.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2021-07-12T17:25:05.000Z">
-<meta property="article:modified_time" content="2021-07-13T17:02:22.919Z">
+<meta property="article:published_time" content="2021-07-22T01:15:05.000Z">
+<meta property="article:modified_time" content="2021-07-22T01:17:39.415Z">
 <meta property="article:author" content="雕教授">
-<meta property="article:tag" content="Hexo技巧">
-<meta property="article:tag" content="Hexo插件">
+<meta property="article:tag" content="Linux技巧">
+<meta property="article:tag" content="find使用">
+<meta property="article:tag" content="Linux查找命令">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
 <meta name="twitter:site" content="@null">
@@ -149,17 +150,17 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">Hexo为文章添加分类</h1>
+                <h1 class="kratos-entry-title text-center">linux使用find命令和grep命令查找文件和文件内容</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><i class="fa fa-calendar"></i> 2021-07-13</li>
+                <li><i class="fa fa-calendar"></i> 2021-07-22</li>
                 <li><i class="fa fa-user"></i> 作者 雕教授</li>
                 <li>
                     <i class="fa fa-edit"></i> 
                     
                     
-                        908
+                        ~2.13K
                     
                     字
                 </li>
@@ -168,29 +169,38 @@
         </header>
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                本文最后编辑于 <time datetime="1626195742919"></time> 前，其中的内容可能需要更新。
+                本文最后编辑于 <time datetime="1626916659415"></time> 前，其中的内容可能需要更新。
             </div>
             
+                <div class="kratos-post-inner-toc">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">区别：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-find%E5%91%BD%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">一.find命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F%EF%BC%9Afind-path-expression"><span class="toc-number">1.1.1.</span> <span class="toc-text">基本格式：find path expression</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%8C%89%E7%85%A7%E6%96%87%E4%BB%B6%E5%90%8D%E6%9F%A5%E6%89%BE"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1. 按照文件名查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%8C%89%E7%85%A7%E6%96%87%E4%BB%B6%E7%89%B9%E5%BE%81%E6%9F%A5%E6%89%BE"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">2.按照文件特征查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8%E6%B7%B7%E5%90%88%E6%9F%A5%E6%89%BE%E6%96%B9%E5%BC%8F%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">3.使用混合查找方式查找文件</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81grep%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">二、grep命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F%EF%BC%9Afind-expression"><span class="toc-number">2.1.</span> <span class="toc-text">基本格式：find expression</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%BB%E8%A6%81%E5%8F%82%E6%95%B0"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.主要参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%9E%E4%BE%8B"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.实例</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
             <hr />
-            <h4 id="hexo-next-添加分类页"><a href="#hexo-next-添加分类页" class="headerlink" title="hexo next 添加分类页"></a>hexo next 添加分类页</h4><ol>
-<li><p>新建一个页面，命名为 categories 。命令如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure></li>
-<li><p>编辑刚新建的页面，将页面的类型设置为 categories ，主题将自动为这个页面显示所有分类。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: 分类</span><br><span class="line">date: 2014-12-22 12:39:04</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+            <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">【摘要】区别： 在使用linux时，经常需要进行文件查找。其中查找的命令主要有find和grep。两个命令是有区的。 find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。 grep是根据文件的内容进行查找，会对文件的每一行按照给定的模式(patter)进行匹配查找。 一.find命令 基本格式：find path expression 1. ...</span><br></pre></td></tr></table></figure>
 
-<p>注意：如果有启用多说 或者 Disqus 评论，默认页面也会带有评论。需要关闭的话，请添加字段 comments 并将值设置为 false，如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title: 分类</span><br><span class="line">date: 2014-12-22 12:39:04</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure></li>
-<li><p>在菜单中添加链接。编辑主题的 _config.yml ，将 menu 中的 categories: /categories 注释去掉，如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: /</span><br><span class="line">  categories: /categories</span><br><span class="line">  archives: /archives</span><br><span class="line">  tags: /tags</span><br></pre></td></tr></table></figure></li>
-<li><p>但是这样部署之后，在分类页面还是看不到任何分类的，同时官方的next教程中并没有写。。<br>其实为文章添加分类关联的教程已经在hexo教程给出了。。<br>下面仅仅做个简单的介绍，全面的教程参照<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter.html#%E5%88%86%E7%B1%BB%E5%92%8C%E6%A0%87%E7%AD%BE">hexo官方教程(需备梯子)</a></p>
+<hr>
+<hr>
+<h1 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h1><ol>
+<li><p>在使用linux时，经常需要进行文件查找。其中查找的命令主要有find和grep。两个命令是有区的。</p>
 </li>
+<li><p>find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。</p>
+</li>
+<li><p>grep是根据文件的内容进行查找，会对文件的每一行按照给定的模式(patter)进行匹配查找。</p>
+<hr>
+<hr>
+<h2 id="一-find命令"><a href="#一-find命令" class="headerlink" title="一.find命令"></a>一.find命令</h2></li>
 </ol>
-<h4 id="添加文章分类关联"><a href="#添加文章分类关联" class="headerlink" title="添加文章分类关联"></a>添加文章分类关联</h4><ol>
-<li><p>hexo中有Front-matter这个概念，是文件最上方以 — 分隔的区域，用于指定个别文件的变量。举个栗子，在hexo new post article时会生成article.md文件，文件生成好的文章属性。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: hexo next 为文章添加分类</span><br><span class="line">date: 2016-03-16 08:12:43</span><br><span class="line">tags:</span><br><span class="line">---</span><br></pre></td></tr></table></figure></li>
-<li><p>在其中添加categories属性，再部署之后就可以在分类页看到分类了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: hexo next 为文章添加分类</span><br><span class="line">date: 2016-03-16 08:12:43</span><br><span class="line">tags:</span><br><span class="line">categories: 前端</span><br><span class="line">--- </span><br></pre></td></tr></table></figure></li>
-</ol>
+<h3 id="基本格式：find-path-expression"><a href="#基本格式：find-path-expression" class="headerlink" title="基本格式：find path expression"></a>基本格式：find path expression</h3><h4 id="1-按照文件名查找"><a href="#1-按照文件名查找" class="headerlink" title="1. 按照文件名查找"></a>1. 按照文件名查找</h4><p>(1)find / -name httpd.conf　　#在根目录下查找文件httpd.conf，表示在整个硬盘查找<br>(2)find /etc -name httpd.conf　　#在/etc目录下文件httpd.conf<br>(3)find /etc -name ‘<em>srm</em>‘　　#使用通配符*(0或者任意多个)。表示在/etc目录下查找文件名中含有字符串‘srm’的文件<br>(4)find . -name ‘srm*’ 　　#表示当前目录下查找文件名开头是字符串‘srm’的文件</p>
+<h4 id="2-按照文件特征查找"><a href="#2-按照文件特征查找" class="headerlink" title="2.按照文件特征查找"></a>2.按照文件特征查找</h4><p>(1)find / -amin -10 　　# 查找在系统中最后10分钟访问的文件(access time)<br>(2)find / -atime -2　　 # 查找在系统中最后48小时访问的文件<br>(3)find / -empty 　　# 查找在系统中为空的文件或者文件夹<br>(4)find / -group cat 　　# 查找在系统中属于 group为cat的文件<br>(5)find / -mmin -5 　　# 查找在系统中最后5分钟里修改过的文件(modify time)<br>(6)find / -mtime -1 　　#查找在系统中最后24小时里修改过的文件<br>(7)find / -user fred 　　#查找在系统中属于fred这个用户的文件<br>(8)find / -size +10000c　　#查找出大于10000000字节的文件(c:字节，w:双字，k:KB，M:MB，G:GB)<br>(9)find / -size -1000k 　　#查找出小于1000KB的文件</p>
+<h4 id="3-使用混合查找方式查找文件"><a href="#3-使用混合查找方式查找文件" class="headerlink" title="3.使用混合查找方式查找文件"></a>3.使用混合查找方式查找文件</h4><p>参数有： ！，-and(-a)，-or(-o)。</p>
+<p>(1)find /tmp -size +10000c -and -mtime +2 　　#在/tmp目录下查找大于10000字节并在最后2分钟内修改的文件<br>(2)find / -user fred -or -user george 　　#在/目录下查找用户是fred或者george的文件文件<br>(3)find /tmp ! -user panda　　#在/tmp目录中查找所有不属于panda用户的文件</p>
+<h1 id="二、grep命令"><a href="#二、grep命令" class="headerlink" title="二、grep命令"></a>二、grep命令</h1><h2 id="基本格式：find-expression"><a href="#基本格式：find-expression" class="headerlink" title="基本格式：find expression"></a>基本格式：find expression</h2><h3 id="1-主要参数"><a href="#1-主要参数" class="headerlink" title="1.主要参数"></a>1.主要参数</h3><p>[options]主要参数：<br>－c：只输出匹配行的计数。<br>－i：不区分大小写<br>－h：查询多文件时不显示文件名。<br>－l：查询多文件时只输出包含匹配字符的文件名。<br>－n：显示匹配行及行号。<br>－s：不显示不存在或无匹配文本的错误信息。<br>－v：显示不包含匹配文本的所有行。</p>
+<p>pattern正则表达式主要参数：<br>\： 忽略正则表达式中特殊字符的原有含义。<br>^：匹配正则表达式的开始行。<br>$: 匹配正则表达式的结束行。<br>&lt;：从匹配正则表达 式的行开始。<br>&gt;：到匹配正则表达式的行结束。<br>[ ]：单个字符，如[A]即A符合要求 。<br>[ - ]：范围，如[A-Z]，即A、B、C一直到Z都符合要求 。<br>.：所有的单个字符。<br>* ：有字符，长度可以为0。</p>
+<h3 id="2-实例"><a href="#2-实例" class="headerlink" title="2.实例"></a>2.实例</h3><p>　　(1)grep ‘test’ d*　　#显示所有以d开头的文件中包含 test的行<br>　　(2)grep ‘test’ aa bb cc #显示在aa，bb，cc文件中包含test的行<br>　　(3)grep ‘[a-z]{5}’ aa 　　#显示所有包含每行字符串至少有5个连续小写字符的字符串的行<br>　　(4)grep magic /usr/src　　#显示/usr/src目录下的文件(不含子目录)包含magic的行<br>　　(5)grep -r magic /usr/src　　#显示/usr/src目录下的文件(包含子目录)包含magic的行</p>
+<p>　　(6)grep -w pattern files ：只匹配整个单词，而不是字符串的一部分(如匹配’magic’，而不是’magical’)，</p>
+<p>　　详细使用参见：<a target="_blank" rel="noopener" href="http://www.cnblogs.com/end/archive/2012/02/21/2360965.html">http://www.cnblogs.com/end/archive/2012/02/21/2360965.html</a></p>
+<p>转载于:<a target="_blank" rel="noopener" href="https://blog.51cto.com/whylinux/2043871">https://blog.51cto.com/whylinux/2043871</a></p>
 
         </div>
         
@@ -244,7 +254,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2021/07/13/Hexo%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB/",
+                text: "http://example.com/2021/07/22/linux%E4%BD%BF%E7%94%A8find%E5%91%BD%E4%BB%A4%E5%92%8Cgrep%E5%91%BD%E4%BB%A4%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -256,12 +266,9 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2021/07/13/Hexo%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB/";
-            const title         = "「Hexo为文章添加分类」";
-            const excerpt       = `hexo next 添加分类页
-新建一个页面，命名为 categories 。命令如下：
-1hexo new page categories
-编辑刚新建的页面，将页面的类型设置为 categories ，主题将自动为这个页面显示所有分...`;
+            const hostUrl       = "http://example.com/2021/07/22/linux%E4%BD%BF%E7%94%A8find%E5%91%BD%E4%BB%A4%E5%92%8Cgrep%E5%91%BD%E4%BB%A4%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/";
+            const title         = "「linux使用find命令和grep命令查找文件和文件内容」";
+            const excerpt       = `1【摘要】区别： 在使用linux时，经常需要进行文件查找。其中查找的命令主要有find和grep。两个命令是有区的。 find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。 gre...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -280,10 +287,10 @@
             <div class="footer-tag clearfix">
                 <div class="pull-left">
                 <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/tags/Hexo%E6%8A%80%E5%B7%A7/" rel="tag">Hexo技巧</a>, <a class="tag-none-link" href="/tags/Hexo%E6%8F%92%E4%BB%B6/" rel="tag">Hexo插件</a>
+                    <a class="tag-none-link" href="/tags/Linux%E6%8A%80%E5%B7%A7/" rel="tag">Linux技巧</a>, <a class="tag-none-link" href="/tags/Linux%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/" rel="tag">Linux查找命令</a>, <a class="tag-none-link" href="/tags/find%E4%BD%BF%E7%94%A8/" rel="tag">find使用</a>
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2021-07-14</span>
+                <span>最后编辑：2021-07-22</span>
                 </div>
             </div>
         </footer>
@@ -292,13 +299,9 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" Hexo安装使用技巧" href="/2021/07/12/Hexo安装使用技巧/">&lt; 上一篇</a>
+                <a title=" 如何在github上获取指定版本openwrt源码" href="/2021/07/21/如何在github上获取指定版本openwrt源码/">&lt; 上一篇</a>
             </div>
             
-            
-            <div class="nav-next clearfix">
-                <a title=" hexo增加个性插件" href="/2021/07/13/hexo增加个性插件/">下一篇 &gt;</a>
-            </div>
             
         </nav>
     
@@ -331,6 +334,18 @@
 </aside>
             
                     <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix">
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar"></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-text">区别：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-find%E5%91%BD%E4%BB%A4"><span class="toc-text">一.find命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F%EF%BC%9Afind-path-expression"><span class="toc-text">基本格式：find path expression</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%8C%89%E7%85%A7%E6%96%87%E4%BB%B6%E5%90%8D%E6%9F%A5%E6%89%BE"><span class="toc-text">1. 按照文件名查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%8C%89%E7%85%A7%E6%96%87%E4%BB%B6%E7%89%B9%E5%BE%81%E6%9F%A5%E6%89%BE"><span class="toc-text">2.按照文件特征查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8%E6%B7%B7%E5%90%88%E6%9F%A5%E6%89%BE%E6%96%B9%E5%BC%8F%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6"><span class="toc-text">3.使用混合查找方式查找文件</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81grep%E5%91%BD%E4%BB%A4"><span class="toc-text">二、grep命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F%EF%BC%9Afind-expression"><span class="toc-text">基本格式：find expression</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%BB%E8%A6%81%E5%8F%82%E6%95%B0"><span class="toc-text">1.主要参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%9E%E4%BE%8B"><span class="toc-text">2.实例</span></a></li></ol></li></ol></li></ol>
+    </div>
+</aside>
                 
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">

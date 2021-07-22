@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-07-21T06:37:18.711Z</updated>
+  <updated>2021-07-22T01:17:39.415Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux使用find命令和grep命令查找文件和文件内容</title>
+    <link href="http://example.com/2021/07/22/linux%E4%BD%BF%E7%94%A8find%E5%91%BD%E4%BB%A4%E5%92%8Cgrep%E5%91%BD%E4%BB%A4%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/"/>
+    <id>http://example.com/2021/07/22/linux%E4%BD%BF%E7%94%A8find%E5%91%BD%E4%BB%A4%E5%92%8Cgrep%E5%91%BD%E4%BB%A4%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</id>
+    <published>2021-07-22T01:15:05.000Z</published>
+    <updated>2021-07-22T01:17:39.415Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">【摘要】区别： 在使用linux时，经常需要进行文件查找。其中查找的命令主要有find和grep。两个命令是有区的。 find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。 grep是根据文件的内容进行查找，会对文件的每一行按照给定的模式(patter)进行匹配查找。 一.find命令 基本格式：find path expression 1. ...</span><br></pre></td></tr></table></figure><hr><hr><h1 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h1><ol><li><p>在使用linux时，经常需要进行文件查找。其中查找的命令主要有find和grep。两个命令是有区的。</p></li><li><p>find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。</p></li><li><p>grep是根据文件的内容进行查找，会对文件的每一行按照给定的模式(patter)进行匹配查找。</p><hr><hr><h2 id="一-find命令"><a href="#一-find命令" class="headerlink" title="一.find命令"></a>一.find命令</h2></li></ol><h3 id="基本格式：find-path-expression"><a href="#基本格式：find-path-expression" class="headerlink" title="基本格式：find path expression"></a>基本格式：find path expression</h3><h4 id="1-按照文件名查找"><a href="#1-按照文件名查找" class="headerlink" title="1. 按照文件名查找"></a>1. 按照文件名查找</h4><p>(1)find / -name httpd.conf　　#在根目录下查找文件httpd.conf，表示在整个硬盘查找<br>(2)find /etc -name httpd.conf　　#在/etc目录下文件httpd.conf<br>(3)find /etc -name ‘<em>srm</em>‘　　#使用通配符*(0或者任意多个)。表示在/etc目录下查找文件名中含有字符串‘srm’的文件<br>(4)find . -name ‘srm*’ 　　#表示当前目录下查找文件名开头是字符串‘srm’的文件</p><h4 id="2-按照文件特征查找"><a href="#2-按照文件特征查找" class="headerlink" title="2.按照文件特征查找"></a>2.按照文件特征查找</h4><p>(1)find / -amin -10 　　# 查找在系统中最后10分钟访问的文件(access time)<br>(2)find / -atime -2　　 # 查找在系统中最后48小时访问的文件<br>(3)find / -empty 　　# 查找在系统中为空的文件或者文件夹<br>(4)find / -group cat 　　# 查找在系统中属于 group为cat的文件<br>(5)find / -mmin -5 　　# 查找在系统中最后5分钟里修改过的文件(modify time)<br>(6)find / -mtime -1 　　#查找在系统中最后24小时里修改过的文件<br>(7)find / -user fred 　　#查找在系统中属于fred这个用户的文件<br>(8)find / -size +10000c　　#查找出大于10000000字节的文件(c:字节，w:双字，k:KB，M:MB，G:GB)<br>(9)find / -size -1000k 　　#查找出小于1000KB的文件</p><h4 id="3-使用混合查找方式查找文件"><a href="#3-使用混合查找方式查找文件" class="headerlink" title="3.使用混合查找方式查找文件"></a>3.使用混合查找方式查找文件</h4><p>参数有： ！，-and(-a)，-or(-o)。</p><p>(1)find /tmp -size +10000c -and -mtime +2 　　#在/tmp目录下查找大于10000字节并在最后2分钟内修改的文件<br>(2)find / -user fred -or -user george 　　#在/目录下查找用户是fred或者george的文件文件<br>(3)find /tmp ! -user panda　　#在/tmp目录中查找所有不属于panda用户的文件</p><h1 id="二、grep命令"><a href="#二、grep命令" class="headerlink" title="二、grep命令"></a>二、grep命令</h1><h2 id="基本格式：find-expression"><a href="#基本格式：find-expression" class="headerlink" title="基本格式：find expression"></a>基本格式：find expression</h2><h3 id="1-主要参数"><a href="#1-主要参数" class="headerlink" title="1.主要参数"></a>1.主要参数</h3><p>[options]主要参数：<br>－c：只输出匹配行的计数。<br>－i：不区分大小写<br>－h：查询多文件时不显示文件名。<br>－l：查询多文件时只输出包含匹配字符的文件名。<br>－n：显示匹配行及行号。<br>－s：不显示不存在或无匹配文本的错误信息。<br>－v：显示不包含匹配文本的所有行。</p><p>pattern正则表达式主要参数：<br>\： 忽略正则表达式中特殊字符的原有含义。<br>^：匹配正则表达式的开始行。<br>$: 匹配正则表达式的结束行。<br>&lt;：从匹配正则表达 式的行开始。<br>&gt;：到匹配正则表达式的行结束。<br>[ ]：单个字符，如[A]即A符合要求 。<br>[ - ]：范围，如[A-Z]，即A、B、C一直到Z都符合要求 。<br>.：所有的单个字符。<br>* ：有字符，长度可以为0。</p><h3 id="2-实例"><a href="#2-实例" class="headerlink" title="2.实例"></a>2.实例</h3><p>　　(1)grep ‘test’ d*　　#显示所有以d开头的文件中包含 test的行<br>　　(2)grep ‘test’ aa bb cc #显示在aa，bb，cc文件中包含test的行<br>　　(3)grep ‘[a-z]{5}’ aa 　　#显示所有包含每行字符串至少有5个连续小写字符的字符串的行<br>　　(4)grep magic /usr/src　　#显示/usr/src目录下的文件(不含子目录)包含magic的行<br>　　(5)grep -r magic /usr/src　　#显示/usr/src目录下的文件(包含子目录)包含magic的行</p><p>　　(6)grep -w pattern files ：只匹配整个单词，而不是字符串的一部分(如匹配’magic’，而不是’magical’)，</p><p>　　详细使用参见：<a href="http://www.cnblogs.com/end/archive/2012/02/21/2360965.html">http://www.cnblogs.com/end/archive/2012/02/21/2360965.html</a></p><p>转载于:<a href="https://blog.51cto.com/whylinux/2043871">https://blog.51cto.com/whylinux/2043871</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span</summary>
+      
+    
+    
+    
+    <category term="Linux学习" scheme="http://example.com/categories/Linux%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Linux技巧" scheme="http://example.com/tags/Linux%E6%8A%80%E5%B7%A7/"/>
+    
+    <category term="find使用" scheme="http://example.com/tags/find%E4%BD%BF%E7%94%A8/"/>
+    
+    <category term="Linux查找命令" scheme="http://example.com/tags/Linux%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
   
   <entry>
     <title>如何在github上获取指定版本openwrt源码</title>
@@ -189,9 +217,9 @@
     <category term="openwrt系列" scheme="http://example.com/categories/openwrt%E7%B3%BB%E5%88%97/"/>
     
     
-    <category term="openwrt编译" scheme="http://example.com/tags/openwrt%E7%BC%96%E8%AF%91/"/>
-    
     <category term="路由器编译" scheme="http://example.com/tags/%E8%B7%AF%E7%94%B1%E5%99%A8%E7%BC%96%E8%AF%91/"/>
+    
+    <category term="openwrt编译" scheme="http://example.com/tags/openwrt%E7%BC%96%E8%AF%91/"/>
     
     <category term="git版本" scheme="http://example.com/tags/git%E7%89%88%E6%9C%AC/"/>
     
