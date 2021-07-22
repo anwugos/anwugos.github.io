@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-07-22T07:44:29.482Z</updated>
+  <updated>2021-07-22T08:36:07.444Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,69 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>tar压缩解压缩命令详解</title>
+    <link href="http://example.com/2021/07/22/tar%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://example.com/2021/07/22/tar%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/</id>
+    <published>2021-07-22T08:30:52.000Z</published>
+    <updated>2021-07-22T08:36:07.444Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>tar命令详解</strong></p><p>-c: 建立压缩档案</p><p>-x：解压</p><p>-t：查看内容</p><p>-r：向压缩归档文件末尾追加文件</p><p>-u：更新原压缩包中的文件</p><p>这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。</p><p>下面的参数是根据需要在压缩或解压档案时可选的。</p><p>-z：有gzip属性的</p><p>-j：有bz2属性的</p><p>-Z：有compress属性的</p><p>-v：显示所有过程</p><p>-O：将文件解开到标准输出</p><p>参数-f是必须的</p><p>-f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。</p><p># tar -cf all.tar *.jpg 这条命令是将所有.jpg的文件打成一个名为all.tar的包。-c是表示产生新的包，-f指定包的文件名。<br># tar -rf all.tar *.gif 这条命令是将所有.gif的文件增加到all.tar的包里面去。-r是表示增加文件的意思。<br># tar -uf all.tar logo.gif 这条命令是更新原来tar包all.tar中logo.gif文件，-u是表示更新文件的意思。<br># tar -tf all.tar 这条命令是列出all.tar包中所有文件，-t是列出文件的意思<br># tar -xf all.tar 这条命令是解出all.tar包中所有文件，-x是解开的意思</p><p><strong>查看</strong><br>tar -tf aaa.tar.gz  在不解压的情况下查看压缩包的内容</p><p><strong>压缩</strong></p><p>tar –cvf jpg.tar *.jpg //将目录里所有jpg文件打包成tar.jpg</p><p>tar –czf jpg.tar.gz *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz</p><p>tar –cjf jpg.tar.bz2 *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2</p><p>tar –cZf jpg.tar.Z *.jpg  //将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z</p><p><strong>解压</strong></p><p>tar –xvf file.tar //解压 tar包</p><p>tar -xzvf file.tar.gz //解压tar.gz</p><p>tar -xjvf file.tar.bz2  //解压 tar.bz2tar –xZvf file.tar.Z //解压tar.Z</p><p><strong>总结</strong></p><p>1、*.tar 用 tar –xvf 解压</p><p>2、*.gz 用 gzip -d或者gunzip 解压</p><p>3、*.tar.gz和*.tgz 用 tar –xzf 解压</p><p>4、*.bz2 用 bzip2 -d或者用bunzip2 解压</p><p>5、*.tar.bz2用tar –xjf 解压</p><p>6、*.Z 用 uncompress 解压</p><p>7、*.tar.Z 用tar –xZf 解压</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;strong&gt;tar命令详解&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;-c: 建立压缩档案&lt;/p&gt;
+&lt;p&gt;-x：解压&lt;/p&gt;
+&lt;p&gt;-t：查看内容&lt;/p&gt;
+&lt;p&gt;-r：向压缩归档文件末尾追加文件&lt;/p&gt;
+&lt;p&gt;-u：更新原压缩包中的文件&lt;/p&gt;
+&lt;p&gt;这五个是独立的命令，压缩解压</summary>
+      
+    
+    
+    
+    <category term="Linux学习" scheme="http://example.com/categories/Linux%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Linux文件解压" scheme="http://example.com/tags/Linux%E6%96%87%E4%BB%B6%E8%A7%A3%E5%8E%8B/"/>
+    
+    <category term="gzip" scheme="http://example.com/tags/gzip/"/>
+    
+    <category term="tar命令" scheme="http://example.com/tags/tar%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何查看当前Ubuntu系统的版本</title>
+    <link href="http://example.com/2021/07/22/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8DUbuntu%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%88%E6%9C%AC/"/>
+    <id>http://example.com/2021/07/22/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8DUbuntu%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%88%E6%9C%AC/</id>
+    <published>2021-07-22T08:25:09.000Z</published>
+    <updated>2021-07-22T08:29:48.658Z</updated>
+    
+    <content type="html"><![CDATA[<p>说来也惭愧，用Ubuntu差不多快1个月了，双系统是让朋友安的，只知道自己使用的是什么12版本的，具体怎么看还不知道，下面写一下查看当前Linux系统的版本的方法</p><p>注：proc目录下记录的当前系统运行的各种数据，version记录的版本信息直接可以通过cat查看到。<br>第一种</p><p>   使用命令：cat /proc/version 查看</p><p>   proc目录下记录的当前系统运行的各种数据,version记录的版本信息可以直接通过cat查看到，还可以看到我的gcc版本呢。</p><p>第二种</p><p>   使用命令：uname -a 查看</p><p>​    </p><pre><code>如上图显示自己的内核版本</code></pre><p>第三种</p><pre><code>使用命令：lsb_release -a 查看</code></pre><p>​    </p><p>   原来我的版本是12.04啊，晓得了<br>————————————————<br>版权声明：本文为CSDN博主「玖零大壮」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/mybelief321/article/details/9076331">https://blog.csdn.net/mybelief321/article/details/9076331</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;说来也惭愧，用Ubuntu差不多快1个月了，双系统是让朋友安的，只知道自己使用的是什么12版本的，具体怎么看还不知道，下面写一下查看当前Linux系统的版本的方法&lt;/p&gt;
+&lt;p&gt;注：proc目录下记录的当前系统运行的各种数据，version记录的版本信息直接可以通过cat查</summary>
+      
+    
+    
+    
+    <category term="Linux学习" scheme="http://example.com/categories/Linux%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Ubuntu系统命令" scheme="http://example.com/tags/Ubuntu%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/"/>
+    
+    <category term="Linux 系统技巧" scheme="http://example.com/tags/Linux-%E7%B3%BB%E7%BB%9F%E6%8A%80%E5%B7%A7/"/>
+    
+    <category term="Uname" scheme="http://example.com/tags/Uname/"/>
+    
+  </entry>
   
   <entry>
     <title>编译OpenWRT过程问题解决</title>
