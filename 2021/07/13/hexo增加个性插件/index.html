@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  
+  
+  <title>hexo增加个性插件 | Eagmi</title>
+  
+  <meta name="author" content="雕教授" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="" />
+  
+  <meta name="description" content="第四波攻势来临啦~还是对hexo-next做优化、美化♣️这次我想加入折叠功能、鼠标放置后图片放大、分类和标签界面显示年份、可爱的十二生肖、分类层级显示、文章阅读后评分、侧栏加音乐  Todo list:  折叠功能 鼠标放置后图片放大 分类和标签界面显示年份 年份后显示十二生肖 分类&amp;标签层级显示 文章阅读后评分 侧栏加音乐 live2d看板娘 推荐两个emoji的复制网站  让我为你">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo增加个性插件">
+<meta property="og:url" content="http://example.com/2021/07/13/hexo%E5%A2%9E%E5%8A%A0%E4%B8%AA%E6%80%A7%E6%8F%92%E4%BB%B6/index.html">
+<meta property="og:site_name" content="Eagmi">
+<meta property="og:description" content="第四波攻势来临啦~还是对hexo-next做优化、美化♣️这次我想加入折叠功能、鼠标放置后图片放大、分类和标签界面显示年份、可爱的十二生肖、分类层级显示、文章阅读后评分、侧栏加音乐  Todo list:  折叠功能 鼠标放置后图片放大 分类和标签界面显示年份 年份后显示十二生肖 分类&amp;标签层级显示 文章阅读后评分 侧栏加音乐 live2d看板娘 推荐两个emoji的复制网站  让我为你">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2017/07/30/597d6dbc4eea8.png">
+<meta property="og:image" content="https://i.loli.net/2017/07/30/597d6dbc2d9ed.png">
+<meta property="article:published_time" content="2021-07-12T17:39:49.000Z">
+<meta property="article:modified_time" content="2021-07-12T17:41:03.623Z">
+<meta property="article:author" content="雕教授">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2017/07/30/597d6dbc4eea8.png">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Eagmi</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Eagmi</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/13/hexo%E5%A2%9E%E5%8A%A0%E4%B8%AA%E6%80%A7%E6%8F%92%E4%BB%B6/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">hexo增加个性插件</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2021-07-12T17:39:49.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2021-07-13</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">雕教授</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~12.46K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1626111663623"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><blockquote>
+<p>第四波攻势来临啦~<br>还是对hexo-next做优化、美化♣️<br>这次我想加入折叠功能、鼠标放置后图片放大、分类和标签界面显示年份、可爱的十二生肖、分类层级显示、文章阅读后评分、侧栏加音乐</p>
+</blockquote>
+<p>Todo list:</p>
+<ul>
+<li>折叠功能</li>
+<li>鼠标放置后图片放大</li>
+<li>分类和标签界面显示年份</li>
+<li>年份后显示十二生肖</li>
+<li>分类&amp;标签层级显示</li>
+<li>文章阅读后评分</li>
+<li>侧栏加音乐</li>
+<li>live2d看板娘</li>
+<li>推荐两个emoji的复制网站</li>
+</ul>
+<p>让我为你点一首歌吧！♪一直陪着你ヾ(·▽·ヾ)<br>开始静静享受歌曲吧！</p>
+<p>Clsr (Aash Mehta Flip) - The Chainsmokers &#x2F; Aash Mehta &#x2F; Halsey</p>
+<p>Hey, I was doing just fine before I met you (嘿 遇到你之前我一切安好)</p>
+<p>I drink too much and that’s an issue but I’m okay (虽酩酊大醉 看上去一团糟 但我感觉很好)</p>
+<p>Hey, you tell your friends it was nice to meet them (嘿 告诉你的朋友很高兴和他们相遇)</p>
+<p>But I hope I never see them again (但我希望再也看不到他们的身影)</p>
+<p>I know it breaks your heart (我知道这会伤了你的心)</p>
+<p>Moved to the city in a broke down car (驾着一辆破汽车 驶向一座陌生的城市)</p>
+<p>And four years, no calls (一去四年 杳无音讯)</p>
+<p>Now you’re looking pretty in a hotel bar (现在你的美貌闪耀在酒吧的聚光灯下)</p>
+<p>And I can’t stop, no, I can’t stop (我忍俊不禁浮想联翩)</p>
+<p>So baby pull me closer in the backseat of your Rover (宝贝 同我咫尺之遥 在你后座上耳语呢喃 如胶似漆)</p>
+<p>That I know you can’t afford (缠绵于这辆永远付不起的路虎车上)</p>
+<p>Bite that tattoo on your shoulder (让我的舌尖滑过你肩上的纹身)</p>
+<p>Pull the sheets right off the corner (迫不及待的推开车里的钢板)</p>
+<p>Of the mattress that you stole (放上舒适的床垫让你我共缠绵)</p>
+<p>From your roommate back in Boulder (那张你从博尔德的室友那偷来的床垫)</p>
+<p>We ain’t ever getting older (今夜我们激情永葆)</p>
+<p>You look as good as the day I met you (回首过去我遇到你的那日多美好)</p>
+<p>I forget just why I left you, I was insane (我也忘记我为何离你而去 大概是脑子一热)</p>
+<p>Stay and play that Blink-182 song (彻夜未眠 放着Blink-182（乐队）的歌)</p>
+<p>That we beat to death in Tucson, okay (那曲我们曾在图森恣意敲打的节奏)</p>
+<p>I know it breaks your heart (我知道这会伤了你的心)</p>
+<p>Moved to the city in a broke down car (驾着一辆破汽车 驶向一座陌生的城市)</p>
+<p>And four years, no calls (一去四年 杳无音讯)</p>
+<p>Now I’m looking pretty in a hotel bar (现在我的闪耀在酒吧的聚光灯下)</p>
+<p>And I can’t stop (我忍俊不禁)</p>
+<p>No, I can’t stop (浮想联翩)</p>
+<p>So baby pull me closer in the backseat of your Rover (宝贝 同我咫尺之遥 在你后座上耳语呢喃 如胶似漆)</p>
+<p>That I know you can’t afford (缠绵于这辆永远付不起的路虎车上)</p>
+<p>Bite that tattoo on your shoulder (让我的舌尖滑过你肩上的纹身)</p>
+<p>Pull the sheets right off the corner (迫不及待的推开车里的钢板)</p>
+<p>Of the mattress that you stole (放上舒适的床垫让你我共缠绵)</p>
+<p>From your roommate back in Boulder (那张你从博尔德的室友那偷来的床垫)</p>
+<p>We ain’t ever getting older (今夜我们激情永葆)</p>
+<p>Baby pull me closer in the backseat of your Rover (宝贝 同我咫尺之遥 在你后座上耳语呢喃 如胶似漆)</p>
+<p>That I know you can’t afford (缠绵于这辆永远付不起的路虎车上)</p>
+<p>Bite that tattoo on your shoulder (让我的舌尖滑过你肩上的纹身)</p>
+<p>Pull the sheets right off the corner (迫不及待的推开车里的钢板)</p>
+<p>Of the mattress that you stole (放上舒适的床垫让你我共缠绵)</p>
+<p>From your roommate back in Boulder (那张你从博尔德的室友那偷来的床垫)</p>
+<p>We ain’t ever getting older (今夜我们激情永葆)</p>
+<p>We ain’t ever getting older (no we ain’t ever getting older) (我们的青春永不褪色…)</p>
+<p>We ain’t ever getting older (no we ain’t ever getting older) (我们的青春永不褪色…)</p>
+<p>We ain’t ever getting older (we ain’t ever getting older) (我们的青春永不褪色…)</p>
+<p>We ain’t ever getting older (no we ain’t ever getting older) (我们的青春永不褪色…)</p>
+<p>00:00 &#x2F; 00:00 </p>
+<h1 id="折叠功能"><a href="#折叠功能" class="headerlink" title="折叠功能"></a>折叠功能</h1><p>有大段的东西想要放上去，但又不想占据大量的位置。折叠是最好的选择。<a target="_blank" rel="noopener" href="https://myoumeng.github.io/post/3724.html#fn:2">2</a></p>
+<p>(其实也可以用tabs功能，请看3)</p>
+<p>下面在Hexo的主题上定制添加折叠功能。<br>next主题的主要js位于<code>themes/next/source/js/src/post-details.js</code>,在里面找合适的位置，添加如下代码：</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(document).ready(function()&#123;</span><br><span class="line">    $(document).on(&#x27;click&#x27;, &#x27;.fold_hider&#x27;, function()&#123;</span><br><span class="line">        $(&#x27;&gt;.fold&#x27;, this.parentNode).slideToggle();</span><br><span class="line">        $(&#x27;&gt;:first&#x27;, this).toggleClass(&#x27;open&#x27;);</span><br><span class="line">    &#125;);</span><br><span class="line">    //默认情况下折叠</span><br><span class="line">    $(&quot;div.fold&quot;).css(&quot;display&quot;,&quot;none&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>在主题的scripts下添加一个tags.js, 位于<code>themes/next/scripts/tags.js</code></p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">themes/next/scripts/tags.js</span><br><span class="line">/*</span><br><span class="line">  @haohuawu</span><br><span class="line">  修复 Nunjucks 的 tag 里写 ```代码块```，最终都会渲染成 undefined 的问题</span><br><span class="line">  https://github.com/hexojs/hexo/issues/2400</span><br><span class="line">*/</span><br><span class="line">const rEscapeContent = /&lt;escape(?:[^&gt;]*)&gt;([\s\S]*?)&lt;\/escape&gt;/g;</span><br><span class="line">const placeholder = &#x27;\uFFFD&#x27;;</span><br><span class="line">const rPlaceholder = /(?:&lt;|&amp;lt;)\!--\uFFFD(\d+)--(?:&gt;|&amp;gt;)/g;</span><br><span class="line">const cache = [];</span><br><span class="line">function escapeContent(str) &#123;</span><br><span class="line">  return &#x27;&lt;!--&#x27; + placeholder + (cache.push(str) - 1) + &#x27;--&gt;&#x27;;</span><br><span class="line">&#125;</span><br><span class="line">hexo.extend.filter.register(&#x27;before_post_render&#x27;, function(data) &#123;</span><br><span class="line">  data.content = data.content.replace(rEscapeContent, function(match, content) &#123;</span><br><span class="line">    return escapeContent(content);</span><br><span class="line">  &#125;);</span><br><span class="line">  return data;</span><br><span class="line">&#125;);</span><br><span class="line">hexo.extend.filter.register(&#x27;after_post_render&#x27;, function(data) &#123;</span><br><span class="line">  data.content = data.content.replace(rPlaceholder, function() &#123;</span><br><span class="line">    return cache[arguments[1]];</span><br><span class="line">  &#125;);</span><br><span class="line">  return data;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>再继续添加一个<code>fold.js</code>:</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">themes/next/scripts/fold.js</span><br><span class="line">/* global hexo */</span><br><span class="line">// Usage: &#123;% fold ???? %&#125; Something &#123;% endfold %&#125;</span><br><span class="line">function fold (args, content) &#123;</span><br><span class="line">    var text = args[0];</span><br><span class="line">    if(!text) text = &quot;点击显/隐&quot;;</span><br><span class="line">    return &#x27;&lt;div&gt;&lt;div class=&quot;fold_hider&quot;&gt;&lt;div class=&quot;close hider_title&quot;&gt;&#x27; + text + &#x27;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;fold&quot;&gt;\n&#x27; + hexo.render.renderSync(&#123;text: content, engine: &#x27;markdown&#x27;&#125;) + &#x27;\n&lt;/div&gt;&lt;/div&gt;&#x27;;</span><br><span class="line">&#125;</span><br><span class="line">hexo.extend.tag.register(&#x27;fold&#x27;, fold, &#123;ends: true&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>最后，添加几个自定义样式，</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">位置themes/next/source/css/_custom/custom.styl</span><br><span class="line"></span><br><span class="line">.hider_title&#123;</span><br><span class="line">    font-family: &quot;Microsoft Yahei&quot;;</span><br><span class="line">    cursor: pointer;</span><br><span class="line">&#125;</span><br><span class="line">.close:after&#123;</span><br><span class="line">    content: &quot;▼&quot;;</span><br><span class="line">&#125;</span><br><span class="line">.open:after&#123;</span><br><span class="line">    content: &quot;▲&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用方法：在我们需要折叠的地方前后添加便签，示例用法：</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% fold 点击显/隐内容 %&#125;</span><br><span class="line">something you want to fold, include code block.</span><br><span class="line">&#123;% endfold %&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="分类和标签界面显示年份"><a href="#分类和标签界面显示年份" class="headerlink" title="分类和标签界面显示年份"></a>分类和标签界面显示年份</h1><h2 id="修改分类年份"><a href="#修改分类年份" class="headerlink" title="修改分类年份"></a>修改分类年份</h2><p>打开　<code>\themes\next\layout\category.swig</code></p>
+<p>查找</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% for post in page.posts %&#125;</span><br><span class="line">  &#123;&#123; post_template.render(post) &#125;&#125;</span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>改为</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;% for post in page.posts %&#125;</span><br><span class="line">  &#123;# Show year #&#125;</span><br><span class="line">  &#123;% set year %&#125;</span><br><span class="line">  &#123;% set post.year = date(post.date, &#x27;YYYY&#x27;) %&#125;</span><br><span class="line">  &#123;% if post.year !== year %&#125;</span><br><span class="line">    &#123;% set year = post.year %&#125;</span><br><span class="line">    &lt;div class=&quot;collection-title&quot;&gt;</span><br><span class="line">      &lt;h2 class=&quot;archive-year motion-element&quot; id=&quot;archive-year-&#123;&#123; year &#125;&#125;&quot;&gt;&#123;&#123; year &#125;&#125;&lt;/h2&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &#123;% endif %&#125;</span><br><span class="line">  &#123;# endshow #&#125;</span><br><span class="line">  &#123;&#123; post_template.render(post) &#125;&#125;</span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>添加</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block script_extra %&#125;</span><br><span class="line">  &#123;% if theme.use_motion %&#125;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; id=&quot;motion.page.archive&quot;&gt;</span><br><span class="line">      $(&#x27;.archive-year&#x27;).velocity(&#x27;transition.slideLeftIn&#x27;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &#123;% endif %&#125;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="修改标签年份"><a href="#修改标签年份" class="headerlink" title="修改标签年份"></a>修改标签年份</h2><p>打开<code>\themes\next\layout\tag.swig</code><br>查找:</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% for post in page.posts %&#125;</span><br><span class="line">  &#123;&#123; post_template.render(post) &#125;&#125;</span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>改为:</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;% for post in page.posts %&#125;</span><br><span class="line">  &#123;# Show year #&#125;</span><br><span class="line">  &#123;% set year %&#125;</span><br><span class="line">  &#123;% set post.year = date(post.date, &#x27;YYYY&#x27;) %&#125;</span><br><span class="line">  &#123;% if post.year !== year %&#125;</span><br><span class="line">    &#123;% set year = post.year %&#125;</span><br><span class="line">    &lt;div class=&quot;collection-title&quot;&gt;</span><br><span class="line">      &lt;h2 class=&quot;archive-year motion-element&quot; id=&quot;archive-year-&#123;&#123; year &#125;&#125;&quot;&gt;&#123;&#123; year &#125;&#125;&lt;/h2&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &#123;% endif %&#125;</span><br><span class="line">  &#123;# endshow #&#125;</span><br><span class="line">  &#123;&#123; post_template.render(post) &#125;&#125;</span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>添加</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block script_extra %&#125;</span><br><span class="line">  &#123;% if theme.use_motion %&#125;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; id=&quot;motion.page.archive&quot;&gt;</span><br><span class="line">      $(&#x27;.archive-year&#x27;).velocity(&#x27;transition.slideLeftIn&#x27;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &#123;% endif %&#125;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="修改分类-标签层级显示"><a href="#修改分类-标签层级显示" class="headerlink" title="修改分类&amp;标签层级显示"></a>修改分类&amp;标签层级显示</h1><h2 id="分类层级"><a href="#分类层级" class="headerlink" title="分类层级"></a>分类层级</h2><p>在<code>\themes\next\layout\_macro\post.swig</code>查找<a target="_blank" rel="noopener" href="https://myoumeng.github.io/post/3724.html#fn:1">1</a>：</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; __(&#x27;symbol.comma&#x27;) &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将其改为</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; __(&#x27;&gt;&#x27;) &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>则显示如下：</p>
+<p><img src="https://i.loli.net/2017/07/30/597d6dbc4eea8.png" alt="分类于：xx&gt;&gt;xx"></p>
+<h2 id="标签层级"><a href="#标签层级" class="headerlink" title="标签层级"></a>标签层级</h2><p>在<code>\themes\next\source\css\_custom\custom.styl</code>中添加:</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.category-list ul</span><br><span class="line">    list-style none</span><br><span class="line">    li:before</span><br><span class="line">      content &#x27;&gt;&gt; &#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>则显示如下：<br><img src="https://i.loli.net/2017/07/30/597d6dbc2d9ed.png" alt="img"></p>
+<h2 id="侧栏加音乐「aplayer」"><a href="#侧栏加音乐「aplayer」" class="headerlink" title="侧栏加音乐「aplayer」"></a>侧栏加音乐「aplayer」</h2><p><a target="_blank" rel="noopener" href="https://qianling.pw/hexo-optimization/#23-%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%B7%BB%E5%8A%A0-APlayer">https://qianling.pw/hexo-optimization/#23-%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%B7%BB%E5%8A%A0-APlayer</a></p>
+<p>打开　<code>\themes\next\source\js\src\custom\</code></p>
+<p>放置　<code>APlayer.min.js</code><br>复制这个页面的内容</p>
+<p>打开　<code>\themes\next\layout\_custom\</code><br>在　<code>sidebar.swig</code>写入　</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;aplayer&quot; class=&quot;aplayer&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;script src=&quot;/js/src/custom/APlayer.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">var ap = new APlayer(&#123;</span><br><span class="line">    element: document.getElementById(&#x27;aplayer&#x27;),                       // Optional, player element</span><br><span class="line">    narrow: false,                                                     // Optional, narrow style</span><br><span class="line">    autoplay: false,                                                    // Optional, autoplay song(s), not supported by mobile browsers</span><br><span class="line">    showlrc: 0,                                                        // Optional, show lrc, can be 0, 1, 2, see: ###With lrc</span><br><span class="line">    mutex: true,                                                       // Optional, pause other players when this player playing</span><br><span class="line">    theme: &#x27;#e6d0b2&#x27;,                                                  // Optional, theme color, default: #b7daff</span><br><span class="line">    mode: &#x27;random&#x27;,                                                    // Optional, play mode, can be `random` `single` `circulation`(loop) `order`(no loop), default: `circulation`</span><br><span class="line">    preload: &#x27;metadata&#x27;,                                               // Optional, the way to load music, can be &#x27;none&#x27; &#x27;metadata&#x27; &#x27;auto&#x27;, default: &#x27;auto&#x27;</span><br><span class="line">    listmaxheight: &#x27;513px&#x27;,                                             // Optional, max height of play list</span><br><span class="line">    music: [&#123;</span><br><span class="line">      title: &#x27;双笙 囧菌 - 世末歌者&#x27;,</span><br><span class="line">      author: &#x27;双笙 囧菌&#x27;,</span><br><span class="line">      url: &#x27;https://qianling-1254036047.cos.ap-chengdu.myqcloud.com/music/%E5%8F%8C%E7%AC%99%20%E5%9B%A7%E8%8F%8C%20-%20%E4%B8%96%E6%9C%AB%E6%AD%8C%E8%80%85.mp3&#x27;,</span><br><span class="line">      pic: &#x27;https://qianling-1254036047.cos.ap-chengdu.myqcloud.com/music/%E5%8F%8C%E7%AC%99%20%E5%9B%A7%E8%8F%8C%20-%20%E4%B8%96%E6%9C%AB%E6%AD%8C%E8%80%85.webp&#x27;,</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      title: &#x27;幹物女(WeiWei)&#x27;,</span><br><span class="line">      author: &#x27;封茗囧菌&#x27;,</span><br><span class="line">      url: &#x27;https://qianling-1254036047.cos.ap-chengdu.myqcloud.com/music/%E5%B0%81%E8%8C%97%E5%9B%A7%E8%8F%8C%20-%20%E5%B9%B9%E7%89%A9%E5%A5%B3(WeiWei).mp3&#x27;,</span><br><span class="line">      pic: &#x27;https://qianling-1254036047.cos.ap-chengdu.myqcloud.com/music/%E5%B0%81%E8%8C%97%E5%9B%A7%E8%8F%8C%20-%20%E5%B9%B9%E7%89%A9%E5%A5%B3(WeiWei).webp&#x27;,</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="live2d看板娘-star2"><a href="#live2d看板娘-star2" class="headerlink" title="live2d看板娘:star2:"></a>live2d看板娘:star2:</h1><p>像我博客右下角的小人，有至少三种以上的方式，就来按照从简单到难、从随波逐流到自定义来介绍吧！</p>
+<h2 id="直接引用"><a href="#直接引用" class="headerlink" title="直接引用"></a>直接引用</h2><p>没错，就是直接引用别的大大的【看板娘】，他们已经写好了代码，我们就不需要再写、添加到文件夹里面的，只需要在<code>themes/next/layout/_custom/head.swig</code>里面添加这些代码，就是引用了。</p>
+<p>优点是简单、方便，推荐如我一样的小白，或者只需要最基础的功能的朋友使用<br>缺点是自定义程度小，比如我想修改看板娘说的话等等，都很难。</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">位置：themes/next/layout/_custom/head.swig</span><br><span class="line">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css&quot; /&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/autoload.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>hexo-next有一个插件，这里是安装live2d的插件！安装就可以用了。<br>这里插件很多哟！</p>
+<p>优点是相对来说比较简单，可以换模型<br>缺点是插件不带对话等功能，就相当于一个不会说话的漂亮娃娃<br>然鹅，一个不会说话、表达的娃娃怎么比得上会聊天、会撩的看板娘呢？？？所以，我就使劲折腾着……</p>
+<h2 id="自定义"><a href="#自定义" class="headerlink" title="自定义"></a>自定义</h2><p>下载大佬[3]的文件后，自己去折腾吧（╭(╯╰)╮我才不会告诉你，我个小白折腾了好久，虽然有成功过，但是最后发现加载太坑了我对自定义已经不抱太大希望了！）</p>
+<p>推荐几枚大佬：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02">https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/stevenjoezhang/live2d-widget">https://github.com/stevenjoezhang/live2d-widget</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.fghrsh.net/post/123.html">https://www.fghrsh.net/post/123.html</a></li>
+</ol>
+<p>优点是自定义程度大，推荐有丰富代码经验的人食用<br>缺点是会导致博客加载速度过慢</p>
+<h1 id="emoji🤕🤜🏻😹🤑👿表😬🙄👽🤝情🤤🤐👻😅🤯帝😧☠😦😂"><a href="#emoji🤕🤜🏻😹🤑👿表😬🙄👽🤝情🤤🤐👻😅🤯帝😧☠😦😂" class="headerlink" title="emoji🤕🤜🏻😹🤑👿表😬🙄👽🤝情🤤🤐👻😅🤯帝😧☠😦😂"></a>emoji🤕🤜🏻😹🤑👿表😬🙄👽🤝情🤤🤐👻😅🤯帝😧☠😦😂</h1><p>我看到有人会安装插件，然鹅，我的不需要安装插件也可以使用emoji，可能大家也不需要安装那些emoji插件哦！所以，看到喜欢的、想用emoji，可以到下面的网站去copy哦！<br>不过，我的网站显示的emoji可能会不同别太介意啦</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.emojicopy.com/">https://www.emojicopy.com/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.webfx.com/tools/emoji-cheat-sheet/">https://www.webfx.com/tools/emoji-cheat-sheet/</a></p>
+<hr>
+<ol>
+<li>1.<a target="_blank" rel="noopener" href="https://qianling.pw/hexo-optimization/#8-%E4%BF%AE%E6%94%B9%E5%88%86%E7%B1%BB%E5%B1%82%E7%BA%A7%E6%98%BE%E7%A4%BA[">https://qianling.pw/hexo-optimization/#8-%E4%BF%AE%E6%94%B9%E5%88%86%E7%B1%BB%E5%B1%82%E7%BA%A7%E6%98%BE%E7%A4%BA[</a> ↩](<a target="_blank" rel="noopener" href="https://myoumeng.github.io/post/3724.html#fnref:1">https://myoumeng.github.io/post/3724.html#fnref:1</a>)</li>
+<li>2.<a target="_blank" rel="noopener" href="https://blog.rmiao.top/hexo-fold-block/[">https://blog.rmiao.top/hexo-fold-block/[</a> ↩](<a target="_blank" rel="noopener" href="https://myoumeng.github.io/post/3724.html#fnref:2">https://myoumeng.github.io/post/3724.html#fnref:2</a>)</li>
+<li>3.<a target="_blank" rel="noopener" href="https://github.com/stevenjoezhang/live2d-widget[">https://github.com/stevenjoezhang/live2d-widget[</a> ↩](<a target="_blank" rel="noopener" href="https://myoumeng.github.io/post/3724.html#fnref:3">https://myoumeng.github.io/post/3724.html#fnref:3</a>)</li>
+</ol>
+</li>
+</ul>
+<p>本文结束咯(oﾟ▽ﾟ)o感谢您的阅读</p>
+<p>欢迎你来阅读相关文章哦(๑•̀ㅂ•́)و✧</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://myoumeng.github.io/post/64584.html">用HEXO打造更个性化的个人博客1</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://myoumeng.github.io/post/27698.html">用HEXO打造更个性化的个人博客2</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://myoumeng.github.io/post/24651.html">用HEXO打造更个性化的个人博客3</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://myoumeng.github.io/post/65182.html">英文论文借鉴句子</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://myoumeng.github.io/post/31045.html">学习一种新的语言吧！HTML学习记录笔记（二）</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://myoumeng.github.io/post/59711.html">学习一种新的语言吧！HTML学习记录笔记（一）</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://myoumeng.github.io/post/39396.html">学习CSS自定义样式，让博客焕然一新（四）</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://myoumeng.github.io/post/63269.html">学习CSS自定义样式，让博客焕然一新（三）</a></p>
+</li>
+<li><p><strong>本文作者：</strong> 欧萌</p>
+</li>
+<li><p><strong>本文链接：</strong> <a target="_blank" rel="noopener" href="http://myoumeng.github.io/post/3724.html">http://myoumeng.github.io/post/3724.html</a></p>
+</li>
+<li><p><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</p>
+</li>
+</ul>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2021/07/13/hexo%E5%A2%9E%E5%8A%A0%E4%B8%AA%E6%80%A7%E6%8F%92%E4%BB%B6/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2021/07/13/hexo%E5%A2%9E%E5%8A%A0%E4%B8%AA%E6%80%A7%E6%8F%92%E4%BB%B6/";
+            const title         = "「hexo增加个性插件」";
+            const excerpt       = `
+第四波攻势来临啦~还是对hexo-next做优化、美化♣️这次我想加入折叠功能、鼠标放置后图片放大、分类和标签界面显示年份、可爱的十二生肖、分类层级显示、文章阅读后评分、侧栏加音乐
+
+Todo list:
+
+折叠功能
+鼠标放置后图片...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                    <time datetime="2021-07-12T17:41:03.623Z" itemprop="dateModified">最后编辑：2021-07-13</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" Hexo为文章添加分类" href="/2021/07/13/Hexo为文章添加分类/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" NEWIFI 3 | 新路由3 D2 刷OpenWrt教程" href="/2021/07/13/NEWIFI-3-新路由3-D2-刷OpenWrt教程/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                22
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                5
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                38
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GIT%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">GIT使用技巧</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HEXO%E7%B3%BB%E5%88%97/">HEXO系列</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/openwrt%E7%B3%BB%E5%88%97/">openwrt系列</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E6%9C%BA%E6%8A%80%E5%B7%A7/">玩机技巧</a><span class="category-list-count">1</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Git%E5%AE%98%E6%96%B9%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%BA%90/" style="font-size: 0.6em;">Git官方的软件源</a> <a href="/tags/Hexo%E6%8A%80%E5%B7%A7/" style="font-size: 0.8em;">Hexo技巧</a> <a href="/tags/Hexo%E6%8F%92%E4%BB%B6/" style="font-size: 0.8em;">Hexo插件</a> <a href="/tags/Lede/" style="font-size: 0.6em;">Lede</a> <a href="/tags/Linux-%E7%B3%BB%E7%BB%9F%E6%8A%80%E5%B7%A7/" style="font-size: 0.6em;">Linux 系统技巧</a> <a href="/tags/Linux%E6%8A%80%E5%B7%A7/" style="font-size: 0.6em;">Linux技巧</a> <a href="/tags/Linux%E6%96%87%E4%BB%B6%E8%A7%A3%E5%8E%8B/" style="font-size: 0.6em;">Linux文件解压</a> <a href="/tags/Linux%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/" style="font-size: 0.6em;">Linux查找命令</a> <a href="/tags/OpenWrt/" style="font-size: 0.6em;">OpenWrt</a> <a href="/tags/Openwrt%E7%89%88%E6%9C%AC/" style="font-size: 0.6em;">Openwrt版本</a> <a href="/tags/SVN/" style="font-size: 0.6em;">SVN</a> <a href="/tags/Ubuntu%E7%B3%BB%E7%BB%9F/" style="font-size: 0.6em;">Ubuntu系统</a> <a href="/tags/Ubuntu%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/" style="font-size: 0.6em;">Ubuntu系统命令</a> <a href="/tags/Uname/" style="font-size: 0.6em;">Uname</a> <a href="/tags/feeds-update/" style="font-size: 0.6em;">feeds update</a> <a href="/tags/find%E4%BD%BF%E7%94%A8/" style="font-size: 0.6em;">find使用</a> <a href="/tags/git/" style="font-size: 0.6em;">git</a> <a href="/tags/git-version/" style="font-size: 0.6em;">git --version</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/11/23/Hexo%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/"><i class="fa  fa-book"></i> Hexo使用心得</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/%E4%BD%BF%E7%94%A8hexo%E6%8D%A2%E4%BA%86%E7%94%B5%E8%84%91%E5%90%8E%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2/"><i class="fa  fa-book"></i> 使用hexo换了电脑后如何更新博客</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8/"><i class="fa  fa-book"></i> Git常用命令及方法大全</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/tar%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/"><i class="fa  fa-book"></i> tar压缩解压缩命令详解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8DUbuntu%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%88%E6%9C%AC/"><i class="fa  fa-book"></i> 如何查看当前Ubuntu系统的版本</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Eagmi 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 雕教授.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

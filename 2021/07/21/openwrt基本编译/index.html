@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  
+  
+  <title>openwrt基本编译 | Eagmi</title>
+  
+  <meta name="author" content="雕教授" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="SVN, Ubuntu系统, openwrt编译" />
+  
+  <meta name="description" content="本文由明月永在原创，复制或者引用请注明出处www.myopenwrt.org。 编译首先得搭建编译环境，一般推荐用Ubuntu系统，对新手较易上手，使用的人多，碰到问题也容易解决。 特别提醒 一下，编译是一个相当复杂的过程，尤其是新手可能会碰到N多的错误提示，所以提示全是英文的，如果英语水平，根本 看不懂提示内容，你还是不要玩编译的好，要玩几乎是在自虐。还有编译得用linux系统，要求有一定的li">
+<meta property="og:type" content="article">
+<meta property="og:title" content="openwrt基本编译">
+<meta property="og:url" content="http://example.com/2021/07/21/openwrt%E5%9F%BA%E6%9C%AC%E7%BC%96%E8%AF%91/index.html">
+<meta property="og:site_name" content="Eagmi">
+<meta property="og:description" content="本文由明月永在原创，复制或者引用请注明出处www.myopenwrt.org。 编译首先得搭建编译环境，一般推荐用Ubuntu系统，对新手较易上手，使用的人多，碰到问题也容易解决。 特别提醒 一下，编译是一个相当复杂的过程，尤其是新手可能会碰到N多的错误提示，所以提示全是英文的，如果英语水平，根本 看不懂提示内容，你还是不要玩编译的好，要玩几乎是在自虐。还有编译得用linux系统，要求有一定的li">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-07-21T02:59:52.000Z">
+<meta property="article:modified_time" content="2021-07-21T03:01:54.796Z">
+<meta property="article:author" content="雕教授">
+<meta property="article:tag" content="openwrt编译">
+<meta property="article:tag" content="Ubuntu系统">
+<meta property="article:tag" content="SVN">
+<meta name="twitter:card" content="summary">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Eagmi</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Eagmi</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/21/openwrt%E5%9F%BA%E6%9C%AC%E7%BC%96%E8%AF%91/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">openwrt基本编译</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2021-07-21T02:59:52.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2021-07-21</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">雕教授</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~3.10K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1626836514796"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SVN"><span class="toc-number">1.</span> <span class="toc-text">SVN</span></a></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><p>本文由明月永在原创，复制或者引用请注明出处<a target="_blank" rel="noopener" href="https://www.myopenwrt.org/">www.myopenwrt.org</a>。</p>
+<p>编译首先得搭建编译环境，一般推荐用Ubuntu系统，对新手较易上手，使用的人多，碰到问题也容易解决。</p>
+<p>特别提醒 一下，编译是一个相当复杂的过程，尤其是新手可能会碰到N多的错误提示，所以提示全是英文的，如果英语水平，根本 看不懂提示内容，你还是不要玩编译的好，要玩几乎是在自虐。还有编译得用linux系统，要求有一定的linux基础，如果你连终端在哪里，隐藏文件怎么看，简单的一些命令都不懂，也不要玩了哈。</p>
+<p>Ubuntu系统的安装可在自行搜索，也不难，主要注意下分区时，如果原来硬盘有文件，不要选择全部来安装，否则会数据丢失。</p>
+<p>本人使用的是Ubuntu12.04 64位系统，当然也可以用新系统。要编译首先得弄好编译环境，也就是安装一些编译所必须用到的软件。编译openwrt一般是交叉编译，交叉编译就是指编译非x86的软件，和编译所用到的系统的架构不一样的。所编译出来的软件也不能直接在编译的系统里运行。</p>
+<p>打开终端，输入以下命令sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf gettext texinfo unzip sharutils subversion libncurses5-dev ncurses-term zlib1g-dev gawk</p>
+<p>这里需要提示一下，上面这个命令是针对Ubuntu12.04系统的，新的系统有些软件的版本可能不一样，比如旧的是1.0版本，Ubuntu14.10可能是1.5版本，所以不能完全生搬硬套。要灵活运用。还有些openwrt版本，比如开发版本，在编译时可能会提示少其它的软件，根据提示安装所缺少的软件即可，一般来说如果少一个aaa软件，安装时，最好把aaa.dev也同时装上。新安装的Ubuntu系统最好设置好并更新升级了所有软件后，才安装以上软件，要不可能会提示软件没有。</p>
+<p>装好编译环境后，就到<br><a target="_blank" rel="noopener" href="https://dev.openwrt.org/wiki/GetSource">https://dev.openwrt.org/wiki/GetSource</a><br>openwrt官网查找自己所需要的版本来编译。获取源码的方式 有两种，一种是用git，一种是svn，这两种方式 都得安装软件，如果没有就得搜索一下再安装好。本人一般都用svn来获取源码 。编译openwrt的过程里会生成很多的临时文件，体积非常大，虽然固件才几M，编译过程 所生成的文件一般是10G级的，如果你编译多个平台和多个型号，就需要更多的空间。加安装系统最少需要10G，至少 得预留40G+以上的空间。不然编译到一半时，提示没有空间，是非常郁闷的事。</p>
+<p>以下的svn获取源码的命令：<br>attitude_adjustment就是所说的AA，上一个稳定版本，当前的稳定版本是barrier_breaker，trunk版本是大家所说的CC，建议用BB来编译。</p>
+<h3 id="SVN"><a href="#SVN" class="headerlink" title="SVN"></a>SVN</h3><p>You can checkout the source from the OpenWrt Subversion repository using one of the following commands:</p>
+<ul>
+<li><p>Development branch:</p>
+<p>ChangeLog</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn co svn://svn.openwrt.org/openwrt/trunk/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Barrier Breaker 14.07 branch:</p>
+<p>ChangeLog</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn co svn://svn.openwrt.org/openwrt/branches/barrier_breaker</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Attitude Adjustment 12.09 branch:</p>
+<p>ChangeLog</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn co svn://svn.openwrt.org/openwrt/branches/attitude_adjustment</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Backfire 10.03 branch:</p>
+<p>ChangeLog</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn co svn://svn.openwrt.org/openwrt/branches/backfire</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Kamikaze 8.09 branch:</p>
+<p>ChangeLog</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn co svn://svn.openwrt.org/openwrt/branches/8.09</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Kamikaze 7.09 branch:</p>
+<p>ChangeLog</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn co svn://svn.openwrt.org/openwrt/tags/kamikaze_7.09</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>如果用BB源码 ，则在终端输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">svn co svn://svn.openwrt.org/openwrt/branches/barrier_breaker</span><br><span class="line">之后会，自动下载源码。</span><br><span class="line">源码下载完后</span><br><span class="line">cd barrier_breaker</span><br><span class="line">安装 luci，openwrt源码默认是不带luci的，得用命令来安装</span><br><span class="line">./scripts/feeds update -a </span><br><span class="line">./scripts/feeds install -a </span><br></pre></td></tr></table></figure>
+
+<p>完成之后，就可以在终端执行make menuconfg来选择自己所需要的软件<br>软件选择可以参考一下恩山的教程<br><a target="_blank" rel="noopener" href="http://www.right.com.cn/forum/thread-83746-1-1.html">http://www.right.com.cn/forum/thread-83746-1-1.html</a><br>当年我也是从这里起步的。<br>第一次编译不要选太多东西，选择好型号后，必选luci界面下的一些软件，要不登录会<br>没界面。其它软件可以尽量少选，先尝试下是否能编译出固件。能成功生成固件，说明编译环境没有问题。</p>
+<p>配置好后退出 保存，建议用以下命令来编译</p>
+<p>make -j5 V&#x3D;99 2&gt;&amp;1 |tee build.log |grep -i error</p>
+<p>这个命令可以生成日志，日志名为buil.log，保存在最高目录下。以方便出错查找原因。-j5参数是4核cpu使用的，其它cpu可以使用内核数量N+1来相应 修改。</p>
+<p>输入这个命令后，经过漫长的等待就会出来固件，如果中途有错，查找日志解决后，再执行以上命令就行，一般不必要重新再来。</p>
+<p>在编译的过程中，会自动下载应用软件的源码到dl目录下面，选择的软件越多，所需要下载的数据会越大，这些软件的源码 基本都在国外的，所以下载速度极其的慢，甚至有些软件被墙了的，根本下载不了。首次编译一般会耗时几小时，视网络下载速度而定。如果下载不了打看编译日志，来找到错误所在的地方，可以搜索***来定位，有错误的地方一般以这个为标示。然后再找到软件的下载网址，会在出错报告的前面，有ftp或者http链接，里面包含有相应软件名的网址，然后手动下载之后放到dl目录即可。</p>
+<p>像我用四核的cpu，全部编译一个16M固件得花一个多小时，不包括下载的时间。由于很多源码在墙外，所以强烈建议大家在弄好翻wall之后，再编译。</p>
+<p>新手应该还要注意，openwrt官方所设定的固件大小是按路由出厂的闪存来定的，起步为4M，小于4M的官方都不会支持。所以有一些型号，基本加不了软件，加了软件就会不出固件，因为超出了最大的体积。碰到这种情况，可以少选一些软件。如果已经硬 改过的，需要修改相应的文件来改变默认固件的大小。</p>
+<p>还有新手在配置软件时，千万要注意一点，选择软件时会自动选上所依赖的文件，保存之后，下次再去除这个软件，所选的依赖文件并不会自动取消。这样会残留一些没有用的软件在固件里，对于空间非常小的闪存来说，这是很不应该的。所以配置一定要小心，弄好的配置做个备份。</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2021/07/21/openwrt%E5%9F%BA%E6%9C%AC%E7%BC%96%E8%AF%91/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2021/07/21/openwrt%E5%9F%BA%E6%9C%AC%E7%BC%96%E8%AF%91/";
+            const title         = "「openwrt基本编译」";
+            const excerpt       = `本文由明月永在原创，复制或者引用请注明出处www.myopenwrt.org。
+编译首先得搭建编译环境，一般推荐用Ubuntu系统，对新手较易上手，使用的人多，碰到问题也容易解决。
+特别提醒 一下，编译是一个相当复杂的过程，尤其是新手...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/SVN/" rel="tag">SVN</a>, <a class="tag-none-link" href="/tags/Ubuntu%E7%B3%BB%E7%BB%9F/" rel="tag">Ubuntu系统</a>, <a class="tag-none-link" href="/tags/openwrt%E7%BC%96%E8%AF%91/" rel="tag">openwrt编译</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2021-07-21T03:01:54.796Z" itemprop="dateModified">最后编辑：2021-07-21</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" lean大神LEDE(openwrt)编译教程" href="/2021/07/21/lean大神LEDE-openwrt-编译教程/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" github代码如何定位到历史版本（历史commit点）" href="/2021/07/21/github代码如何定位到历史版本（历史commit点）/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                22
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                5
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                38
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SVN"><span class="toc-text">SVN</span></a></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GIT%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">GIT使用技巧</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HEXO%E7%B3%BB%E5%88%97/">HEXO系列</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/openwrt%E7%B3%BB%E5%88%97/">openwrt系列</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E6%9C%BA%E6%8A%80%E5%B7%A7/">玩机技巧</a><span class="category-list-count">1</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Git%E5%AE%98%E6%96%B9%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%BA%90/" style="font-size: 0.6em;">Git官方的软件源</a> <a href="/tags/Hexo%E6%8A%80%E5%B7%A7/" style="font-size: 0.8em;">Hexo技巧</a> <a href="/tags/Hexo%E6%8F%92%E4%BB%B6/" style="font-size: 0.8em;">Hexo插件</a> <a href="/tags/Lede/" style="font-size: 0.6em;">Lede</a> <a href="/tags/Linux-%E7%B3%BB%E7%BB%9F%E6%8A%80%E5%B7%A7/" style="font-size: 0.6em;">Linux 系统技巧</a> <a href="/tags/Linux%E6%8A%80%E5%B7%A7/" style="font-size: 0.6em;">Linux技巧</a> <a href="/tags/Linux%E6%96%87%E4%BB%B6%E8%A7%A3%E5%8E%8B/" style="font-size: 0.6em;">Linux文件解压</a> <a href="/tags/Linux%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/" style="font-size: 0.6em;">Linux查找命令</a> <a href="/tags/OpenWrt/" style="font-size: 0.6em;">OpenWrt</a> <a href="/tags/Openwrt%E7%89%88%E6%9C%AC/" style="font-size: 0.6em;">Openwrt版本</a> <a href="/tags/SVN/" style="font-size: 0.6em;">SVN</a> <a href="/tags/Ubuntu%E7%B3%BB%E7%BB%9F/" style="font-size: 0.6em;">Ubuntu系统</a> <a href="/tags/Ubuntu%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/" style="font-size: 0.6em;">Ubuntu系统命令</a> <a href="/tags/Uname/" style="font-size: 0.6em;">Uname</a> <a href="/tags/feeds-update/" style="font-size: 0.6em;">feeds update</a> <a href="/tags/find%E4%BD%BF%E7%94%A8/" style="font-size: 0.6em;">find使用</a> <a href="/tags/git/" style="font-size: 0.6em;">git</a> <a href="/tags/git-version/" style="font-size: 0.6em;">git --version</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/11/23/Hexo%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/"><i class="fa  fa-book"></i> Hexo使用心得</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/%E4%BD%BF%E7%94%A8hexo%E6%8D%A2%E4%BA%86%E7%94%B5%E8%84%91%E5%90%8E%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2/"><i class="fa  fa-book"></i> 使用hexo换了电脑后如何更新博客</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8/"><i class="fa  fa-book"></i> Git常用命令及方法大全</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/tar%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/"><i class="fa  fa-book"></i> tar压缩解压缩命令详解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8DUbuntu%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%88%E6%9C%AC/"><i class="fa  fa-book"></i> 如何查看当前Ubuntu系统的版本</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Eagmi 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 雕教授.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  
+  
+  <title>编译OpenWRT过程问题解决 | Eagmi</title>
+  
+  <meta name="author" content="雕教授" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="feeds update, openwrt报错, openwrt编译" />
+  
+  <meta name="description" content="本人是只菜鸟，没有接触过OpenWrt，只是平时都是在Linux下做开发。习惯了Linux的开发环境。 本人的操作系统是CentOS 6.4（好久都没有换过了）。本人按照网上牛人们的指点也开始下载编译OpenWRT。 如下为网上的资料：  sudo apt-get update    (更新）安装编译需要的组件：sudo apt-get install gccsudo apt-get instal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译OpenWRT过程问题解决">
+<meta property="og:url" content="http://example.com/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.html">
+<meta property="og:site_name" content="Eagmi">
+<meta property="og:description" content="本人是只菜鸟，没有接触过OpenWrt，只是平时都是在Linux下做开发。习惯了Linux的开发环境。 本人的操作系统是CentOS 6.4（好久都没有换过了）。本人按照网上牛人们的指点也开始下载编译OpenWRT。 如下为网上的资料：  sudo apt-get update    (更新）安装编译需要的组件：sudo apt-get install gccsudo apt-get instal">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2015/0402/072620_rJ5o_243525.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2015/0402/072834_O4Gh_243525.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2015/0402/081611_2qRp_243525.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2015/0402/193602_SqbW_243525.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2015/0402/221045_HkmW_243525.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2015/0402/221413_NbGV_243525.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2015/0403/081235_mMAi_243525.png">
+<meta property="article:published_time" content="2021-07-22T07:42:25.000Z">
+<meta property="article:modified_time" content="2021-07-22T07:44:29.482Z">
+<meta property="article:author" content="雕教授">
+<meta property="article:tag" content="openwrt编译">
+<meta property="article:tag" content="openwrt报错">
+<meta property="article:tag" content="feeds update">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://static.oschina.net/uploads/space/2015/0402/072620_rJ5o_243525.png">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Eagmi</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Eagmi</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">编译OpenWRT过程问题解决</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2021-07-22T07:42:25.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2021-07-22</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">雕教授</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~12.48K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1626939869482"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#scripts-feeds-update-a%E5%A4%B1%E8%B4%A5"><span class="toc-number">1.</span> <span class="toc-text">.&#x2F;scripts&#x2F;feeds update -a失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gconvert-c-libiconv"><span class="toc-number">2.</span> <span class="toc-text">gconvert.c libiconv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#libubox%E5%AE%89%E8%A3%85%E9%94%99%E8%AF%AF"><span class="toc-number">3.</span> <span class="toc-text">libubox安装错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fatal-Unable-to-find-remote-helper-for-%E2%80%98http%E2%80%99"><span class="toc-number">4.</span> <span class="toc-text">fatal: Unable to find remote helper for ‘http’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#opkg%E4%B8%8B%E8%BD%BD%E5%A4%B1%E8%B4%A5"><span class="toc-number">5.</span> <span class="toc-text">opkg下载失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux-firmware-clone%E5%A4%B1%E8%B4%A5"><span class="toc-number">6.</span> <span class="toc-text">linux-firmware clone失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux-firmware-fatal-reference-is-not-a-tree-%E9%97%AE%E9%A2%98"><span class="toc-number">7.</span> <span class="toc-text">linux-firmware fatal: reference is not a tree 问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E8%80%85%E7%9A%84%E5%85%B6%E5%AE%83%E7%83%AD%E9%97%A8%E6%96%87%E7%AB%A0"><span class="toc-number">7.1.</span> <span class="toc-text">作者的其它热门文章</span></a></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><p>本人是只菜鸟，没有接触过OpenWrt，只是平时都是在Linux下做开发。习惯了Linux的开发环境。</p>
+<p>本人的操作系统是CentOS 6.4（好久都没有换过了）。本人按照网上牛人们的指点也开始下载编译OpenWRT。</p>
+<p>如下为网上的资料：</p>
+<hr>
+<p>sudo apt-get update    (更新）<br>安装编译需要的组件：<br>sudo apt-get install gcc<br>sudo apt-get install g++<br>sudo apt-get install binutils<br>sudo apt-get install patch<br>sudo apt-get install bzip2<br>sudo apt-get install flex<br>sudo apt-get install bison<br>sudo apt-get install make<br>sudo apt-get install autoconf<br>sudo apt-get install gettext<br>sudo apt-get install texinfo<br>sudo apt-get install unzip<br>sudo apt-get install sharutils<br>sudo apt-get install subversion<br>sudo apt-get install libncurses5-dev<br>sudo apt-get install ncurses-term<br>sudo apt-get install zlib1g-dev<br>sudo apt-get install gawk<br>sudo apt-get install asciidoc<br>sudo apt-get install libz-dev</p>
+<p>编译环境搭建完成<br>mkdir openwrt 创建一个openwrt文件夹<br>cd openwrt  进入openwrt文件夹<br>svn co svn:&#x2F;&#x2F;svn.openwrt.org&#x2F;openwrt&#x2F;branches&#x2F;backfire 下载官网的源码<br>.&#x2F;scripts&#x2F;feeds update -a   更新软件包<br>.&#x2F;scripts&#x2F;feeds install -a  安装软件包<br>make menuconfig 进入定制界面（里面可以选择芯片的型号，集成的组件等等，根据实际情况选择）<br>defconfig<br>make V&#x3D;99  （开始编译）<br>剩下的就是等待了，第一次编译需要的时间相对比较长，这个跟你的电脑配置和网速有关。</p>
+<hr>
+<p>由于原作者是用的Ubuntu作为开发环境，所以在安装上面的那些依赖工具包时都是用 apt-get 来安排的，在CentOS里采用 yum。其实都一样，只要知道依赖哪些包就行了。</p>
+<p>本人checkout 的OpenWRT源码库路径为 ： svn:&#x2F;&#x2F;svn.openwrt.org&#x2F;openwrt&#x2F;trunk</p>
+<p>其它的都按上面的步骤做。</p>
+<p>如下是我遇到的几个问题：</p>
+<h2 id="scripts-feeds-update-a失败"><a href="#scripts-feeds-update-a失败" class="headerlink" title=".&#x2F;scripts&#x2F;feeds update -a失败"></a>.&#x2F;scripts&#x2F;feeds update -a失败</h2><p>报：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ./scripts/feeds update -a</span><br><span class="line">Updating feed &#x27;packages&#x27; from &#x27;https://github.com/openwrt/packages.git&#x27; ...</span><br><span class="line">Cloning into &#x27;./feeds/packages&#x27;...</span><br><span class="line">fatal: Unable to find remote helper for &#x27;https&#x27;</span><br><span class="line">failed.</span><br></pre></td></tr></table></figure>
+
+<p>可能是git仓库路径不对，将https替换成git就可以了。</p>
+<p>用 grep 命令搜</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ grep &#x27;https://github.com&#x27; feeds/* -R</span><br><span class="line">feeds/packages.tmp/location:https://github.com/openwrt/packages.git</span><br></pre></td></tr></table></figure>
+
+<p>那就把这个地方改一下啰。</p>
+<p>再试一下。结果还是老样子，我想了一下，这个 feeds&#x2F;packages.tmp&#x2F;location 很可能是临时文。改它不会有效果的。</p>
+<p>好像 feeds.conf.default 文件里也找到了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ grep &#x27;https://github.com&#x27; feeds.conf.default -R</span><br><span class="line">src-git packages https://github.com/openwrt/packages.git</span><br><span class="line">src-git luci https://github.com/openwrt/luci.git</span><br><span class="line">src-git routing https://github.com/openwrt-routing/packages.git</span><br><span class="line">src-git telephony https://github.com/openwrt/telephony.git</span><br><span class="line">src-git management https://github.com/openwrt-management/packages.git</span><br><span class="line">src-git targets https://github.com/openwrt/targets.git</span><br></pre></td></tr></table></figure>
+
+<p>将里面所有https替换成git。</p>
+<p>再试一下，OK了。</p>
+<p>后记：其实还有更根本的解决方法，详见后期的博文《<a target="_blank" rel="noopener" href="http://my.oschina.net/hevakelcj/blog/409155">git 错误：Unable to find remote helper for ‘https’</a>》</p>
+<h2 id="gconvert-c-libiconv"><a href="#gconvert-c-libiconv" class="headerlink" title="gconvert.c libiconv"></a>gconvert.c libiconv</h2><p>我在第一次编译OpenWRT时，出现如下错误提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gconvert.c:66:2: error: #error GNU libiconv not in use but included iconv.h is from libiconv</span><br></pre></td></tr></table></figure>
+
+<p>我在网上找解决方案，结果一致地都是说，重新 .&#x2F;configure 一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./configure --enable-iconv=no --with-libiconv=gnu</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<p>可问题的关键是：OpenWRT的trunk路径下没见有个 configure 呀！</p>
+<p>后来，经过仔细推敲，发现是在编glib时没通过。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ find -name &quot;gconvert.c&quot;</span><br><span class="line">./build_dir/host/pkg-config-0.28/glib/glib/gconvert.c</span><br></pre></td></tr></table></figure>
+
+<p>那我就直接进到 .&#x2F;build_dir&#x2F;host&#x2F;pkg-config-0.28&#x2F;glib&#x2F; 路径下，发现该路径下有 configure 文件。</p>
+<p>那我说直接在该路径下编译 glib</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd build_dir/host/pkg-config-0.28/glib/</span><br><span class="line">./configure --enable-iconv=no --with-libiconv=gnu</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<p>这样，glib 就顺利通过了编译。</p>
+<p>再回到 OpenWRT的trunk路径下，继续 make.</p>
+<h2 id="libubox安装错误"><a href="#libubox安装错误" class="headerlink" title="libubox安装错误"></a>libubox安装错误</h2><p>报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /home/hevake_lcj/Workspace/OpenWRT/trunk/dl</span><br><span class="line">echo &quot;Checking out files from the git repository...&quot;; </span><br><span class="line">mkdir -p /home/hevake_lcj/Workspace/OpenWRT/trunk/tmp/dl &amp;&amp; cd /home/hevake_lcj/Workspace/OpenWRT/trunk/tmp/dl &amp;&amp; rm -rf libubox-2015-03-22 &amp;&amp; [ \! -d libubox-2015-03-22 ] &amp;&amp; git clone http://git.openwrt.org/project/libubox.git libubox-2015-03-22 --recursive &amp;&amp; (cd libubox-2015-03-22 &amp;&amp; git checkout b8d9b382e39823850331edc2a92379173daf1be3 &amp;&amp; git submodule update) &amp;&amp; echo &quot;Packing checkout...&quot; &amp;&amp; rm -rf libubox-2015-03-22/.git &amp;&amp;     tar czf /home/hevake_lcj/Workspace/OpenWRT/trunk/tmp/dl/libubox-2015-03-22-b8d9b382e39823850331edc2a92379173daf1be3.tar.gz libubox-2015-03-22 &amp;&amp; mv /home/hevake_lcj/Workspace/OpenWRT/trunk/tmp/dl/libubox-2015-03-22-b8d9b382e39823850331edc2a92379173daf1be3.tar.gz /home/hevake_lcj/Workspace/OpenWRT/trunk/dl/ &amp;&amp; rm -rf libubox-2015-03-22; </span><br><span class="line">Checking out files from the git repository...</span><br><span class="line">Cloning into &#x27;libubox-2015-03-22&#x27;...</span><br><span class="line">fatal: Unable to find remote helper for &#x27;http&#x27;</span><br><span class="line">make[3]: *** [/home/hevake_lcj/Workspace/OpenWRT/trunk/dl/libubox-2015-03-22-b8d9b382e39823850331edc2a92379173daf1be3.tar.gz] Error 128</span><br></pre></td></tr></table></figure>
+
+<p>从第二行看出，是用git clone工程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone http://git.openwrt.org/project/libubox.git</span><br></pre></td></tr></table></figure>
+
+<p>整个第三行是将clone下来的源码打包tar.gz包。</p>
+<p>于是，我访问了一下：<a target="_blank" rel="noopener" href="https://www.oschina.net/action/GoToLink?url=http://git.openwrt.org/project/libubox">http://git.openwrt.org/project/libubox</a> 果然出现 404页面。看来还真没有？</p>
+<p>我再访问了一下：<a target="_blank" rel="noopener" href="https://www.oschina.net/action/GoToLink?url=http://git.openwrt.org/">http://git.openwrt.org/</a> 结果，发现列表里有这个工程：</p>
+<p><img src="http://static.oschina.net/uploads/space/2015/0402/072620_rJ5o_243525.png" alt="img"></p>
+<p>进入链接 project&#x2F;libubox.git：</p>
+<p><img src="http://static.oschina.net/uploads/space/2015/0402/072834_O4Gh_243525.png" alt="img"></p>
+<p>我自己亲自 git clone 一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cd dl</span><br><span class="line">$ mkdir tmp</span><br><span class="line">$ cd tmp</span><br><span class="line">$ git clone http://git.openwrt.org/project/libubox.git libubox</span><br><span class="line">Cloning into &#x27;libubox&#x27;...</span><br><span class="line">fatal: Unable to find remote helper for &#x27;http&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>我在网上找了“fatal: Unable to find remote helper for ‘http’”的解决方法。得知将 “http:” 换成 “git:” 即可。</p>
+<p>于是，我再次 git clone</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git://git.openwrt.org/project/libubox.git</span><br></pre></td></tr></table></figure>
+
+<p>结果成功clone了。</p>
+<p>然后，手动完成编译命令过程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /home/hevake_lcj/Workspace/OpenWRT/trunk/tmp/dl</span><br><span class="line">cd /home/hevake_lcj/Workspace/OpenWRT/trunk/tmp/dl</span><br><span class="line">rm -rf libubox-2015-03-22</span><br><span class="line">git clone git://git.openwrt.org/project/libubox.git libubox-2015-03-22 </span><br><span class="line">echo &quot;Packing checkout...&quot; </span><br><span class="line">rm -rf libubox-2015-03-22/.git</span><br><span class="line">tar czf libubox-2015-03-22-b8d9b382e39823850331edc2a92379173daf1be3.tar.gz libubox-2015-03-22</span><br><span class="line">mv libubox-2015-03-22-b8d9b382e39823850331edc2a92379173daf1be3.tar.gz ../../dl/</span><br><span class="line">rm -rf libubox-2015-03-22;</span><br></pre></td></tr></table></figure>
+
+<p>然后，回到OpenWRT的trunk路径下继续 make.</p>
+<h2 id="fatal-Unable-to-find-remote-helper-for-‘http’"><a href="#fatal-Unable-to-find-remote-helper-for-‘http’" class="headerlink" title="fatal: Unable to find remote helper for ‘http’"></a>fatal: Unable to find remote helper for ‘http’</h2><p>编译报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">make[3]: Entering directory `/home/hevake_lcj/Workspace/OpenWRT/trunk/package/network/config/netifd&#x27;</span><br><span class="line">mkdir -p /home/hevake_lcj/Workspace/OpenWRT/trunk/dl</span><br><span class="line">echo &quot;Checking out files from the git repository...&quot;; </span><br><span class="line">mkdir -p /home/hevake_lcj/Workspace/OpenWRT/trunk/tmp/dl \</span><br><span class="line"> &amp;&amp; cd /home/hevake_lcj/Workspace/OpenWRT/trunk/tmp/dl \</span><br><span class="line"> &amp;&amp; rm -rf netifd-2015-03-31 \</span><br><span class="line"> &amp;&amp; [ \! -d netifd-2015-03-31 ] \</span><br><span class="line"> &amp;&amp; git clone http://git.openwrt.org/project/netifd.git netifd-2015-03-31 --recursive \</span><br><span class="line"> &amp;&amp; (cd netifd-2015-03-31 \</span><br><span class="line"> &amp;&amp; git checkout 3a0f953722698eab6f3f623a1d6ec5a1b7102b77 \</span><br><span class="line"> &amp;&amp; git submodule update) &amp;&amp; echo &quot;Packing checkout...&quot; \</span><br><span class="line"> &amp;&amp; rm -rf netifd-2015-03-31/.git \</span><br><span class="line"> &amp;&amp; tar czf /home/hevake_lcj/Workspace/OpenWRT/trunk/tmp/dl/netifd-2015-03-31-3a0f953722698eab6f3f623a1d6ec5a1b7102b77.tar.gz netifd-2015-03-31 \</span><br><span class="line"> &amp;&amp; mv /home/hevake_lcj/Workspace/OpenWRT/trunk/tmp/dl/netifd-2015-03-31-3a0f953722698eab6f3f623a1d6ec5a1b7102b77.tar.gz /home/hevake_lcj/Workspace/OpenWRT/trunk/dl/ \</span><br><span class="line"> &amp;&amp; rm -rf netifd-2015-03-31;</span><br></pre></td></tr></table></figure>
+
+<p>找到 package&#x2F;network&#x2F;config&#x2F;netifd&#x2F;Makefile，打开</p>
+<p><img src="http://static.oschina.net/uploads/space/2015/0402/081611_2qRp_243525.png" alt="img"></p>
+<p>将第8行的“http:”替换成”git:”，然后再回到OpenWRT目录再make.</p>
+<hr>
+<p>注：后来我还会反复遇到这个问题。火了！一条命令全部换掉！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ grep -E &quot;http:.*\.git&quot; `find -name Makefile | xargs` | \</span><br><span class="line">  awk -F: &#x27;!/.svn/&#123;print $1&#125;&#x27; | uniq | xargs \</span><br><span class="line">  sed -i &#x27;s/http\(:.*\.git\)/git\1/g&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>在trunk目录下，找出Makefile中有”http:xxxxx.git”的文件，并将所有的”http:xxxxx.git”替换成”git:xxxxx.git”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ grep -E &quot;https:.*\.git&quot; `find -name Makefile | xargs` | \</span><br><span class="line">  awk -F: &#x27;!/.svn/&#123;print $1&#125;&#x27; | uniq | xargs \</span><br><span class="line">  sed -i &#x27;s/https\(:.*\)\.git/git\1\.git/g&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>把 https 也替换成 git</p>
+<h2 id="opkg下载失败"><a href="#opkg下载失败" class="headerlink" title="opkg下载失败"></a>opkg下载失败</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Checking out files from the git repository...</span><br><span class="line">Cloning into &#x27;opkg-9c97d5ecd795709c8584e972bfdf3aee3a5b846d&#x27;...</span><br><span class="line">fatal: Could not read from remote repository.</span><br></pre></td></tr></table></figure>
+
+<p>这时往上看一下，看make到哪儿了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make[3]: Entering directory `/home/hevake_lcj/Workspace/OpenWRT/trunk/package/system/opkg&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>原来是 opkg 在 git clone 时可能是路径的问题，失败了。</p>
+<p>我尝试打开 opkg 路径下的 Makefile，将</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PKG_SOURCE_URL:=http://git.yoctoproject.org/git/opkg</span><br></pre></td></tr></table></figure>
+
+<p>改成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PKG_SOURCE_URL:=git://git.yoctoproject.org/git/opkg</span><br></pre></td></tr></table></figure>
+
+<p>结果还是没有生效。</p>
+<p>我手动搜opkg，找到官网： <a target="_blank" rel="noopener" href="https://www.oschina.net/action/GoToLink?url=http://git.yoctoproject.org/cgit/cgit.cgi/opkg/">http://git.yoctoproject.org/cgit/cgit.cgi/opkg/</a> 打开，看到网页最下面有：</p>
+<p><img src="http://static.oschina.net/uploads/space/2015/0402/193602_SqbW_243525.png" alt="img"></p>
+<p>于是，我改 trunk&#x2F;package&#x2F;system&#x2F;opkg&#x2F;Makefile 文件，把 PKG_SOURCE_URL改成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PKG_SOURCE_URL:=git://git.yoctoproject.org/opkg</span><br></pre></td></tr></table></figure>
+
+<p>继续 make，通过了！</p>
+<h2 id="linux-firmware-clone失败"><a href="#linux-firmware-clone失败" class="headerlink" title="linux-firmware clone失败"></a>linux-firmware clone失败</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fatal: Unable to look up git.kernel.org (port 9418) (Temporary failure in name resolution)</span><br></pre></td></tr></table></figure>
+
+<p>我到 <a target="_blank" rel="noopener" href="https://www.oschina.net/action/GoToLink?url=http://git.kernel.org">git.kernel.org</a> 网站找到了 linux-firmware 的仓库 <a target="_blank" rel="noopener" href="https://www.oschina.net/action/GoToLink?url=https://git.kernel.org/cgit/linux/kernel/git/balbi/linux-firmware.git/">https://git.kernel.org/cgit/linux/kernel/git/balbi/linux-firmware.git/</a></p>
+<p>看到最下面的 git 路径说明：</p>
+<p><img src="http://static.oschina.net/uploads/space/2015/0402/221045_HkmW_243525.png" alt="img"></p>
+<p>这与 Makefile 里指定的不统一。于是将Makefile里的git路径改过来</p>
+<p><img src="http://static.oschina.net/uploads/space/2015/0402/221413_NbGV_243525.png" alt="img"></p>
+<p>再 make</p>
+<p>我现在都总结出经验来了。</p>
+<p><strong>凡是git clone失败的，如果是http头的问题，将http替换成git再试。</strong></p>
+<p><strong>如果还是不行，就要检查一下git的路径是不是对的。简单的方法就是到 git 路径的根节点上去找出源码仓库，并得到其真实有效的git路径。</strong></p>
+<p>并将Makefile中的改过来就OK了。</p>
+<h2 id="linux-firmware-fatal-reference-is-not-a-tree-问题"><a href="#linux-firmware-fatal-reference-is-not-a-tree-问题" class="headerlink" title="linux-firmware fatal: reference is not a tree 问题"></a>linux-firmware fatal: reference is not a tree 问题</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">make[3]: Entering directory `/home/hevake_lcj/Workspace/OpenWRT/trunk/package/kernel/mac80211&#x27;</span><br><span class="line">mkdir -p /home/hevake_lcj/Workspace/OpenWRT/trunk/dl</span><br><span class="line">echo &quot;Checking out files from the git repository...&quot;; </span><br><span class="line">mkdir -p /home/hevake_lcj/Workspace/OpenWRT/trunk/tmp/dl \</span><br><span class="line">  &amp;&amp; cd /home/hevake_lcj/Workspace/OpenWRT/trunk/tmp/dl \</span><br><span class="line">  &amp;&amp; rm -rf linux-firmware-f404336ba808cbd57547196e13367079a23b822c \</span><br><span class="line">  &amp;&amp; [ \! -d linux-firmware-f404336ba808cbd57547196e13367079a23b822c ] \</span><br><span class="line">  &amp;&amp; git clone git://git.kernel.org/pub/scm/linux/kernel/git/balbi/linux-firmware.git linux-firmware-f404336ba808cbd57547196e13367079a23b822c --recursive \</span><br><span class="line">  &amp;&amp; (cd linux-firmware-f404336ba808cbd57547196e13367079a23b822c \</span><br><span class="line">    &amp;&amp; git checkout f404336ba808cbd57547196e13367079a23b822c \</span><br><span class="line">    &amp;&amp; git submodule update) \</span><br><span class="line">  &amp;&amp; echo &quot;Packing checkout...&quot; \</span><br><span class="line">  &amp;&amp; rm -rf linux-firmware-f404336ba808cbd57547196e13367079a23b822c/.git \</span><br><span class="line">  &amp;&amp; tar cjf /home/hevake_lcj/Workspace/OpenWRT/trunk/tmp/dl/linux-firmware-2015-03-20-f404336ba808cbd57547196e13367079a23b822c.tar.bz2 linux-firmware-f404336ba808cbd57547196e13367079a23b822c \</span><br><span class="line">  &amp;&amp; mv /home/hevake_lcj/Workspace/OpenWRT/trunk/tmp/dl/linux-firmware-2015-03-20-f404336ba808cbd57547196e13367079a23b822c.tar.bz2 /home/hevake_lcj/Workspace/OpenWRT/trunk/dl/ \</span><br><span class="line">  &amp;&amp; rm -rf linux-firmware-f404336ba808cbd57547196e13367079a23b822c; </span><br><span class="line">Checking out files from the git repository...</span><br><span class="line">Cloning into &#x27;linux-firmware-f404336ba808cbd57547196e13367079a23b822c&#x27;...</span><br><span class="line">remote: Counting objects: 2344, done.</span><br><span class="line">remote: Compressing objects: 100% (1164/1164), done.</span><br><span class="line">remote: Total 2344 (delta 1182), reused 2272 (delta 1145)</span><br><span class="line">Receiving objects: 100% (2344/2344), 42.07 MiB | 26 KiB/s, done.</span><br><span class="line">Resolving deltas: 100% (1182/1182), done.</span><br><span class="line">fatal: reference is not a tree: f404336ba808cbd57547196e13367079a23b822c</span><br><span class="line">make[3]: *** [/home/hevake_lcj/Workspace/OpenWRT/trunk/dl/linux-firmware-2015-03-20-f404336ba808cbd57547196e13367079a23b822c.tar.bz2] Error 128</span><br><span class="line">make[3]: Leaving directory `/home/hevake_lcj/Workspace/OpenWRT/trunk/package/kernel/mac80211&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>fatal: reference is not a tree: f404….22c，意思好像是说git工程里没有 f404…22c 这么版本。那么我得检查一下这个版本号对不对。</p>
+<p>在trunk&#x2F;tmp&#x2F;dl路径下下载的linux-firmware还没有删掉，我们进入该目录。并用git log查看一下提交日志，得到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">commit b8ac7c7e27dcd13fa3c843aaf62457e9c57ea4db</span><br><span class="line">Author: Rasesh Mody &lt;rmody@brocade.com&gt;</span><br><span class="line">Date:   Tue Sep 10 16:10:54 2013 -0700</span><br><span class="line"></span><br><span class="line">    linux-firmware: Add Brocade FC/FCOE Adapter firmware files</span><br><span class="line">    </span><br><span class="line">    This patch adds firmware files for Brocade HBA and CNA drivers(BFA and BNA).</span><br><span class="line">    </span><br><span class="line">    Signed-off-by: Rasesh Mody &lt;rmody@brocade.com&gt;</span><br><span class="line">    Signed-off-by: Ben Hutchings &lt;ben@decadent.org.uk&gt;</span><br><span class="line"></span><br><span class="line">commit 8ff6cc3a5e1d9452ae8fb993532afc1f3ab3a71f</span><br><span class="line">Merge: 1461bed e7c85b2</span><br><span class="line">Author: Ben Hutchings &lt;ben@decadent.org.uk&gt;</span><br><span class="line">Date:   Mon Sep 30 04:50:51 2013 +0100</span><br><span class="line"></span><br><span class="line">    Merge branch &#x27;moxa&#x27; of https://github.com/lunn/linux-firmware</span><br><span class="line"></span><br><span class="line">commit 1461bed1300097efeba59c82ffa30c90cc7e3ae5</span><br><span class="line">Author: Alex Deucher &lt;alexander.deucher@amd.com&gt;</span><br><span class="line">Date:   Mon Aug 26 10:45:33 2013 -0400</span><br><span class="line"></span><br><span class="line">    radeon: add ucode for KAVERI GPUs</span><br><span class="line">    </span><br><span class="line">    Add new ucode files and update the WHENCE entry.</span><br><span class="line">    </span><br><span class="line">    Signed-off-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;</span><br><span class="line">    Signed-off-by: Ben Hutchings &lt;ben@decadent.org.uk&gt;</span><br><span class="line"></span><br><span class="line">commit 66f87a226160b545ac02f3844ea601cbe10a5da2</span><br><span class="line">Author: Alex Deucher &lt;alexander.deucher@amd.com&gt;</span><br><span class="line">Date:   Mon Aug 26 10:42:44 2013 -0400</span><br><span class="line"></span><br><span class="line">    radeon: add smc ucode for BONAIRE</span><br></pre></td></tr></table></figure>
+
+<p>在这里面，没有搜到 f404336ba808cbd57547196e13367079a23b822c 这个版本号</p>
+<p>那，我就将其改成最新的版本号吧 b8ac7c7e27dcd13fa3c843aaf62457e9c57ea4db，但愿没有问题。</p>
+<p><img src="http://static.oschina.net/uploads/space/2015/0403/081235_mMAi_243525.png" alt="img"></p>
+<p>同时，将 trunk&#x2F;tmp&#x2F;dl&#x2F;下的原下载目录改名（避免反复下载）、</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd tmp/dl</span><br><span class="line">$ mv linux-firmware-f404336ba808cbd57547196e13367079a23b822c/ linux-firmware-b8ac7c7e27dcd13fa3c843aaf62457e9c57ea4db</span><br></pre></td></tr></table></figure>
+
+<p>好！我们再 make 一下。</p>
+<p><a target="_blank" rel="noopener" href="https://www.oschina.net/p/openwrt">openwrt</a><a target="_blank" rel="noopener" href="https://my.oschina.net/hevakelcj?q=%E7%BC%96%E8%AF%91">编译</a></p>
+<p>© 著作权归作者所有</p>
+<p>举报</p>
+<p>打赏</p>
+<p>2 赞</p>
+<p>39 收藏</p>
+<p>分享</p>
+<h3 id="作者的其它热门文章"><a href="#作者的其它热门文章" class="headerlink" title="作者的其它热门文章"></a>作者的其它热门文章</h3><p><a target="_blank" rel="noopener" href="https://my.oschina.net/hevakelcj/blog/410633">OpenWRT开发之——创建软件包(有更新)</a></p>
+<p><a target="_blank" rel="noopener" href="https://my.oschina.net/hevakelcj/blog/411942">OpenWRT开发之——研究包的Makefile</a></p>
+<p><a target="_blank" rel="noopener" href="https://my.oschina.net/hevakelcj/blog/410144">OpenWrt的ipk包安装</a></p>
+<p><a target="_blank" rel="noopener" href="https://my.oschina.net/hevakelcj/blog/384070">用PyCharm建Django工程</a></p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/";
+            const title         = "「编译OpenWRT过程问题解决」";
+            const excerpt       = `本人是只菜鸟，没有接触过OpenWrt，只是平时都是在Linux下做开发。习惯了Linux的开发环境。
+本人的操作系统是CentOS 6.4（好久都没有换过了）。本人按照网上牛人们的指点也开始下载编译OpenWRT。
+如下为网上的资料...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/feeds-update/" rel="tag">feeds update</a>, <a class="tag-none-link" href="/tags/openwrt%E6%8A%A5%E9%94%99/" rel="tag">openwrt报错</a>, <a class="tag-none-link" href="/tags/openwrt%E7%BC%96%E8%AF%91/" rel="tag">openwrt编译</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2021-07-22T07:44:29.482Z" itemprop="dateModified">最后编辑：2021-07-22</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" openwrt_feeds update报错" href="/2021/07/22/openwrt-feeds-update报错/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 如何查看当前Ubuntu系统的版本" href="/2021/07/22/如何查看当前Ubuntu系统的版本/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                22
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                5
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                38
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#scripts-feeds-update-a%E5%A4%B1%E8%B4%A5"><span class="toc-text">.&#x2F;scripts&#x2F;feeds update -a失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gconvert-c-libiconv"><span class="toc-text">gconvert.c libiconv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#libubox%E5%AE%89%E8%A3%85%E9%94%99%E8%AF%AF"><span class="toc-text">libubox安装错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fatal-Unable-to-find-remote-helper-for-%E2%80%98http%E2%80%99"><span class="toc-text">fatal: Unable to find remote helper for ‘http’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#opkg%E4%B8%8B%E8%BD%BD%E5%A4%B1%E8%B4%A5"><span class="toc-text">opkg下载失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux-firmware-clone%E5%A4%B1%E8%B4%A5"><span class="toc-text">linux-firmware clone失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux-firmware-fatal-reference-is-not-a-tree-%E9%97%AE%E9%A2%98"><span class="toc-text">linux-firmware fatal: reference is not a tree 问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E8%80%85%E7%9A%84%E5%85%B6%E5%AE%83%E7%83%AD%E9%97%A8%E6%96%87%E7%AB%A0"><span class="toc-text">作者的其它热门文章</span></a></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GIT%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">GIT使用技巧</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HEXO%E7%B3%BB%E5%88%97/">HEXO系列</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/openwrt%E7%B3%BB%E5%88%97/">openwrt系列</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E6%9C%BA%E6%8A%80%E5%B7%A7/">玩机技巧</a><span class="category-list-count">1</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Git%E5%AE%98%E6%96%B9%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%BA%90/" style="font-size: 0.6em;">Git官方的软件源</a> <a href="/tags/Hexo%E6%8A%80%E5%B7%A7/" style="font-size: 0.8em;">Hexo技巧</a> <a href="/tags/Hexo%E6%8F%92%E4%BB%B6/" style="font-size: 0.8em;">Hexo插件</a> <a href="/tags/Lede/" style="font-size: 0.6em;">Lede</a> <a href="/tags/Linux-%E7%B3%BB%E7%BB%9F%E6%8A%80%E5%B7%A7/" style="font-size: 0.6em;">Linux 系统技巧</a> <a href="/tags/Linux%E6%8A%80%E5%B7%A7/" style="font-size: 0.6em;">Linux技巧</a> <a href="/tags/Linux%E6%96%87%E4%BB%B6%E8%A7%A3%E5%8E%8B/" style="font-size: 0.6em;">Linux文件解压</a> <a href="/tags/Linux%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/" style="font-size: 0.6em;">Linux查找命令</a> <a href="/tags/OpenWrt/" style="font-size: 0.6em;">OpenWrt</a> <a href="/tags/Openwrt%E7%89%88%E6%9C%AC/" style="font-size: 0.6em;">Openwrt版本</a> <a href="/tags/SVN/" style="font-size: 0.6em;">SVN</a> <a href="/tags/Ubuntu%E7%B3%BB%E7%BB%9F/" style="font-size: 0.6em;">Ubuntu系统</a> <a href="/tags/Ubuntu%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/" style="font-size: 0.6em;">Ubuntu系统命令</a> <a href="/tags/Uname/" style="font-size: 0.6em;">Uname</a> <a href="/tags/feeds-update/" style="font-size: 0.6em;">feeds update</a> <a href="/tags/find%E4%BD%BF%E7%94%A8/" style="font-size: 0.6em;">find使用</a> <a href="/tags/git/" style="font-size: 0.6em;">git</a> <a href="/tags/git-version/" style="font-size: 0.6em;">git --version</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/11/23/Hexo%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/"><i class="fa  fa-book"></i> Hexo使用心得</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/%E4%BD%BF%E7%94%A8hexo%E6%8D%A2%E4%BA%86%E7%94%B5%E8%84%91%E5%90%8E%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2/"><i class="fa  fa-book"></i> 使用hexo换了电脑后如何更新博客</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8/"><i class="fa  fa-book"></i> Git常用命令及方法大全</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/tar%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/"><i class="fa  fa-book"></i> tar压缩解压缩命令详解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8DUbuntu%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%88%E6%9C%AC/"><i class="fa  fa-book"></i> 如何查看当前Ubuntu系统的版本</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Eagmi 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 雕教授.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

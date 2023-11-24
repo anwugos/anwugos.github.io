@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  
+  
+  <title>openwrt编译笔记，有些技巧是自己试验出来的，很多人死也不肯说 | Eagmi</title>
+  
+  <meta name="author" content="雕教授" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="git版本, openwrt编译, 路由器编译" />
+  
+  <meta name="description" content="首先说一下几个坑：1.依赖libelf-dev，他们所有人的教程都没有libelf-dev这个（或者我记错了），当编译过程中盯着屏幕到中间时段会提示缺少依赖libelf-dev，跳过了某些模块的编译。编译出来的固件依然可用，但不知有什么问题。2.root分区，千万别设成128，256，512，1024这类死亡数值，反正不要设，会害死人。3.他们说的在编译前文件“设权限”，你们肯定不懂。起初我也不懂">
+<meta property="og:type" content="article">
+<meta property="og:title" content="openwrt编译笔记，有些技巧是自己试验出来的，很多人死也不肯说">
+<meta property="og:url" content="http://example.com/2021/07/21/openwrt%E7%BC%96%E8%AF%91%E7%AC%94%E8%AE%B0%EF%BC%8C%E6%9C%89%E4%BA%9B%E6%8A%80%E5%B7%A7%E6%98%AF%E8%87%AA%E5%B7%B1%E8%AF%95%E9%AA%8C%E5%87%BA%E6%9D%A5%E7%9A%84%EF%BC%8C%E5%BE%88%E5%A4%9A%E4%BA%BA%E6%AD%BB%E4%B9%9F%E4%B8%8D%E8%82%AF%E8%AF%B4/index.html">
+<meta property="og:site_name" content="Eagmi">
+<meta property="og:description" content="首先说一下几个坑：1.依赖libelf-dev，他们所有人的教程都没有libelf-dev这个（或者我记错了），当编译过程中盯着屏幕到中间时段会提示缺少依赖libelf-dev，跳过了某些模块的编译。编译出来的固件依然可用，但不知有什么问题。2.root分区，千万别设成128，256，512，1024这类死亡数值，反正不要设，会害死人。3.他们说的在编译前文件“设权限”，你们肯定不懂。起初我也不懂">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.right.com.cn/forum/static/image/smiley/default/shy.gif">
+<meta property="og:image" content="https://www.right.com.cn/forum/static/image/filetype/rar.gif">
+<meta property="og:image" content="https://www.right.com.cn/forum/static/image/filetype/zip.gif">
+<meta property="og:image" content="https://www.right.com.cn/forum/forum.php?mod=attachment&aid=MjcyNTk1fGFiYTQ2YTJkfDE2MjY4MzA3NTZ8NTk2NzU5fDQ2OTQwMA==&noupdate=yes">
+<meta property="article:published_time" content="2021-07-21T02:11:48.000Z">
+<meta property="article:modified_time" content="2021-07-21T02:28:12.490Z">
+<meta property="article:author" content="雕教授">
+<meta property="article:tag" content="路由器编译">
+<meta property="article:tag" content="openwrt编译">
+<meta property="article:tag" content="git版本">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.right.com.cn/forum/static/image/smiley/default/shy.gif">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Eagmi</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Eagmi</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/21/openwrt%E7%BC%96%E8%AF%91%E7%AC%94%E8%AE%B0%EF%BC%8C%E6%9C%89%E4%BA%9B%E6%8A%80%E5%B7%A7%E6%98%AF%E8%87%AA%E5%B7%B1%E8%AF%95%E9%AA%8C%E5%87%BA%E6%9D%A5%E7%9A%84%EF%BC%8C%E5%BE%88%E5%A4%9A%E4%BA%BA%E6%AD%BB%E4%B9%9F%E4%B8%8D%E8%82%AF%E8%AF%B4/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">openwrt编译笔记，有些技巧是自己试验出来的，很多人死也不肯说</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2021-07-21T02:11:48.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2021-07-21</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">雕教授</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~10.02K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1626834492490"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>首先说一下几个坑：<br>1.依赖libelf-dev，他们所有人的教程都没有libelf-dev这个（或者我记错了），当编译过程中盯着屏幕到中间时段会提示缺少依赖libelf-dev，跳过了某些模块的编译。编译出来的固件依然可用，但不知有什么问题。<br>2.root分区，千万别设成128，256，512，1024这类死亡数值，反正不要设，会害死人。<br>3.他们说的在编译前文件“设权限”，你们肯定不懂。起初我也不懂，后来摸索出来了：（其实在makefile里面也可以通过命令行设，只是动一下鼠标就好，何必写命令）<br>普通权限（无执行权限，在WINSCP显示为，rw-r-r，即0644）：在ubuntu里，选择文件，右键菜单，在权限设置里依次选择：读写、只读、只读，并把“可作为程序运行”的选择框里所有可见的东西去掉。这样编译出来就是0644.<br>执行权限（在WINSCP显示为，rwxr-xr-x，即0755）：在权限设置里依次选择：读写、只读、只读，并把“可作为程序运行”的选择框变成√。这样编译出来就是0755.二进制、sh、init.d里的启动文件都要设0755，不然无权限运行。在windows上复制进ubuntu里的文件，基本上权限都是离奇古怪的。可是先在windows上用winrar压缩成zip再复制进去然后解压，权限就会好好的变成0644。<br>4.更改了某些package配置文件编译出来就是没改变？去make_dir搜索，把这文件夹移到回收站再编译（最好不要直接删除，不然删除了二进制文件你会被害死）。如果你直接删除了掉进坑了，编译过程中提示无某二进制文件，死也进行不了怎么办？妹的，删了特么就死也不重新编译了！怎么办？最傻的办法是make clean（我试过N次才知道这个办法乃下下策，要耗费大量时间重新编译），事实上只需要menuconfig里去掉这个package编译一次（只需要几分钟），然后又选上再编译就行了。make clean了可是得几个钟啊（你选了qbittorent的话你会生不如死）。。。（应该还有更好的办法，很明显是某缓存文件的问题，但我不知道）<br>5.编译过程中最好不要ctrl+c终止，不然有时候你得到的结果就是make clean吧（因为某个还没完成的半拉子模块，下一次会被认为已完成，造成死也进行不下去了）！一旦开始编译，死也要进行到底。或者还有一个办法，同上面第4，去make dir删除，但问题是，往往它只是报错，并不告诉你是哪个模块错误。。。</p>
+<p>——————这里附上我自己编译的X86固件<a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/thread-458183-1-1.html[-----------------](https://www.right.com.cn/forum/thread-458183-1-1.html------------------)">https://www.right.com.cn/forum/thread-458183-1-1.html[-----------------](https://www.right.com.cn/forum/thread-458183-1-1.html------------------)</a><br>系统更新    sudo apt-get update<br>安装依赖关系 sudo apt-get install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils libelf-dev<br>下载源码    git clone <a target="_blank" rel="noopener" href="https://www.github.com/openwrt/openwrt">https://www.github.com/openwrt/openwrt</a><br>进入目录：  cd openwrt<br>更新源：    .&#x2F;scripts&#x2F;feeds update -a<br>安装源：    .&#x2F;scripts&#x2F;feeds install -a<br>打开配置：  make menuconfig<br>打开内核配置：make kernel_menuconfig（一定要在file systems的Native language support设置好，不然网络共享文件名乱码）<br>开工      make -j1 V&#x3D;s （-jn的n为电脑cpu的进程数）</p>
+<p>非第一次编译<br>cd openwrt<br>git pull<br>.&#x2F;scripts&#x2F;feeds update -a &amp;&amp; .&#x2F;scripts&#x2F;feeds install -a<br>rm -rf .&#x2F;tmp &amp;&amp; rm -rf .config<br>make menuconfig<br>make kernel_menuconfig<br>make -j2 V&#x3D;s</p>
+<p>没关闭终端的情况下简化为<br>rm -rf .&#x2F;tmp<br>make menuconfig<br>make -j2 V&#x3D;s</p>
+<p>-—————————————————————————–<br>git clone <a target="_blank" rel="noopener" href="https://github.com/coolsnowwolf/lede">https://github.com/coolsnowwolf/lede</a>      ———-lean的<br>git clone <a target="_blank" rel="noopener" href="https://github.com/981213/openwrt">https://github.com/981213/openwrt</a>        ———-981213的<br>git clone <a target="_blank" rel="noopener" href="https://github.com/ericpaulbishop/gargoyle">https://github.com/ericpaulbishop/gargoyle</a>  ———-石像鬼的<br>git clone <a target="_blank" rel="noopener" href="https://github.com/rosywrt/rosywrt">https://github.com/rosywrt/rosywrt</a>        ———-Rosy的<br>git clone <a target="_blank" rel="noopener" href="https://git.openwrt.org/openwrt/openwrt.git">https://git.openwrt.org/openwrt/openwrt.git</a>  ———-官方的<br>git clone <a target="_blank" rel="noopener" href="https://www.github.com/openwrt/openwrt">https://www.github.com/openwrt/openwrt</a>     ———-官方的</p>
+<p>想要18.06或其他老版本的，直接网页打开上面官方地址选18.06.2，下载压缩包来解压就可以了（以后不能用git pull命令，因为不是主支，需要git pull就要进行下面繁琐操作）：<br>以V18.06.2为例：<br>git clone <a target="_blank" rel="noopener" href="https://www.github.com/openwrt/openwrt">https://www.github.com/openwrt/openwrt</a><br>git branch -a         —-查看分支（如果直达18.06.2，这条和下面tag命令不需要）<br>git tag             —-查看版本<br>git checkout v18.06.2    —-签出V18.06.2<br>git pull origin v18.06.2  —-更新V18.06.2<br>.&#x2F;scripts&#x2F;feeds update -a &amp;&amp; .&#x2F;scripts&#x2F;feeds install -a<br>想要生成支持UEFI的映像文件，则还需要加上下面命令（来源于<a target="_blank" rel="noopener" href="https://openwrt.org/docs/guide-developer/uefi-bootable-image%EF%BC%89%EF%BC%9A">https://openwrt.org/docs/guide-developer/uefi-bootable-image）：</a><br>git remote add jow-staging <a target="_blank" rel="noopener" href="https://git.openwrt.org/openwrt/staging/jow.git">https://git.openwrt.org/openwrt/staging/jow.git</a><br>git fetch jow-staging<br>git checkout -b uefi-capable –track origin&#x2F;master # so that you can rebase easily<br>git merge jow-staging<br>-———-<br>make kernel_menuconfig<br>加入x86的多核心以及大内存支持<br>Processor type and features —&gt;<br>  Symmetric multi-processing support<br>  Processor family (Core 2&#x2F;newer Xeon) —&gt;#自行选择处理器平*<br>  Supported processor vendors —&gt;#自行选择处理器平*<br>  (2) Maximum number of CPUs #自行编辑<br>  SMT (Hyperthreading) scheduler support#超线程支持<br>  Multi-core scheduler support<br>  High Memory Support (64GB) —&gt;</p>
+<p>更改软件源：<br>customfeeds.conf自定义源配置文件（在files大法改即可，文件在etc&#x2F;opkg下）<br>科大的<br>src&#x2F;gz openwrt_core <a target="_blank" rel="noopener" href="http://openwrt.proxy.ustclug.org/snapshots/targets/x86/64/packages">http://openwrt.proxy.ustclug.org ... ets/x86/64/packages</a><br>src&#x2F;gz openwrt_base <a target="_blank" rel="noopener" href="http://openwrt.proxy.ustclug.org/snapshots/packages/x86_64/base">http://openwrt.proxy.ustclug.org/snapshots/packages/x86_64/base</a><br>src&#x2F;gz openwrt_luci <a target="_blank" rel="noopener" href="http://openwrt.proxy.ustclug.org/snapshots/packages/x86_64/luci">http://openwrt.proxy.ustclug.org/snapshots/packages/x86_64/luci</a><br>src&#x2F;gz openwrt_packages <a target="_blank" rel="noopener" href="http://openwrt.proxy.ustclug.org/snapshots/packages/x86_64/packages">http://openwrt.proxy.ustclug.org ... ges/x86_64&#x2F;packages</a><br>src&#x2F;gz openwrt_routing <a target="_blank" rel="noopener" href="http://openwrt.proxy.ustclug.org/snapshots/packages/x86_64/routing">http://openwrt.proxy.ustclug.org ... ages/x86_64&#x2F;routing</a></p>
+<p>distfeeds.conf 官方源配置文件（在files大法改即可）<br>官方的<br>src&#x2F;gz openwrt_core <a target="_blank" rel="noopener" href="http://downloads.openwrt.org/snapshots/targets/x86/64/packages">http://downloads.openwrt.org/snapshots/targets/x86/64/packages</a><br>src&#x2F;gz openwrt_base <a target="_blank" rel="noopener" href="http://downloads.openwrt.org/snapshots/packages/x86_64/base">http://downloads.openwrt.org/snapshots/packages/x86_64/base</a><br>src&#x2F;gz openwrt_luci <a target="_blank" rel="noopener" href="http://downloads.openwrt.org/snapshots/packages/x86_64/luci">http://downloads.openwrt.org/snapshots/packages/x86_64/luci</a><br>src&#x2F;gz openwrt_packages <a target="_blank" rel="noopener" href="http://downloads.openwrt.org/snapshots/packages/x86_64/packages">http://downloads.openwrt.org/snapshots/packages/x86_64/packages</a><br>src&#x2F;gz openwrt_routing <a target="_blank" rel="noopener" href="http://downloads.openwrt.org/snapshots/packages/x86_64/routing">http://downloads.openwrt.org/snapshots/packages/x86_64/routing</a><br>src&#x2F;gz openwrt_telephony <a target="_blank" rel="noopener" href="http://downloads.openwrt.org/snapshots/packages/x86_64/telephony">http://downloads.openwrt.org/snapshots/packages/x86_64/telephony</a></p>
+<p>源问题下载不了模块中途编译终止没问题，按上箭头键重新输入上一个命令重来。<br>所有东西都乱了，无药可救了怎么办？移出&#x2F;openwrt&#x2F;的dl文件夹，然后把整个openwrt删除，再git clone一次，把dl移入，重新来过，可以节省很多下载模块时间。或者执行下面命令。<br>make clean   仅仅是清除之前编译的可执行文件及配置文件，比如bin路径下面的文件，config配置文件不会清除。<br>make distclean 清除所有生成的文件，连feeds也会干掉，只留下git clone完成时候的初始状态。</p>
+<p>技巧<br>1：连移动卡的手机热点下载模块要比电信宽带快得多哦！！！！！！</p>
+<p>2：files大法，不用去修改源码就可以自定义配置固化到固件中，比如要经常刷固件、做ramdisk版，不用每次都升级备份文件。<br>刷第一次安装配置好APP等。用scp进入根目录，把整个etc目录搬下来。<br>在openwrt目录建立file目录。把etc放进去，然后进etc翻看，有用的留下，没用的删除，ok！编译好之后大部分配置都在。<br>如果你只是在自己主板上用，什么都可以留下。如果你要发给人家或者换机型，则里面所有有MAC地址、UUID识别码或者其它固定硬件识<br>别码的文件都得删掉（比如wireless就有MAC地址），不然会产生灵异事件。</p>
+<p>3：单独编译某个模块比如v2瑞，要先在make menuconfig里面luci app相应的v2瑞-pro打上M<br>make package&#x2F;lean&#x2F;luci-app-v2瑞-pro&#x2F;compile</p>
+<p>4：碰到一个玩意硬是wget不了怎么办？把出错提示的地址复制下来，用浏览器，迅雷，什么都行，下载好扔进dl目录（如果不是dl目录的有提示，并且此方法无效）<br>比如这个变态的kcptun-linux-amd64-20181002.tar.gz，问了度娘之后在下面地址找到。<br><a target="_blank" rel="noopener" href="https://github.com/xtaci/kcptun/releases">https://github.com/xtaci/kcptun/releases</a></p>
+<p>-——————————————————————————<br>源更新不了，opkg被神经病锁定不能安装app，删除&#x2F;var&#x2F;lock&#x2F;opkg.lock</p>
+<p>自己替换“总览”页面<br>&#x2F;feeds&#x2F;luci&#x2F;modules&#x2F;luci-mod-status&#x2F;luasrc&#x2F;view&#x2F;admin_status&#x2F;index.htm</p>
+<p>压缩虚拟盘<br>cd C:\Program Files (x86)\VMware\VMware Workstation<br>vmware-vdiskmanager.exe -k “G:\Ubuntu\Ubuntu 64 位.vmdk”</p>
+<p>-——————————————————————————<br>1）修改登录密码（可以用files大法，文件在&#x2F;etc下的shadow，在“管理权”设置好密码，直接SCP备份shadow文件，以下各项同样方法配制）<br>修改shadow文件，位于package&#x2F;base-files&#x2F;files&#x2F;etc<br>root<img src="https://www.right.com.cn/forum/static/image/smiley/default/shy.gif" alt="img">1$BuM.Ox4e$X&#x2F;RX2ftRaBzzVzoL6TkI0&#x2F;:17943:0:99999:7:::  —————-root后面的两个root：：17943之间一串乱码就是加密后的密码（需要在“管理权”设置好SCP上去打开复制下来，不能直接填入明文），此处示例为admin。<br>-—<br>2）修改路由连接数（可以用files大法，文件在ect下的sysctl.conf）<br>修改sysctl.conf文件，位于package&#x2F;base-files&#x2F;files&#x2F;etc<br>net.netfilter.nf_conntrack_max&#x3D;262144</p>
+<p>-—<br>3）默认中文feeds&#x2F;luci&#x2F;libs&#x2F;web&#x2F;root&#x2F;etc&#x2F;config</p>
+<p>1<br>option（可以用files大法，其实不用管，只要时区改了并且添加了中文luci，会自动使用中文）<br>lang auto<br>改为</p>
+<p>1<br>option lang zh_cn</p>
+<p>并添加<br>config internal languages</p>
+<p>​     option en ‘English’</p>
+<p>​     option zh_cn ‘chinese’</p>
+<p>-—<br>4）修改默认主题（用files大法无效）<br>修改feeds&#x2F;luci&#x2F;libs&#x2F;web&#x2F;root&#x2F;etc&#x2F;config<br>option mediaurlbase &#x2F;luci-static&#x2F;openwrt.org<br>可根据需要将openwrt.org修改为Bootstap、openwrtcn、freifunk-bno、freifunk-generic</p>
+<p>-—<br>5）修改主机名、设定时区（可以用files大法，文件在&#x2F;etc&#x2F;config下的system）<br>修改package&#x2F;base-files&#x2F;files&#x2F;etc&#x2F;config&#x2F;system<br>option hostname Openwrt    ———-主机名<br>option timezone Asia&#x2F;Shanghai———-时区设置为亚洲&#x2F;上海<br>option timezone CST-8     ———-正8区</p>
+<p>-—<br>6）默认lan ip地址配置（本机使用可以用files大法，在ect下面找同名文件）<br>package&#x2F;base-files&#x2F;files&#x2F;bin&#x2F;config_generate搜索192.168定位到下面字段配置。<br>set network.$1.ipaddr&#x3D;’192.168.1.1’<br>set network.$1.netmask&#x3D;’255.255.255.0’</p>
+<p>-—<br>7）更改openwrt后台web登陆用户名方法<br>1.修改&#x2F;etc&#x2F;passwd<br>将root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;ash修改为username:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;ash。</p>
+<p>2.修改&#x2F;etc&#x2F;shadow<br>将root:xxxxxx:0:0:99999:7:::修改为username:xxxxxx:0:0:99999:7:::。</p>
+<p>3.修改&#x2F;usr&#x2F;lib&#x2F;lua&#x2F;luci&#x2F;controller&#x2F;admin&#x2F;index.lua<br>将page.sysauth &#x3D; {“root”}修改为page.sysauth &#x3D; {“username”}。</p>
+<p>4.修改&#x2F;usr&#x2F;lib&#x2F;lua&#x2F;luci&#x2F;controller&#x2F;admin&#x2F;servicectl.lua<br>将entry({“servicectl”}, alias(“servicectl”, “status”)).sysauth &#x3D; {“root”}修改为entry({“servicectl”}, alias(“servicectl”, “status”)).sysauth &#x3D; {“username”}。</p>
+<p>-—<br>默认wifi系列（本机使用可以用files大法，文件是etc&#x2F;config下wireless）<br>修改的文件为 &#x2F;trunk&#x2F;package&#x2F;kernel&#x2F;mac80211&#x2F;files&#x2F;lib&#x2F;wifi<br>set wireless.radio${devidx}&#x3D;wifi-device<br>set wireless.radio${devidx}.type&#x3D;mac80211<br>set wireless.radio${devidx}.channel&#x3D;1  ——-指定频道<br>set wireless.radio${devidx}.hwmode&#x3D;11g ——-指定11g模式<br>set wireless.radio${devidx}.country&#x3D;CN ——-指定国家<br>set wireless.radio${devidx}.htmode&#x3D;HT40 ——-40MHz带宽（单改无效，还需要改上面iw phy “$dev” info | grep -q ‘Capabilities:’ &amp;&amp; htmode&#x3D;HT40）<br>set wireless.radio${devidx}.legacy_rates&#x3D;1<br>set wireless.radio${devidx}.noscan&#x3D;1  ——-强制40MHz带宽（默认无，需要添加）<br>${dev_id}<br>${ht_capab}<br>set wireless.radio${devidx}.disabled&#x3D;0 ——–改为0默认开无线</p>
+<p>set wireless.default_radio${devidx}&#x3D;wifi-iface<br>set wireless.default_radio${devidx}.device&#x3D;radio${devidx}<br>set wireless.default_radio${devidx}.network&#x3D;lan<br>set wireless.default_radio${devidx}.mode&#x3D;ap<br>set wireless.default_radio${devidx}.ssid&#x3D;IOU         ———指定SSID<br>set wireless.default_radio${devidx}.encryption&#x3D;psk2+ccmp ———指定加密模式<br>set wireless.default_radio${devidx}.key&#x3D;13143344      ———指定密码（默认无，需要添加）</p>
+<p>-—<br>8）整理web管理上面APP出现的菜单位置<br>比如把一个出现在“服务”菜单里的app改到“网络”里，以NFT-QOS为例：<br>进入package下面的luci-app-nft-qos&#x2F;controller,看到nft-qos.lua文件，打开看到：<br>entry({“admin”, “services”, “nft-qos”}, cbi(“nft-qos&#x2F;nft-qos”),<br>上面的”services”就是“服务”，修改为”network”,这个app就会改变到“网络”菜单里了。</p>
+<p>-—<br>我要出去工作了，没时间玩了，最后给你们一个东西，这个东西来源于lean(抱歉，我拿来用了），可以编译时加载默认设置和加一些额外的翻译词组。我精简了一些官方源码用不到的项，只留下上面说到那些基本设置，然后加上了一些我自己需要的设置项。解压后放到package下面，然后在make menuconfig&#x2F;luci里打开default settings这个选项就可以了，上面提到的大部分设置都可以在这package的files&#x2F;zzz-default-settings里面修改的，不用再一个个model去修改，自己研究吧。<br><img src="https://www.right.com.cn/forum/static/image/filetype/rar.gif" alt="img"> <a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/forum.php?mod=attachment&aid=MjcyNTk2fGZlYjI5MDI4fDE2MjY4MzA3NTZ8NTk2NzU5fDQ2OTQwMA==">default-settings.rar</a> <em>(26.76 KB, 下载次数: 267)</em> <img src="https://www.right.com.cn/forum/static/image/filetype/zip.gif" alt="img"> <a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/forum.php?mod=attachment&aid=MjcyNjAyfDBkODkxZjU0fDE2MjY4MzA3NTZ8NTk2NzU5fDQ2OTQwMA==">增加了一些项的default-settings.tar.xz.zip</a> <em>(21.91 KB, 下载次数: 247)</em><br><img src="https://www.right.com.cn/forum/forum.php?mod=attachment&aid=MjcyNTk1fGFiYTQ2YTJkfDE2MjY4MzA3NTZ8NTk2NzU5fDQ2OTQwMA==&noupdate=yes" alt="img"></p>
+<p>20191009补充：<br>8）整理web管理上面APP出现的菜单位置<br>比如把一个出现在“服务”菜单里的app改到“网络”里，以NFT-QOS为例：<br>进入package下面的luci-app-nft-qos&#x2F;controller,看到nft-qos.lua文件，打开看到：<br>entry({“admin”, “services”, “nft-qos”}, cbi(“nft-qos&#x2F;nft-qos”),<br>上面的”services”就是“服务”，修改为”network”,这个app就会改变到“网络”菜单里了。<br>————–某些比较复杂关系的app只修改这一处会无法运行，是因为多个函数使用了这个路径，需要一一修改。luasrc下面所有文件都要打开查找一遍，凡是存在“services”这个一路径的（或者是admin&#x2F;services&#x2F;xxx这样的路径的），通通需要替换成“network”才算完成。<br>lean的defaultsetting有这些lua重分配命令，但是同样存在上面的问题，所以必须从源码本身去修改。</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2021/07/21/openwrt%E7%BC%96%E8%AF%91%E7%AC%94%E8%AE%B0%EF%BC%8C%E6%9C%89%E4%BA%9B%E6%8A%80%E5%B7%A7%E6%98%AF%E8%87%AA%E5%B7%B1%E8%AF%95%E9%AA%8C%E5%87%BA%E6%9D%A5%E7%9A%84%EF%BC%8C%E5%BE%88%E5%A4%9A%E4%BA%BA%E6%AD%BB%E4%B9%9F%E4%B8%8D%E8%82%AF%E8%AF%B4/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2021/07/21/openwrt%E7%BC%96%E8%AF%91%E7%AC%94%E8%AE%B0%EF%BC%8C%E6%9C%89%E4%BA%9B%E6%8A%80%E5%B7%A7%E6%98%AF%E8%87%AA%E5%B7%B1%E8%AF%95%E9%AA%8C%E5%87%BA%E6%9D%A5%E7%9A%84%EF%BC%8C%E5%BE%88%E5%A4%9A%E4%BA%BA%E6%AD%BB%E4%B9%9F%E4%B8%8D%E8%82%AF%E8%AF%B4/";
+            const title         = "「openwrt编译笔记，有些技巧是自己试验出来的，很多人死也不肯说」";
+            const excerpt       = `首先说一下几个坑：1.依赖libelf-dev，他们所有人的教程都没有libelf-dev这个（或者我记错了），当编译过程中盯着屏幕到中间时段会提示缺少依赖libelf-dev，跳过了某些模块的编译。编译出来的固件依然可用，但不知有什...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/git%E7%89%88%E6%9C%AC/" rel="tag">git版本</a>, <a class="tag-none-link" href="/tags/openwrt%E7%BC%96%E8%AF%91/" rel="tag">openwrt编译</a>, <a class="tag-none-link" href="/tags/%E8%B7%AF%E7%94%B1%E5%99%A8%E7%BC%96%E8%AF%91/" rel="tag">路由器编译</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2021-07-21T02:28:12.490Z" itemprop="dateModified">最后编辑：2021-07-21</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 新路由3 编译 Openwrt 固件" href="/2021/07/14/新路由3-编译-Openwrt-固件/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" openwrt编译入门" href="/2021/07/21/openwrt编译入门/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                22
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                5
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                38
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GIT%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">GIT使用技巧</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HEXO%E7%B3%BB%E5%88%97/">HEXO系列</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/openwrt%E7%B3%BB%E5%88%97/">openwrt系列</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E6%9C%BA%E6%8A%80%E5%B7%A7/">玩机技巧</a><span class="category-list-count">1</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Git%E5%AE%98%E6%96%B9%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%BA%90/" style="font-size: 0.6em;">Git官方的软件源</a> <a href="/tags/Hexo%E6%8A%80%E5%B7%A7/" style="font-size: 0.8em;">Hexo技巧</a> <a href="/tags/Hexo%E6%8F%92%E4%BB%B6/" style="font-size: 0.8em;">Hexo插件</a> <a href="/tags/Lede/" style="font-size: 0.6em;">Lede</a> <a href="/tags/Linux-%E7%B3%BB%E7%BB%9F%E6%8A%80%E5%B7%A7/" style="font-size: 0.6em;">Linux 系统技巧</a> <a href="/tags/Linux%E6%8A%80%E5%B7%A7/" style="font-size: 0.6em;">Linux技巧</a> <a href="/tags/Linux%E6%96%87%E4%BB%B6%E8%A7%A3%E5%8E%8B/" style="font-size: 0.6em;">Linux文件解压</a> <a href="/tags/Linux%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/" style="font-size: 0.6em;">Linux查找命令</a> <a href="/tags/OpenWrt/" style="font-size: 0.6em;">OpenWrt</a> <a href="/tags/Openwrt%E7%89%88%E6%9C%AC/" style="font-size: 0.6em;">Openwrt版本</a> <a href="/tags/SVN/" style="font-size: 0.6em;">SVN</a> <a href="/tags/Ubuntu%E7%B3%BB%E7%BB%9F/" style="font-size: 0.6em;">Ubuntu系统</a> <a href="/tags/Ubuntu%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/" style="font-size: 0.6em;">Ubuntu系统命令</a> <a href="/tags/Uname/" style="font-size: 0.6em;">Uname</a> <a href="/tags/feeds-update/" style="font-size: 0.6em;">feeds update</a> <a href="/tags/find%E4%BD%BF%E7%94%A8/" style="font-size: 0.6em;">find使用</a> <a href="/tags/git/" style="font-size: 0.6em;">git</a> <a href="/tags/git-version/" style="font-size: 0.6em;">git --version</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/11/23/Hexo%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/"><i class="fa  fa-book"></i> Hexo使用心得</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/%E4%BD%BF%E7%94%A8hexo%E6%8D%A2%E4%BA%86%E7%94%B5%E8%84%91%E5%90%8E%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2/"><i class="fa  fa-book"></i> 使用hexo换了电脑后如何更新博客</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8/"><i class="fa  fa-book"></i> Git常用命令及方法大全</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/tar%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/"><i class="fa  fa-book"></i> tar压缩解压缩命令详解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8DUbuntu%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%88%E6%9C%AC/"><i class="fa  fa-book"></i> 如何查看当前Ubuntu系统的版本</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Eagmi 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 雕教授.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  
+  
+  <title>Git常用命令及方法大全 | Eagmi</title>
+  
+  <meta name="author" content="雕教授" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="" />
+  
+  <meta name="description" content="下面是我整理的常用 Git 命令清单。几个专用名词的译名如下。   Workspace：工作区 Index &#x2F; Stage：暂存区 Repository：仓库区（或本地仓库） Remote：远程仓库   本地分支关联远程：git branch –set-upstream-to&#x3D;origin&#x2F;beta beta  一、新建代码库        # 在当前目录新建一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git常用命令及方法大全">
+<meta property="og:url" content="http://example.com/2021/07/22/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8/index.html">
+<meta property="og:site_name" content="Eagmi">
+<meta property="og:description" content="下面是我整理的常用 Git 命令清单。几个专用名词的译名如下。   Workspace：工作区 Index &#x2F; Stage：暂存区 Repository：仓库区（或本地仓库） Remote：远程仓库   本地分支关联远程：git branch –set-upstream-to&#x3D;origin&#x2F;beta beta  一、新建代码库        # 在当前目录新建一个">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:\Users\Eagmin\AppData\Local\Microsoft\Windows\INetCache\IE\WVA3QAC3\bg2015120901[1].png">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070503.png">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070504.png">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070505.png">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070506.png">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070507.png">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070508.png">
+<meta property="og:image" content="https://img-blog.csdn.net/20150824103212235?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20150824103242645?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="article:published_time" content="2021-07-22T08:51:05.000Z">
+<meta property="article:modified_time" content="2021-07-22T09:00:29.565Z">
+<meta property="article:author" content="雕教授">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\Eagmin\AppData\Local\Microsoft\Windows\INetCache\IE\WVA3QAC3\bg2015120901[1].png">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Eagmi</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Eagmi</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/22/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Git常用命令及方法大全</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2021-07-22T08:51:05.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2021-07-22</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">雕教授</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~11.98K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1626944429565"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%96%B0%E5%BB%BA%E4%BB%A3%E7%A0%81%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">一、新建代码库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">二、配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A2%9E%E5%8A%A0-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">三、增加&#x2F;删除文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4"><span class="toc-number">4.</span> <span class="toc-text">四、代码提交</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%88%86%E6%94%AF"><span class="toc-number">5.</span> <span class="toc-text">五、分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%A0%87%E7%AD%BE"><span class="toc-number">6.</span> <span class="toc-text">六、标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%9F%A5%E7%9C%8B%E4%BF%A1%E6%81%AF"><span class="toc-number">7.</span> <span class="toc-text">七、查看信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BF%9C%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-number">8.</span> <span class="toc-text">八、远程同步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E6%92%A4%E9%94%80"><span class="toc-number">9.</span> <span class="toc-text">九、撤销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E5%85%B6%E4%BB%96"><span class="toc-number">10.</span> <span class="toc-text">十、其他</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-number"></span> <span class="toc-text">Git分支管理策略</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80-%E6%92%A4%E9%94%80%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9"><span class="toc-number"></span> <span class="toc-text">版本回退-撤销文件修改</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%90%8E%EF%BC%8C%E5%8F%88%E6%83%B3%E5%9B%9E%E5%88%B0%E4%BF%AE%E6%94%B9%E5%89%8D-git-add%E5%89%8D"><span class="toc-number">1.</span> <span class="toc-text">工作区修改一个文件后，又想回到修改前(git add前)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E5%9C%A8%E5%B7%A5%E4%BD%9C%E5%8C%BA%E4%B8%AD%E4%BF%AE%E6%94%B9%E4%BA%86%E6%96%87%E4%BB%B6%E8%BF%98git-add%E5%88%B0%E6%9A%82%E5%AD%98%E5%8C%BA%EF%BC%88%E4%BD%86%E6%98%AF%E5%9C%A8commit%E4%B9%8B%E5%89%8D%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">如果在工作区中修改了文件还git add到暂存区（但是在commit之前）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E4%BD%86%E4%BF%AE%E6%94%B9%E4%BA%86%E6%96%87%E4%BB%B6%E8%BF%98%E4%BB%8E%E6%9A%82%E5%AD%98%E5%8C%BA%E6%8F%90%E4%BA%A4commit%E5%88%B0%E4%BA%86%E7%89%88%E6%9C%AC%E5%BA%93-%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80"><span class="toc-number">3.</span> <span class="toc-text">不但修改了文件还从暂存区提交commit到了版本库 - 版本回退</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E5%9C%A8%E6%88%91%E4%BB%AC%E6%83%B3%E8%A6%81%E6%8A%8Areadme-txt%E5%9B%9E%E9%80%80%E5%88%B0%E4%B8%8A%E4%B8%80%E4%B8%AA%E7%89%88%E6%9C%AC"><span class="toc-number">3.1.</span> <span class="toc-text">现在我们想要把readme.txt回退到上一个版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D%E6%96%87%E4%BB%B6%E5%90%8E%EF%BC%8C%E8%A6%81%E6%98%AF%E6%88%91%E4%BB%AC%E5%8F%88%E6%83%B3%E5%9B%9E%E5%88%B0%E4%BF%AE%E6%94%B9%E5%90%8E%E7%9A%84%E6%96%87%E4%BB%B6%E5%91%A2%EF%BC%9F%EF%BC%88%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%AA%97%E5%8F%A3%E8%BF%98%E6%B2%A1%E6%9C%89%E8%A2%AB%E5%85%B3%E6%8E%89%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口还没有被关掉）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D%E6%96%87%E4%BB%B6%E5%90%8E%EF%BC%8C%E8%A6%81%E6%98%AF%E6%88%91%E4%BB%AC%E5%8F%88%E6%83%B3%E5%9B%9E%E5%88%B0%E4%BF%AE%E6%94%B9%E5%90%8E%E7%9A%84%E6%96%87%E4%BB%B6%E5%91%A2%EF%BC%9F%EF%BC%88%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%AA%97%E5%8F%A3%E6%97%A9%E5%B0%B1%E5%85%B3%E6%8E%89%E4%BA%86%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口早就关掉了）</span></a></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><blockquote>
+<p><img src="C:\Users\Eagmin\AppData\Local\Microsoft\Windows\INetCache\IE\WVA3QAC3\bg2015120901[1].png" alt="img"></p>
+<p>下面是我整理的常用 Git 命令清单。几个专用名词的译名如下。</p>
+<blockquote>
+<ul>
+<li>Workspace：工作区</li>
+<li>Index &#x2F; Stage：暂存区</li>
+<li>Repository：仓库区（或本地仓库）</li>
+<li>Remote：远程仓库</li>
+</ul>
+</blockquote>
+<p>本地分支关联远程：git branch –set-upstream-to&#x3D;origin&#x2F;beta beta</p>
+</blockquote>
+<h2 id="一、新建代码库"><a href="#一、新建代码库" class="headerlink" title="一、新建代码库"></a>一、新建代码库</h2><blockquote>
+<ol>
+<li></li>
+<li></li>
+</ol>
+<p>   # 在当前目录新建一个Git代码库</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   $ git init</p>
+<ol start="4">
+<li></li>
+<li></li>
+</ol>
+<p>   # 新建一个目录，将其初始化为Git代码库</p>
+<ol start="6">
+<li></li>
+</ol>
+<p>   $ git init [project-name]</p>
+<ol start="7">
+<li></li>
+<li></li>
+</ol>
+<p>   # 下载一个项目和它的整个代码历史</p>
+<ol start="9">
+<li></li>
+</ol>
+<p>   $ git clone [url]</p>
+</blockquote>
+<h2 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h2><p>Git的设置文件为<code>.gitconfig</code>，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。</p>
+<blockquote>
+<ol>
+<li></li>
+<li></li>
+</ol>
+<p>   # 显示当前的Git配置</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   $ git config –list</p>
+<ol start="4">
+<li></li>
+<li></li>
+</ol>
+<p>   # 编辑Git配置文件</p>
+<ol start="6">
+<li></li>
+</ol>
+<p>   $ git config -e [–global]</p>
+<ol start="7">
+<li></li>
+<li></li>
+</ol>
+<p>   # 设置提交代码时的用户信息</p>
+<ol start="9">
+<li></li>
+</ol>
+<p>   $ git config [–global] user.name “[name]”</p>
+<ol start="10">
+<li></li>
+</ol>
+<pre><code>$ git config [--global] user.email &quot;[email address]&quot;
+</code></pre>
+</blockquote>
+<h2 id="三、增加-删除文件"><a href="#三、增加-删除文件" class="headerlink" title="三、增加&#x2F;删除文件"></a>三、增加&#x2F;删除文件</h2><blockquote>
+<ol>
+<li></li>
+<li></li>
+</ol>
+<p>   # 添加指定文件到暂存区</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   $ git add [file1] [file2] …</p>
+<ol start="4">
+<li></li>
+<li></li>
+</ol>
+<p>   # 添加指定目录到暂存区，包括子目录</p>
+<ol start="6">
+<li></li>
+</ol>
+<p>   $ git add [dir]</p>
+<ol start="7">
+<li></li>
+<li></li>
+</ol>
+<p>   # 添加当前目录的所有文件到暂存区</p>
+<ol start="9">
+<li></li>
+</ol>
+<p>   $ git add .</p>
+<ol start="10">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 添加每个变化前，都会要求确认
+</code></pre>
+<ol start="12">
+<li></li>
+</ol>
+<pre><code>\# 对于同一个文件的多处变化，可以实现分次提交
+</code></pre>
+<ol start="13">
+<li></li>
+</ol>
+<pre><code>$ git add -p
+</code></pre>
+<ol start="14">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 删除工作区文件，并且将这次删除放入暂存区
+</code></pre>
+<ol start="16">
+<li></li>
+</ol>
+<pre><code>$ git rm [file1] [file2] ...
+</code></pre>
+<ol start="17">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 停止追踪指定文件，但该文件会保留在工作区
+</code></pre>
+<ol start="19">
+<li></li>
+</ol>
+<pre><code>$ git rm --cached [file]
+</code></pre>
+<ol start="20">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 改名文件，并且将这个改名放入暂存区
+</code></pre>
+<ol start="22">
+<li></li>
+</ol>
+<pre><code>$ git mv [file-original] [file-renamed]
+</code></pre>
+</blockquote>
+<h2 id="四、代码提交"><a href="#四、代码提交" class="headerlink" title="四、代码提交"></a>四、代码提交</h2><blockquote>
+<ol>
+<li></li>
+<li></li>
+</ol>
+<p>   # 提交暂存区到仓库区</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   $ git commit -m [message]</p>
+<ol start="4">
+<li></li>
+<li></li>
+</ol>
+<p>   # 提交暂存区的指定文件到仓库区</p>
+<ol start="6">
+<li></li>
+</ol>
+<p>   $ git commit [file1] [file2] … -m [message]</p>
+<ol start="7">
+<li></li>
+<li></li>
+</ol>
+<p>   # 提交工作区自上次commit之后的变化，直接到仓库区</p>
+<ol start="9">
+<li></li>
+</ol>
+<p>   $ git commit -a</p>
+<ol start="10">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 提交时显示所有diff信息
+</code></pre>
+<ol start="12">
+<li></li>
+</ol>
+<pre><code>$ git commit -v
+</code></pre>
+<ol start="13">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 使用一次新的commit，替代上一次提交
+</code></pre>
+<ol start="15">
+<li></li>
+</ol>
+<pre><code>\# 如果代码没有任何新变化，则用来改写上一次commit的提交信息
+</code></pre>
+<ol start="16">
+<li></li>
+</ol>
+<pre><code>$ git commit --amend -m [message]
+</code></pre>
+<ol start="17">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 重做上一次commit，并包括指定文件的新变化
+</code></pre>
+<ol start="19">
+<li></li>
+</ol>
+<pre><code>$ git commit --amend [file1] [file2] ...
+</code></pre>
+</blockquote>
+<h2 id="五、分支"><a href="#五、分支" class="headerlink" title="五、分支"></a>五、分支</h2><blockquote>
+<ol>
+<li></li>
+<li></li>
+</ol>
+<p>   # 列出所有本地分支</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   $ git branch</p>
+<ol start="4">
+<li></li>
+<li></li>
+</ol>
+<p>   # 列出所有远程分支</p>
+<ol start="6">
+<li></li>
+</ol>
+<p>   $ git branch -r</p>
+<ol start="7">
+<li></li>
+<li></li>
+</ol>
+<p>   # 列出所有本地分支和远程分支</p>
+<ol start="9">
+<li></li>
+</ol>
+<p>   $ git branch -a</p>
+<ol start="10">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 新建一个分支，但依然停留在当前分支
+</code></pre>
+<ol start="12">
+<li></li>
+</ol>
+<pre><code>$ git branch [branch-name]
+</code></pre>
+<ol start="13">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 新建一个分支，并切换到该分支
+</code></pre>
+<ol start="15">
+<li></li>
+</ol>
+<pre><code>$ git checkout -b [branch]
+</code></pre>
+<ol start="16">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 新建一个分支，指向指定commit
+</code></pre>
+<ol start="18">
+<li></li>
+</ol>
+<pre><code>$ git branch [branch] [commit]
+</code></pre>
+<ol start="19">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 新建一个分支，与指定的远程分支建立追踪关系
+</code></pre>
+<ol start="21">
+<li></li>
+</ol>
+<pre><code>$ git branch --track [branch] [remote-branch]
+</code></pre>
+<ol start="22">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 切换到指定分支，并更新工作区
+</code></pre>
+<ol start="24">
+<li></li>
+</ol>
+<pre><code>$ git checkout [branch-name]
+</code></pre>
+<ol start="25">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 切换到上一个分支
+</code></pre>
+<ol start="27">
+<li></li>
+</ol>
+<pre><code>$ git checkout -
+</code></pre>
+<ol start="28">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 建立追踪关系，在现有分支与指定的远程分支之间
+</code></pre>
+<ol start="30">
+<li></li>
+</ol>
+<pre><code>$ git branch --set-upstream [branch] [remote-branch]
+</code></pre>
+<ol start="31">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 合并指定分支到当前分支
+</code></pre>
+<ol start="33">
+<li></li>
+</ol>
+<pre><code>$ git merge [branch]
+</code></pre>
+<ol start="34">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 选择一个commit，合并进当前分支
+</code></pre>
+<ol start="36">
+<li></li>
+</ol>
+<pre><code>$ git cherry-pick [commit]
+</code></pre>
+<ol start="37">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 删除分支
+</code></pre>
+<ol start="39">
+<li></li>
+</ol>
+<pre><code>$ git branch -d [branch-name]
+</code></pre>
+<ol start="40">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 删除远程分支
+</code></pre>
+<ol start="42">
+<li></li>
+</ol>
+<pre><code>$ git push origin --delete [branch-name]
+</code></pre>
+<ol start="43">
+<li></li>
+</ol>
+<pre><code>$ git branch -dr [remote/branch]
+</code></pre>
+</blockquote>
+<h2 id="六、标签"><a href="#六、标签" class="headerlink" title="六、标签"></a>六、标签</h2><blockquote>
+<ol>
+<li></li>
+<li></li>
+</ol>
+<p>   # 列出所有tag</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   $ git tag</p>
+<ol start="4">
+<li></li>
+<li></li>
+</ol>
+<p>   # 新建一个tag在当前commit</p>
+<ol start="6">
+<li></li>
+</ol>
+<p>   $ git tag [tag]</p>
+<ol start="7">
+<li></li>
+<li></li>
+</ol>
+<p>   # 新建一个tag在指定commit</p>
+<ol start="9">
+<li></li>
+</ol>
+<p>   $ git tag [tag] [commit]</p>
+<ol start="10">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 删除本地tag
+</code></pre>
+<ol start="12">
+<li></li>
+</ol>
+<pre><code>$ git tag -d [tag]
+</code></pre>
+<ol start="13">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 删除远程tag
+</code></pre>
+<ol start="15">
+<li></li>
+</ol>
+<pre><code>$ git push origin :refs/tags/[tagName]
+</code></pre>
+<ol start="16">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 查看tag信息
+</code></pre>
+<ol start="18">
+<li></li>
+</ol>
+<pre><code>$ git show [tag]
+</code></pre>
+<ol start="19">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 提交指定tag
+</code></pre>
+<ol start="21">
+<li></li>
+</ol>
+<pre><code>$ git push [remote] [tag]
+</code></pre>
+<ol start="22">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 提交所有tag
+</code></pre>
+<ol start="24">
+<li></li>
+</ol>
+<pre><code>$ git push [remote] --tags
+</code></pre>
+<ol start="25">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 新建一个分支，指向某个tag
+</code></pre>
+<ol start="27">
+<li></li>
+</ol>
+<pre><code>$ git checkout -b [branch] [tag]
+</code></pre>
+</blockquote>
+<h2 id="七、查看信息"><a href="#七、查看信息" class="headerlink" title="七、查看信息"></a>七、查看信息</h2><blockquote>
+<ol>
+<li></li>
+<li></li>
+</ol>
+<p>   # 显示有变更的文件</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   $ git status</p>
+<ol start="4">
+<li></li>
+<li></li>
+</ol>
+<p>   # 显示当前分支的版本历史</p>
+<ol start="6">
+<li></li>
+</ol>
+<p>   $ git log</p>
+<ol start="7">
+<li></li>
+<li></li>
+</ol>
+<p>   # 显示commit历史，以及每次commit发生变更的文件</p>
+<ol start="9">
+<li></li>
+</ol>
+<p>   $ git log –stat</p>
+<ol start="10">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 搜索提交历史，根据关键词
+</code></pre>
+<ol start="12">
+<li></li>
+</ol>
+<pre><code>$ git log -S [keyword]
+</code></pre>
+<ol start="13">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示某个commit之后的所有变动，每个commit占据一行
+</code></pre>
+<ol start="15">
+<li></li>
+</ol>
+<pre><code>$ git log [tag] HEAD --pretty=format:%s
+</code></pre>
+<ol start="16">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示某个commit之后的所有变动，其&quot;提交说明&quot;必须符合搜索条件
+</code></pre>
+<ol start="18">
+<li></li>
+</ol>
+<pre><code>$ git log [tag] HEAD --grep feature
+</code></pre>
+<ol start="19">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示某个文件的版本历史，包括文件改名
+</code></pre>
+<ol start="21">
+<li></li>
+</ol>
+<pre><code>$ git log --follow [file]
+</code></pre>
+<ol start="22">
+<li></li>
+</ol>
+<pre><code>$ git whatchanged [file]
+</code></pre>
+<ol start="23">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示指定文件相关的每一次diff
+</code></pre>
+<ol start="25">
+<li></li>
+</ol>
+<pre><code>$ git log -p [file]
+</code></pre>
+<ol start="26">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示过去5次提交
+</code></pre>
+<ol start="28">
+<li></li>
+</ol>
+<pre><code>$ git log -5 --pretty --oneline
+</code></pre>
+<ol start="29">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示所有提交过的用户，按提交次数排序
+</code></pre>
+<ol start="31">
+<li></li>
+</ol>
+<pre><code>$ git shortlog -sn
+</code></pre>
+<ol start="32">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示指定文件是什么人在什么时间修改过
+</code></pre>
+<ol start="34">
+<li></li>
+</ol>
+<pre><code>$ git blame [file]
+</code></pre>
+<ol start="35">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示暂存区和工作区的差异
+</code></pre>
+<ol start="37">
+<li></li>
+</ol>
+<pre><code>$ git diff
+</code></pre>
+<ol start="38">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示暂存区和上一个commit的差异
+</code></pre>
+<ol start="40">
+<li></li>
+</ol>
+<pre><code>$ git diff --cached [file]
+</code></pre>
+<ol start="41">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示工作区与当前分支最新commit之间的差异
+</code></pre>
+<ol start="43">
+<li></li>
+</ol>
+<pre><code>$ git diff HEAD
+</code></pre>
+<ol start="44">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示两次提交之间的差异
+</code></pre>
+<ol start="46">
+<li></li>
+</ol>
+<pre><code>$ git diff [first-branch]...[second-branch]
+</code></pre>
+<ol start="47">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示今天你写了多少行代码
+</code></pre>
+<ol start="49">
+<li></li>
+</ol>
+<pre><code>$ git diff --shortstat &quot;@&#123;0 day ago&#125;&quot;
+</code></pre>
+<ol start="50">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示某次提交的元数据和内容变化
+</code></pre>
+<ol start="52">
+<li></li>
+</ol>
+<pre><code>$ git show [commit]
+</code></pre>
+<ol start="53">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示某次提交发生变化的文件
+</code></pre>
+<ol start="55">
+<li></li>
+</ol>
+<pre><code>$ git show --name-only [commit]
+</code></pre>
+<ol start="56">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示某次提交时，某个文件的内容
+</code></pre>
+<ol start="58">
+<li></li>
+</ol>
+<pre><code>$ git show [commit]:[filename]
+</code></pre>
+<ol start="59">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 显示当前分支的最近几次提交
+</code></pre>
+<ol start="61">
+<li></li>
+</ol>
+<pre><code>$ git reflog
+</code></pre>
+</blockquote>
+<h2 id="八、远程同步"><a href="#八、远程同步" class="headerlink" title="八、远程同步"></a>八、远程同步</h2><blockquote>
+<ol>
+<li></li>
+<li></li>
+</ol>
+<p>   # 下载远程仓库的所有变动</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   $ git fetch [remote]</p>
+<ol start="4">
+<li></li>
+<li></li>
+</ol>
+<p>   # 显示所有远程仓库</p>
+<ol start="6">
+<li></li>
+</ol>
+<p>   $ git remote -v</p>
+<ol start="7">
+<li></li>
+<li></li>
+</ol>
+<p>   # 显示某个远程仓库的信息</p>
+<ol start="9">
+<li></li>
+</ol>
+<p>   $ git remote show [remote]</p>
+<ol start="10">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 增加一个新的远程仓库，并命名
+</code></pre>
+<ol start="12">
+<li></li>
+</ol>
+<pre><code>$ git remote add [shortname] [url]
+</code></pre>
+<ol start="13">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 取回远程仓库的变化，并与本地分支合并
+</code></pre>
+<ol start="15">
+<li></li>
+</ol>
+<pre><code>$ git pull [remote] [branch]
+</code></pre>
+<ol start="16">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 上传本地指定分支到远程仓库
+</code></pre>
+<ol start="18">
+<li></li>
+</ol>
+<pre><code>$ git push [remote] [branch]
+</code></pre>
+<ol start="19">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 强行推送当前分支到远程仓库，即使有冲突
+</code></pre>
+<ol start="21">
+<li></li>
+</ol>
+<pre><code>$ git push [remote] --force
+</code></pre>
+<ol start="22">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 推送所有分支到远程仓库
+</code></pre>
+<ol start="24">
+<li></li>
+</ol>
+<pre><code>$ git push [remote] --all
+</code></pre>
+</blockquote>
+<h2 id="九、撤销"><a href="#九、撤销" class="headerlink" title="九、撤销"></a>九、撤销</h2><blockquote>
+<ol>
+<li></li>
+<li></li>
+</ol>
+<p>   # 恢复暂存区的指定文件到工作区</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   $ git checkout [file]</p>
+<ol start="4">
+<li></li>
+<li></li>
+</ol>
+<p>   # 恢复某个commit的指定文件到暂存区和工作区</p>
+<ol start="6">
+<li></li>
+</ol>
+<p>   $ git checkout [commit] [file]</p>
+<ol start="7">
+<li></li>
+<li></li>
+</ol>
+<p>   # 恢复暂存区的所有文件到工作区</p>
+<ol start="9">
+<li></li>
+</ol>
+<p>   $ git checkout .</p>
+<ol start="10">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变
+</code></pre>
+<ol start="12">
+<li></li>
+</ol>
+<pre><code>$ git reset [file]
+</code></pre>
+<ol start="13">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 重置暂存区与工作区，与上一次commit保持一致
+</code></pre>
+<ol start="15">
+<li></li>
+</ol>
+<pre><code>$ git reset --hard
+</code></pre>
+<ol start="16">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变
+</code></pre>
+<ol start="18">
+<li></li>
+</ol>
+<pre><code>$ git reset [commit]
+</code></pre>
+<ol start="19">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致
+</code></pre>
+<ol start="21">
+<li></li>
+</ol>
+<pre><code>$ git reset --hard [commit]
+</code></pre>
+<ol start="22">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 重置当前HEAD为指定commit，但保持暂存区和工作区不变
+</code></pre>
+<ol start="24">
+<li></li>
+</ol>
+<pre><code>$ git reset --keep [commit]
+</code></pre>
+<ol start="25">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 新建一个commit，用来撤销指定commit
+</code></pre>
+<ol start="27">
+<li></li>
+</ol>
+<pre><code>\# 后者的所有变化都将被前者抵消，并且应用到当前分支
+</code></pre>
+<ol start="28">
+<li></li>
+</ol>
+<pre><code>$ git revert [commit]
+</code></pre>
+<ol start="29">
+<li></li>
+<li></li>
+</ol>
+<pre><code>\# 暂时将未提交的变化移除，稍后再移入
+</code></pre>
+<ol start="31">
+<li></li>
+</ol>
+<pre><code>$ git stash
+</code></pre>
+<ol start="32">
+<li></li>
+</ol>
+<pre><code>$ git stash pop
+</code></pre>
+</blockquote>
+<h2 id="十、其他"><a href="#十、其他" class="headerlink" title="十、其他"></a>十、其他</h2><blockquote>
+<ol>
+<li></li>
+<li></li>
+</ol>
+<p>   # 生成一个可供发布的压缩包</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   $ git archive</p>
+</blockquote>
+<h1 id="Git分支管理策略"><a href="#Git分支管理策略" class="headerlink" title="Git分支管理策略"></a>Git分支管理策略</h1><p>一、主分支Master</p>
+<p>首先，代码库应该有一个、且仅有一个主分支。所有提供给用户使用的正式版本，都在这个主分支上发布。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070503.png" alt="img"></p>
+<p>Git主分支的名字，默认叫做Master。它是自动建立的，版本库初始化以后，默认就是在主分支在进行开发。</p>
+<p>二、开发分支Develop</p>
+<p>主分支只用来分布重大版本，日常开发应该在另一条分支上完成。我们把开发用的分支，叫做Develop。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070504.png" alt="img"></p>
+<p>这个分支可以用来生成代码的最新隔夜版本（nightly）。如果想正式对外发布，就在Master分支上，对Develop分支进行”合并”（merge）。</p>
+<p>Git创建Develop分支的命令：</p>
+<blockquote>
+<p>　　git checkout -b develop master</p>
+</blockquote>
+<p>将Develop分支发布到Master分支的命令：</p>
+<blockquote>
+<p>　　# 切换到Master分支<br>　　git checkout master</p>
+<p>　　# 对Develop分支进行合并<br>　　git merge –no-ff develop</p>
+</blockquote>
+<p>这里稍微解释一下，上一条命令的–no-ff参数是什么意思。默认情况下，Git执行”快进式合并”（fast-farward merge），会直接将Master分支指向Develop分支。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070505.png" alt="img"></p>
+<p>使用–no-ff参数后，会执行正常合并，在Master分支上生成一个新节点。为了保证版本演进的清晰，我们希望采用这种做法。关于合并的更多解释，请参考Benjamin Sandofsky的<a target="_blank" rel="noopener" href="http://sandofsky.com/blog/git-workflow.html">《Understanding the Git Workflow》</a>。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070506.png" alt="img"></p>
+<p>三、临时性分支</p>
+<p>前面讲到版本库的两条主要分支：Master和Develop。前者用于正式发布，后者用于日常开发。其实，常设分支只需要这两条就够了，不需要其他了。</p>
+<p>但是，除了常设分支以外，还有一些临时性分支，用于应对一些特定目的的版本开发。临时性分支主要有三种：</p>
+<blockquote>
+<p>　　* 功能（feature）分支</p>
+<p>　　* 预发布（release）分支</p>
+<p>　　* 修补bug（fixbug）分支</p>
+</blockquote>
+<p>这三种分支都属于临时性需要，使用完以后，应该删除，使得代码库的常设分支始终只有Master和Develop。</p>
+<p>四、 功能分支</p>
+<p>接下来，一个个来看这三种”临时性分支”。</p>
+<p>第一种是功能分支，它是为了开发某种特定功能，从Develop分支上面分出来的。开发完成后，要再并入Develop。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070507.png" alt="img"></p>
+<p>功能分支的名字，可以采用feature-*的形式命名。</p>
+<p>创建一个功能分支：</p>
+<blockquote>
+<p>　　git checkout -b feature-x develop</p>
+</blockquote>
+<p>开发完成后，将功能分支合并到develop分支：</p>
+<blockquote>
+<p>　　git checkout develop</p>
+<p>　　git merge –no-ff feature-x</p>
+</blockquote>
+<p>删除feature分支：</p>
+<blockquote>
+<p>　　git branch -d feature-x</p>
+</blockquote>
+<p>五、预发布分支</p>
+<p>第二种是预发布分支，它是指发布正式版本之前（即合并到Master分支之前），我们可能需要有一个预发布的版本进行测试。</p>
+<p>预发布分支是从Develop分支上面分出来的，预发布结束以后，必须合并进Develop和Master分支。它的命名，可以采用release-*的形式。</p>
+<p>创建一个预发布分支：</p>
+<blockquote>
+<p>　　git checkout -b release-1.2 develop</p>
+</blockquote>
+<p>确认没有问题后，合并到master分支：</p>
+<blockquote>
+<p>　　git checkout master</p>
+<p>　　git merge –no-ff release-1.2</p>
+<p>　　# 对合并生成的新节点，做一个标签<br>　　git tag -a 1.2</p>
+</blockquote>
+<p>再合并到develop分支：</p>
+<blockquote>
+<p>　　git checkout develop</p>
+<p>　　git merge –no-ff release-1.2</p>
+</blockquote>
+<p>最后，删除预发布分支：</p>
+<blockquote>
+<p>　　git branch -d release-1.2</p>
+</blockquote>
+<p>六、修补bug分支</p>
+<p>最后一种是修补bug分支。软件正式发布以后，难免会出现bug。这时就需要创建一个分支，进行bug修补。</p>
+<p>修补bug分支是从Master分支上面分出来的。修补结束以后，再合并进Master和Develop分支。它的命名，可以采用fixbug-*的形式。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070508.png" alt="img"></p>
+<p>创建一个修补bug分支：</p>
+<blockquote>
+<p>　　git checkout -b fixbug-0.1 master</p>
+</blockquote>
+<p>修补结束后，合并到master分支：</p>
+<blockquote>
+<p>　　git checkout master</p>
+<p>　　git merge –no-ff fixbug-0.1</p>
+<p>　　git tag -a 0.1.1</p>
+</blockquote>
+<p>再合并到develop分支：</p>
+<blockquote>
+<p>　　git checkout develop</p>
+<p>　　git merge –no-ff fixbug-0.1</p>
+</blockquote>
+<p>最后，删除”修补bug分支”：</p>
+<blockquote>
+<p>　　git branch -d fixbug-0.1</p>
+</blockquote>
+<h1 id="版本回退-撤销文件修改"><a href="#版本回退-撤销文件修改" class="headerlink" title="版本回退-撤销文件修改"></a>版本回退-撤销文件修改</h1><p>{针对文件修改恢复}</p>
+<h2 id="工作区修改一个文件后，又想回到修改前-git-add前"><a href="#工作区修改一个文件后，又想回到修改前-git-add前" class="headerlink" title="工作区修改一个文件后，又想回到修改前(git add前)"></a>工作区修改一个文件后，又想回到修改前(git add前)</h2><p>\1. 当然可以直接手动再在工作区中将文件修改回去</p>
+<p>\2. 修改后，通过命令git status查看</p>
+<ol>
+<li></li>
+</ol>
+<p>   $ git status</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>   # On branch master</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   # Changes not staged for commit:</p>
+<ol start="4">
+<li></li>
+</ol>
+<p>   # (use “git add <file>…” to update what will be committed)</p>
+<ol start="5">
+<li></li>
+</ol>
+<p>   # (use “git checkout – <file>…” to discard changes in working directory)</p>
+<ol start="6">
+<li></li>
+</ol>
+<p>   #</p>
+<ol start="7">
+<li></li>
+</ol>
+<p>   # modified: readme.txt</p>
+<ol start="8">
+<li></li>
+</ol>
+<p>   #</p>
+<ol start="9">
+<li></li>
+</ol>
+<p>   no changes added to commit (use “git add” and&#x2F;or “git commit -a”)</p>
+<p>这时Git会告诉你，git checkout – file可以丢弃工作区的修改：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -- readme.txt</span><br></pre></td></tr></table></figure>
+
+<p>Note:</p>
+<p>\1. git checkout – file命令中的–很重要，没有–，就变成了“切换到另一个分支”的命令，我们在后面的分支管理中会再次遇到git checkout命令。</p>
+<p>\2. 命令git checkout – readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：</p>
+<p>一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。总之，就是让这个文件回到最近一次git commit或git add时的状态。</p>
+<p>\3. 工作区、暂存区的概念不清楚的可见于<a target="_blank" rel="noopener" href="http://blog.csdn.net/pipisorry/article/details/44588351">Git版本控制教程 - Git本地仓库</a></p>
+<h2 id="如果在工作区中修改了文件还git-add到暂存区（但是在commit之前）"><a href="#如果在工作区中修改了文件还git-add到暂存区（但是在commit之前）" class="headerlink" title="如果在工作区中修改了文件还git add到暂存区（但是在commit之前）"></a>如果在工作区中修改了文件还git add到暂存区（但是在commit之前）</h2><p>用git status查看一下，修改只是添加到了暂存区，还没有提交：</p>
+<ol>
+<li></li>
+</ol>
+<p>   $ git status</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>   # On branch master</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   # Changes to be committed:</p>
+<ol start="4">
+<li></li>
+</ol>
+<p>   # (use “git reset HEAD <file>…” to unstage)</p>
+<ol start="5">
+<li></li>
+</ol>
+<p>   #</p>
+<ol start="6">
+<li></li>
+</ol>
+<p>   # modified: readme.txt</p>
+<ol start="7">
+<li></li>
+</ol>
+<p>   #</p>
+<p>Git同样告诉我们，用命令git reset HEAD file可以把暂存区的修改撤销掉（unstage），重新放回工作区：</p>
+<ol>
+<li></li>
+</ol>
+<p>   $ git reset HEAD readme.txt</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>   Unstaged changes after reset:</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   M readme.txt</p>
+<p>git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。</p>
+<p>再用git status查看一下，现在暂存区是干净的，工作区有修改。</p>
+<p>然后丢弃工作区的修改</p>
+<ol>
+<li></li>
+</ol>
+<p>   $ git checkout – readme.txt</p>
+<ol start="2">
+<li></li>
+<li></li>
+</ol>
+<p>   $ git status</p>
+<ol start="4">
+<li></li>
+</ol>
+<p>   # On branch master</p>
+<ol start="5">
+<li></li>
+</ol>
+<p>   nothing to commit (working directory clean)</p>
+<h2 id="不但修改了文件还从暂存区提交commit到了版本库-版本回退"><a href="#不但修改了文件还从暂存区提交commit到了版本库-版本回退" class="headerlink" title="不但修改了文件还从暂存区提交commit到了版本库 - 版本回退"></a>不但修改了文件还从暂存区提交commit到了版本库 - 版本回退</h2><p>版本回退可以回退到上一个版本。不过，这是有条件的，就是你还没有把自己的本地版本库推送到远程。Git是分布式版本控制系统。</p>
+<p>在工作中对某个文件（如readme.txt）进行多次修改交commit。</p>
+<p>可以通过版本控制系统命令告诉我们提交的历史记录，在Git中，我们用git log命令查看：</p>
+<ol>
+<li></li>
+</ol>
+<p>   $ git log</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>   commit 3628164fb26d48395383f8f31179f24e0882e1e0</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   Author: Michael Liao <a href="mailto:&#97;&#x73;&#107;&#x78;&#x75;&#101;&#102;&#x65;&#x6e;&#103;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#97;&#x73;&#107;&#x78;&#x75;&#101;&#102;&#x65;&#x6e;&#103;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;</a></p>
+<ol start="4">
+<li></li>
+</ol>
+<p>   Date: Tue Aug 20 15:11:49 2013 +0800</p>
+<ol start="5">
+<li></li>
+<li></li>
+</ol>
+<p>   append GPL</p>
+<ol start="7">
+<li></li>
+<li></li>
+</ol>
+<p>   commit ea34578d5496d7dd233c827ed32a8cd576c5ee85</p>
+<ol start="9">
+<li></li>
+</ol>
+<p>   Author: Michael Liao <a href="mailto:&#97;&#x73;&#107;&#120;&#x75;&#x65;&#102;&#101;&#110;&#103;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;">&#97;&#x73;&#107;&#120;&#x75;&#x65;&#102;&#101;&#110;&#103;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;</a></p>
+<ol start="10">
+<li></li>
+</ol>
+<pre><code>Date: Tue Aug 20 14:53:12 2013 +0800
+</code></pre>
+<ol start="11">
+<li></li>
+<li></li>
+</ol>
+<pre><code>add distributed
+</code></pre>
+<ol start="13">
+<li></li>
+<li></li>
+</ol>
+<pre><code>commit cb926e7ea50ad11b8f9e909c05226233bf755030
+</code></pre>
+<ol start="15">
+<li></li>
+</ol>
+<pre><code>Author: Michael Liao &lt;askxuefeng@gmail.com&gt;
+</code></pre>
+<ol start="16">
+<li></li>
+</ol>
+<pre><code>Date: Mon Aug 19 17:51:55 2013 +0800
+</code></pre>
+<ol start="17">
+<li></li>
+<li></li>
+</ol>
+<pre><code>wrote a readme file
+</code></pre>
+<p>Note:</p>
+<p>\1. git log命令显示从最近到最远的提交日志，我们可以看到3次提交，最近的一次是append GPL，上一次是add distributed，最早的一次是wrote a readme file。</p>
+<p>\2. 如果嫌输出信息太多，看得眼花缭乱的，可以试试加上–pretty&#x3D;oneline参数：</p>
+<ol>
+<li></li>
+</ol>
+<p>   $ git log –pretty&#x3D;oneline</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>   3628164fb26d48395383f8f31179f24e0882e1e0 append GPL</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   ea34578d5496d7dd233c827ed32a8cd576c5ee85 add distributed</p>
+<ol start="4">
+<li></li>
+</ol>
+<p>   cb926e7ea50ad11b8f9e909c05226233bf755030 wrote a readme file</p>
+<p>\3. 你看到的一大串类似3628164…882e1e0的是commit id（版本号），和SVN不一样，Git的commit id不是1，2，3……递增的数字，而是一个SHA1计算出来的一个非常大的数字，用十六进制表示，而且你看到的commit id和我的肯定不一样，以你自己的为准。为什么commit id需要用这么一大串数字表示呢？因为Git是分布式的版本控制系统，后面我们还要研究多人在同一个版本库里工作，如果大家都用1，2，3……作为版本号，那肯定就冲突了。</p>
+<p>\4. 每提交一个新版本，实际上Git就会把它们自动串成一条时间线。如果使用可视化工具（如GitX、github的客户端、pycharm）查看Git历史，就可以更清楚地看到提交历史的时间线。0</p>
+<h3 id="现在我们想要把readme-txt回退到上一个版本"><a href="#现在我们想要把readme-txt回退到上一个版本" class="headerlink" title="现在我们想要把readme.txt回退到上一个版本"></a>现在我们想要把readme.txt回退到上一个版本</h3><p>如“add distributed”的那个版本，怎么做呢？首先，Git必须知道当前版本是哪个版本，在Git中，用HEAD表示当前版本，也就是最新的提交3628164…882e1e0（注意我的提交ID和你的肯定不一样），上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。</p>
+<p>现在，我们要把当前版本“append GPL”回退到上一个版本“add distributed”，就可以使用git reset命令：</p>
+<ol>
+<li></li>
+</ol>
+<p>   $ git reset –hard HEAD^</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>   HEAD is now at ea34578 add distributed</p>
+<p>这时readme.txt的内容就成了版本add distributed</p>
+<p>我们用git log再看看现在版本库的状态：</p>
+<ol>
+<li></li>
+</ol>
+<p>   $ git log</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>   commit ea34578d5496d7dd233c827ed32a8cd576c5ee85</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   Author: Michael Liao <a href="mailto:&#97;&#115;&#x6b;&#120;&#117;&#101;&#102;&#x65;&#x6e;&#x67;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#109;">&#97;&#115;&#x6b;&#120;&#117;&#101;&#102;&#x65;&#x6e;&#x67;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#109;</a></p>
+<ol start="4">
+<li></li>
+</ol>
+<p>   Date: Tue Aug 20 14:53:12 2013 +0800</p>
+<ol start="5">
+<li></li>
+<li></li>
+</ol>
+<p>   add distributed</p>
+<ol start="7">
+<li></li>
+<li></li>
+</ol>
+<p>   commit cb926e7ea50ad11b8f9e909c05226233bf755030</p>
+<ol start="9">
+<li></li>
+</ol>
+<p>   Author: Michael Liao <a href="mailto:&#x61;&#115;&#x6b;&#x78;&#x75;&#x65;&#x66;&#x65;&#x6e;&#103;&#x40;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;">&#x61;&#115;&#x6b;&#x78;&#x75;&#x65;&#x66;&#x65;&#x6e;&#103;&#x40;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;</a></p>
+<ol start="10">
+<li></li>
+</ol>
+<pre><code>Date: Mon Aug 19 17:51:55 2013 +0800
+</code></pre>
+<ol start="11">
+<li></li>
+<li></li>
+</ol>
+<pre><code>wrote a readme file
+</code></pre>
+<p>最新的那个版本append GPL已经看不到了！</p>
+<h2 id="恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口还没有被关掉）"><a href="#恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口还没有被关掉）" class="headerlink" title="恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口还没有被关掉）"></a>恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口还没有被关掉）</h2><p>{这个是git reset –hard后，又反悔了，想回到修改后的状态}</p>
+<p>只要上面的命令行窗口还没有被关掉，你就可以顺着往上找啊找啊，找到那个append GPL的commit id是3628164…，于是就可以指定回到未来的某个版本：</p>
+<ol>
+<li></li>
+</ol>
+<p>   $ git reset –hard 3628164</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>   HEAD is now at 3628164 append GPL</p>
+<p>版本号没必要写全，前几位就可以了，Git会自动去找。</p>
+<p>Git的版本回退速度非常快，因为Git在内部有个指向当前版本的HEAD指针，当你回退版本的时候，Git仅仅是把HEAD从指向append GPL：</p>
+<p><img src="https://img-blog.csdn.net/20150824103212235?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="git-head"></p>
+<p>改为指向add distributed：</p>
+<p><img src="https://img-blog.csdn.net/20150824103242645?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="git-head-move"></p>
+<p>然后顺便把工作区的文件更新了。所以你让HEAD指向哪个版本号，你就把当前版本定位在哪。</p>
+<h2 id="恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口早就关掉了）"><a href="#恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口早就关掉了）" class="headerlink" title="恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口早就关掉了）"></a>恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口早就关掉了）</h2><p>{这个是git reset –hard后，又反悔了，想回到修改后的状态}</p>
+<p>想恢复到新版本怎么办？找不到新版本的commit id怎么办？当你用$ git reset –hard HEAD^回退到add distributed版本时，再想恢复到append GPL，就必须找到append GPL的commit id。</p>
+<p>Git提供了一个命令git reflog用来记录你的每一次命令：[<a target="_blank" rel="noopener" href="http://blog.csdn.net/pipisorry/article/details/50669350">Git高级教程</a>:git log与git reflog]</p>
+<ol>
+<li></li>
+</ol>
+<p>   $ git reflog</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>   ea34578 HEAD@{0}: reset: moving to HEAD^</p>
+<ol start="3">
+<li></li>
+</ol>
+<p>   3628164 HEAD@{1}: commit: append GPL</p>
+<ol start="4">
+<li></li>
+</ol>
+<p>   ea34578 HEAD@{2}: commit: add distributed</p>
+<ol start="5">
+<li></li>
+</ol>
+<p>   cb926e7 HEAD@{3}: commit (initial): wrote a readme file</p>
+<p>第二行显示append GPL的commit id是3628164，现在，你又可以乘坐时光机回到未来了。</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2021/07/22/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2021/07/22/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8/";
+            const title         = "「Git常用命令及方法大全」";
+            const excerpt       = `
+
+下面是我整理的常用 Git 命令清单。几个专用名词的译名如下。
+
+
+Workspace：工作区
+Index &#x2F; Stage：暂存区
+Repository：仓库区（或本地仓库）
+Remote：远程仓库
+
+
+本地分支关联远程...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                    <time datetime="2021-07-22T09:00:29.565Z" itemprop="dateModified">最后编辑：2021-07-22</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" tar压缩解压缩命令详解" href="/2021/07/22/tar压缩解压缩命令详解/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 使用hexo换了电脑后如何更新博客" href="/2021/07/22/使用hexo换了电脑后如何更新博客/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                22
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                5
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                38
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%96%B0%E5%BB%BA%E4%BB%A3%E7%A0%81%E5%BA%93"><span class="toc-text">一、新建代码库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AE"><span class="toc-text">二、配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A2%9E%E5%8A%A0-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="toc-text">三、增加&#x2F;删除文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4"><span class="toc-text">四、代码提交</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%88%86%E6%94%AF"><span class="toc-text">五、分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%A0%87%E7%AD%BE"><span class="toc-text">六、标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%9F%A5%E7%9C%8B%E4%BF%A1%E6%81%AF"><span class="toc-text">七、查看信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BF%9C%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-text">八、远程同步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E6%92%A4%E9%94%80"><span class="toc-text">九、撤销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E5%85%B6%E4%BB%96"><span class="toc-text">十、其他</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-text">Git分支管理策略</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80-%E6%92%A4%E9%94%80%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9"><span class="toc-text">版本回退-撤销文件修改</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%90%8E%EF%BC%8C%E5%8F%88%E6%83%B3%E5%9B%9E%E5%88%B0%E4%BF%AE%E6%94%B9%E5%89%8D-git-add%E5%89%8D"><span class="toc-text">工作区修改一个文件后，又想回到修改前(git add前)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E5%9C%A8%E5%B7%A5%E4%BD%9C%E5%8C%BA%E4%B8%AD%E4%BF%AE%E6%94%B9%E4%BA%86%E6%96%87%E4%BB%B6%E8%BF%98git-add%E5%88%B0%E6%9A%82%E5%AD%98%E5%8C%BA%EF%BC%88%E4%BD%86%E6%98%AF%E5%9C%A8commit%E4%B9%8B%E5%89%8D%EF%BC%89"><span class="toc-text">如果在工作区中修改了文件还git add到暂存区（但是在commit之前）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E4%BD%86%E4%BF%AE%E6%94%B9%E4%BA%86%E6%96%87%E4%BB%B6%E8%BF%98%E4%BB%8E%E6%9A%82%E5%AD%98%E5%8C%BA%E6%8F%90%E4%BA%A4commit%E5%88%B0%E4%BA%86%E7%89%88%E6%9C%AC%E5%BA%93-%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80"><span class="toc-text">不但修改了文件还从暂存区提交commit到了版本库 - 版本回退</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E5%9C%A8%E6%88%91%E4%BB%AC%E6%83%B3%E8%A6%81%E6%8A%8Areadme-txt%E5%9B%9E%E9%80%80%E5%88%B0%E4%B8%8A%E4%B8%80%E4%B8%AA%E7%89%88%E6%9C%AC"><span class="toc-text">现在我们想要把readme.txt回退到上一个版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D%E6%96%87%E4%BB%B6%E5%90%8E%EF%BC%8C%E8%A6%81%E6%98%AF%E6%88%91%E4%BB%AC%E5%8F%88%E6%83%B3%E5%9B%9E%E5%88%B0%E4%BF%AE%E6%94%B9%E5%90%8E%E7%9A%84%E6%96%87%E4%BB%B6%E5%91%A2%EF%BC%9F%EF%BC%88%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%AA%97%E5%8F%A3%E8%BF%98%E6%B2%A1%E6%9C%89%E8%A2%AB%E5%85%B3%E6%8E%89%EF%BC%89"><span class="toc-text">恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口还没有被关掉）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D%E6%96%87%E4%BB%B6%E5%90%8E%EF%BC%8C%E8%A6%81%E6%98%AF%E6%88%91%E4%BB%AC%E5%8F%88%E6%83%B3%E5%9B%9E%E5%88%B0%E4%BF%AE%E6%94%B9%E5%90%8E%E7%9A%84%E6%96%87%E4%BB%B6%E5%91%A2%EF%BC%9F%EF%BC%88%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%AA%97%E5%8F%A3%E6%97%A9%E5%B0%B1%E5%85%B3%E6%8E%89%E4%BA%86%EF%BC%89"><span class="toc-text">恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口早就关掉了）</span></a></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GIT%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">GIT使用技巧</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HEXO%E7%B3%BB%E5%88%97/">HEXO系列</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/openwrt%E7%B3%BB%E5%88%97/">openwrt系列</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E6%9C%BA%E6%8A%80%E5%B7%A7/">玩机技巧</a><span class="category-list-count">1</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Git%E5%AE%98%E6%96%B9%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%BA%90/" style="font-size: 0.6em;">Git官方的软件源</a> <a href="/tags/Hexo%E6%8A%80%E5%B7%A7/" style="font-size: 0.8em;">Hexo技巧</a> <a href="/tags/Hexo%E6%8F%92%E4%BB%B6/" style="font-size: 0.8em;">Hexo插件</a> <a href="/tags/Lede/" style="font-size: 0.6em;">Lede</a> <a href="/tags/Linux-%E7%B3%BB%E7%BB%9F%E6%8A%80%E5%B7%A7/" style="font-size: 0.6em;">Linux 系统技巧</a> <a href="/tags/Linux%E6%8A%80%E5%B7%A7/" style="font-size: 0.6em;">Linux技巧</a> <a href="/tags/Linux%E6%96%87%E4%BB%B6%E8%A7%A3%E5%8E%8B/" style="font-size: 0.6em;">Linux文件解压</a> <a href="/tags/Linux%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/" style="font-size: 0.6em;">Linux查找命令</a> <a href="/tags/OpenWrt/" style="font-size: 0.6em;">OpenWrt</a> <a href="/tags/Openwrt%E7%89%88%E6%9C%AC/" style="font-size: 0.6em;">Openwrt版本</a> <a href="/tags/SVN/" style="font-size: 0.6em;">SVN</a> <a href="/tags/Ubuntu%E7%B3%BB%E7%BB%9F/" style="font-size: 0.6em;">Ubuntu系统</a> <a href="/tags/Ubuntu%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/" style="font-size: 0.6em;">Ubuntu系统命令</a> <a href="/tags/Uname/" style="font-size: 0.6em;">Uname</a> <a href="/tags/feeds-update/" style="font-size: 0.6em;">feeds update</a> <a href="/tags/find%E4%BD%BF%E7%94%A8/" style="font-size: 0.6em;">find使用</a> <a href="/tags/git/" style="font-size: 0.6em;">git</a> <a href="/tags/git-version/" style="font-size: 0.6em;">git --version</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/11/23/Hexo%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/"><i class="fa  fa-book"></i> Hexo使用心得</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/%E4%BD%BF%E7%94%A8hexo%E6%8D%A2%E4%BA%86%E7%94%B5%E8%84%91%E5%90%8E%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2/"><i class="fa  fa-book"></i> 使用hexo换了电脑后如何更新博客</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8/"><i class="fa  fa-book"></i> Git常用命令及方法大全</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/tar%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/"><i class="fa  fa-book"></i> tar压缩解压缩命令详解</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/22/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8DUbuntu%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%88%E6%9C%AC/"><i class="fa  fa-book"></i> 如何查看当前Ubuntu系统的版本</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Eagmi 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 雕教授.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
