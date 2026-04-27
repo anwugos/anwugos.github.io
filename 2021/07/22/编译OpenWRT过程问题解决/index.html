@@ -1,29 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
     <head>
-  <!-- 元数据 -->
-  <meta charset="utf-8">
-  
-  
-  <title>编译OpenWRT过程问题解决 | Eagmi</title>
-  
-  <meta name="author" content="雕教授" />
-  <meta http-equiv="Cache-Control" content="no-transform" />
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="robots" content="index,follow" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <meta name="format-detection" content="telphone=no, email=no" />
-  
-    <meta name="keywords" content="feeds update, openwrt报错, openwrt编译" />
-  
   <meta name="description" content="本人是只菜鸟，没有接触过OpenWrt，只是平时都是在Linux下做开发。习惯了Linux的开发环境。 本人的操作系统是CentOS 6.4（好久都没有换过了）。本人按照网上牛人们的指点也开始下载编译OpenWRT。 如下为网上的资料：  sudo apt-get update    (更新）安装编译需要的组件：sudo apt-get install gccsudo apt-get instal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="编译OpenWRT过程问题解决">
-<meta property="og:url" content="http://example.com/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.html">
+<meta property="og:url" content="https://eagmi.com/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.html">
+  <link rel="canonical" href="https://eagmi.com/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.html" />
 <meta property="og:site_name" content="Eagmi">
 <meta property="og:description" content="本人是只菜鸟，没有接触过OpenWrt，只是平时都是在Linux下做开发。习惯了Linux的开发环境。 本人的操作系统是CentOS 6.4（好久都没有换过了）。本人按照网上牛人们的指点也开始下载编译OpenWRT。 如下为网上的资料：  sudo apt-get update    (更新）安装编译需要的组件：sudo apt-get install gccsudo apt-get instal">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://static.oschina.net/uploads/space/2015/0402/072620_rJ5o_243525.png">
 <meta property="og:image" content="http://static.oschina.net/uploads/space/2015/0402/072834_O4Gh_243525.png">
 <meta property="og:image" content="http://static.oschina.net/uploads/space/2015/0402/081611_2qRp_243525.png">
@@ -47,25 +32,25 @@
     
   
   <!-- 样式表文件 -->
-  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all">
   
-    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)">
     <script src="/js/kr-dark.min.js"></script>
   
   
-    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all">
   
-  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
-  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all">
   
   
   
-    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
   <!-- 不得不预先加载的一些JS文件 -->
-  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script defer src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
   
-    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+    <script defer src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
   
   
   <style>
@@ -152,7 +137,7 @@
 
             <article itemscope itemtype="https://schema.org/Article">
     
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
+    <link itemprop="mainEntityOfPage" href="https://eagmi.com/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
@@ -216,7 +201,7 @@
 
 <p>将里面所有https替换成git。</p>
 <p>再试一下，OK了。</p>
-<p>后记：其实还有更根本的解决方法，详见后期的博文《<a target="_blank" rel="noopener" href="http://my.oschina.net/hevakelcj/blog/409155">git 错误：Unable to find remote helper for ‘https’</a>》</p>
+<p>后记：其实还有更根本的解决方法，详见后期的博文《<a target="_blank" rel="noopener noreferrer" href="http://my.oschina.net/hevakelcj/blog/409155">git 错误：Unable to find remote helper for ‘https’</a>》</p>
 <h2 id="gconvert-c-libiconv"><a href="#gconvert-c-libiconv" class="headerlink" title="gconvert.c libiconv"></a>gconvert.c libiconv</h2><p>我在第一次编译OpenWRT时，出现如下错误提示：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gconvert.c:66:2: error: #error GNU libiconv not in use but included iconv.h is from libiconv</span><br></pre></td></tr></table></figure>
 
@@ -240,8 +225,8 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone http://git.openwrt.org/project/libubox.git</span><br></pre></td></tr></table></figure>
 
 <p>整个第三行是将clone下来的源码打包tar.gz包。</p>
-<p>于是，我访问了一下：<a target="_blank" rel="noopener" href="https://www.oschina.net/action/GoToLink?url=http://git.openwrt.org/project/libubox">http://git.openwrt.org/project/libubox</a> 果然出现 404页面。看来还真没有？</p>
-<p>我再访问了一下：<a target="_blank" rel="noopener" href="https://www.oschina.net/action/GoToLink?url=http://git.openwrt.org/">http://git.openwrt.org/</a> 结果，发现列表里有这个工程：</p>
+<p>于是，我访问了一下：<a target="_blank" rel="noopener noreferrer" href="https://www.oschina.net/action/GoToLink?url=http://git.openwrt.org/project/libubox">http://git.openwrt.org/project/libubox</a> 果然出现 404页面。看来还真没有？</p>
+<p>我再访问了一下：<a target="_blank" rel="noopener noreferrer" href="https://www.oschina.net/action/GoToLink?url=http://git.openwrt.org/">http://git.openwrt.org/</a> 结果，发现列表里有这个工程：</p>
 <p><img src="http://static.oschina.net/uploads/space/2015/0402/072620_rJ5o_243525.png" alt="img"></p>
 <p>进入链接 project&#x2F;libubox.git：</p>
 <p><img src="http://static.oschina.net/uploads/space/2015/0402/072834_O4Gh_243525.png" alt="img"></p>
@@ -284,7 +269,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PKG_SOURCE_URL:=git://git.yoctoproject.org/git/opkg</span><br></pre></td></tr></table></figure>
 
 <p>结果还是没有生效。</p>
-<p>我手动搜opkg，找到官网： <a target="_blank" rel="noopener" href="https://www.oschina.net/action/GoToLink?url=http://git.yoctoproject.org/cgit/cgit.cgi/opkg/">http://git.yoctoproject.org/cgit/cgit.cgi/opkg/</a> 打开，看到网页最下面有：</p>
+<p>我手动搜opkg，找到官网： <a target="_blank" rel="noopener noreferrer" href="https://www.oschina.net/action/GoToLink?url=http://git.yoctoproject.org/cgit/cgit.cgi/opkg/">http://git.yoctoproject.org/cgit/cgit.cgi/opkg/</a> 打开，看到网页最下面有：</p>
 <p><img src="http://static.oschina.net/uploads/space/2015/0402/193602_SqbW_243525.png" alt="img"></p>
 <p>于是，我改 trunk&#x2F;package&#x2F;system&#x2F;opkg&#x2F;Makefile 文件，把 PKG_SOURCE_URL改成：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PKG_SOURCE_URL:=git://git.yoctoproject.org/opkg</span><br></pre></td></tr></table></figure>
@@ -292,7 +277,7 @@
 <p>继续 make，通过了！</p>
 <h2 id="linux-firmware-clone失败"><a href="#linux-firmware-clone失败" class="headerlink" title="linux-firmware clone失败"></a>linux-firmware clone失败</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fatal: Unable to look up git.kernel.org (port 9418) (Temporary failure in name resolution)</span><br></pre></td></tr></table></figure>
 
-<p>我到 <a target="_blank" rel="noopener" href="https://www.oschina.net/action/GoToLink?url=http://git.kernel.org">git.kernel.org</a> 网站找到了 linux-firmware 的仓库 <a target="_blank" rel="noopener" href="https://www.oschina.net/action/GoToLink?url=https://git.kernel.org/cgit/linux/kernel/git/balbi/linux-firmware.git/">https://git.kernel.org/cgit/linux/kernel/git/balbi/linux-firmware.git/</a></p>
+<p>我到 <a target="_blank" rel="noopener noreferrer" href="https://www.oschina.net/action/GoToLink?url=http://git.kernel.org">git.kernel.org</a> 网站找到了 linux-firmware 的仓库 <a target="_blank" rel="noopener noreferrer" href="https://www.oschina.net/action/GoToLink?url=https://git.kernel.org/cgit/linux/kernel/git/balbi/linux-firmware.git/">https://git.kernel.org/cgit/linux/kernel/git/balbi/linux-firmware.git/</a></p>
 <p>看到最下面的 git 路径说明：</p>
 <p><img src="http://static.oschina.net/uploads/space/2015/0402/221045_HkmW_243525.png" alt="img"></p>
 <p>这与 Makefile 里指定的不统一。于是将Makefile里的git路径改过来</p>
@@ -315,22 +300,22 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd tmp/dl</span><br><span class="line">$ mv linux-firmware-f404336ba808cbd57547196e13367079a23b822c/ linux-firmware-b8ac7c7e27dcd13fa3c843aaf62457e9c57ea4db</span><br></pre></td></tr></table></figure>
 
 <p>好！我们再 make 一下。</p>
-<p><a target="_blank" rel="noopener" href="https://www.oschina.net/p/openwrt">openwrt</a><a target="_blank" rel="noopener" href="https://my.oschina.net/hevakelcj?q=%E7%BC%96%E8%AF%91">编译</a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://www.oschina.net/p/openwrt">openwrt</a><a target="_blank" rel="noopener noreferrer" href="https://my.oschina.net/hevakelcj?q=%E7%BC%96%E8%AF%91">编译</a></p>
 <p>© 著作权归作者所有</p>
 <p>举报</p>
 <p>打赏</p>
 <p>2 赞</p>
 <p>39 收藏</p>
 <p>分享</p>
-<h3 id="作者的其它热门文章"><a href="#作者的其它热门文章" class="headerlink" title="作者的其它热门文章"></a>作者的其它热门文章</h3><p><a target="_blank" rel="noopener" href="https://my.oschina.net/hevakelcj/blog/410633">OpenWRT开发之——创建软件包(有更新)</a></p>
-<p><a target="_blank" rel="noopener" href="https://my.oschina.net/hevakelcj/blog/411942">OpenWRT开发之——研究包的Makefile</a></p>
-<p><a target="_blank" rel="noopener" href="https://my.oschina.net/hevakelcj/blog/410144">OpenWrt的ipk包安装</a></p>
-<p><a target="_blank" rel="noopener" href="https://my.oschina.net/hevakelcj/blog/384070">用PyCharm建Django工程</a></p>
+<h3 id="作者的其它热门文章"><a href="#作者的其它热门文章" class="headerlink" title="作者的其它热门文章"></a>作者的其它热门文章</h3><p><a target="_blank" rel="noopener noreferrer" href="https://my.oschina.net/hevakelcj/blog/410633">OpenWRT开发之——创建软件包(有更新)</a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://my.oschina.net/hevakelcj/blog/411942">OpenWRT开发之——研究包的Makefile</a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://my.oschina.net/hevakelcj/blog/410144">OpenWrt的ipk包安装</a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://my.oschina.net/hevakelcj/blog/384070">用PyCharm建Django工程</a></p>
 </div>
         </div>
         
             <div class="kratos-copyright text-center clearfix">
-                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow noopener noreferrer" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
             </div>
         
         <footer class="kratos-entry-footer clearfix">
@@ -379,7 +364,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/",
+                text: "https://eagmi.com/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -391,7 +376,7 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/";
+            const hostUrl       = "https://eagmi.com/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/";
             const title         = "「编译OpenWRT过程问题解决」";
             const excerpt       = `本人是只菜鸟，没有接触过OpenWrt，只是平时都是在Linux下做开发。习惯了Linux的开发环境。
 本人的操作系统是CentOS 6.4（好久都没有换过了）。本人按照网上牛人们的指点也开始下载编译OpenWRT。
@@ -632,12 +617,12 @@
                             <li>本站已运行<span id="span_dt">Loading...</span></li>
                         </div>
                         <div>
-                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank" rel="noopener noreferrer">Kratos:Rebirth</a></li>
                             <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 雕教授.</li>
                         </div>
                         <div>
-                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
-                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener noreferrer">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank" rel="noopener noreferrer">Github Pages</a></li>
                         </div>
                         <div>
                             

@@ -1,29 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
     <head>
-  <!-- 元数据 -->
-  <meta charset="utf-8">
-  
-  
-  <title>Hexo使用攻略-添加分类及标签 | Eagmi</title>
-  
-  <meta name="author" content="雕教授" />
-  <meta http-equiv="Cache-Control" content="no-transform" />
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="robots" content="index,follow" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <meta name="format-detection" content="telphone=no, email=no" />
-  
-    <meta name="keywords" content="" />
-  
   <meta name="description" content="本教程针对的是Mac环境下，nexT主题的文章分类和标签设置，其他主题也应该是类似的。添加成功后会在侧边栏或导航栏生成“分类”和“标签”这两个选项，看下图：  点击“分类”后的页面：  点击“标签”后的页面：  ok，大概效果就是这样的，下面进入教程 1、创建“分类”选项1.1 生成“分类”页并添加tpye属性打开命令行，进入博客所在文件夹。执行命令 1$ hexo new page catego">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo使用攻略-添加分类及标签">
-<meta property="og:url" content="http://example.com/2021/07/14/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/index.html">
+<meta property="og:url" content="https://eagmi.com/2021/07/14/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/index.html">
+  <link rel="canonical" href="https://eagmi.com/2021/07/14/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/index.html" />
 <meta property="og:site_name" content="Eagmi">
 <meta property="og:description" content="本教程针对的是Mac环境下，nexT主题的文章分类和标签设置，其他主题也应该是类似的。添加成功后会在侧边栏或导航栏生成“分类”和“标签”这两个选项，看下图：  点击“分类”后的页面：  点击“标签”后的页面：  ok，大概效果就是这样的，下面进入教程 1、创建“分类”选项1.1 生成“分类”页并添加tpye属性打开命令行，进入博客所在文件夹。执行命令 1$ hexo new page catego">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4626959-23b970682d0c20cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4626959-dc5f0529786030ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4626959-c6f5d3bf80118f19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -40,25 +25,25 @@
     
   
   <!-- 样式表文件 -->
-  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all">
   
-    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)">
     <script src="/js/kr-dark.min.js"></script>
   
   
-    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all">
   
-  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
-  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all">
   
   
   
-    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
   <!-- 不得不预先加载的一些JS文件 -->
-  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script defer src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
   
-    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+    <script defer src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
   
   
   <style>
@@ -145,7 +130,7 @@
 
             <article itemscope itemtype="https://schema.org/Article">
     
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/14/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/">
+    <link itemprop="mainEntityOfPage" href="https://eagmi.com/2021/07/14/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
@@ -181,11 +166,11 @@
             
             <hr />
             <div itemprop="articleBody"><p>本教程针对的是Mac环境下，nexT主题的文章分类和标签设置，其他主题也应该是类似的。添加成功后会在侧边栏或导航栏生成“分类”和“标签”这两个选项，看下图：</p>
-<p><a target="_blank" rel="noopener" href="http://upload-images.jianshu.io/upload_images/4626959-23b970682d0c20cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><img src="http://upload-images.jianshu.io/upload_images/4626959-23b970682d0c20cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文章分类、标签"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="http://upload-images.jianshu.io/upload_images/4626959-23b970682d0c20cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><img src="http://upload-images.jianshu.io/upload_images/4626959-23b970682d0c20cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文章分类、标签"></a></p>
 <p>点击“分类”后的页面：</p>
-<p><a target="_blank" rel="noopener" href="http://upload-images.jianshu.io/upload_images/4626959-dc5f0529786030ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><img src="http://upload-images.jianshu.io/upload_images/4626959-dc5f0529786030ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文章分类页"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="http://upload-images.jianshu.io/upload_images/4626959-dc5f0529786030ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><img src="http://upload-images.jianshu.io/upload_images/4626959-dc5f0529786030ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文章分类页"></a></p>
 <p>点击“标签”后的页面：</p>
-<p><a target="_blank" rel="noopener" href="http://upload-images.jianshu.io/upload_images/4626959-c6f5d3bf80118f19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><img src="http://upload-images.jianshu.io/upload_images/4626959-c6f5d3bf80118f19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="标签"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="http://upload-images.jianshu.io/upload_images/4626959-c6f5d3bf80118f19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><img src="http://upload-images.jianshu.io/upload_images/4626959-c6f5d3bf80118f19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="标签"></a></p>
 <p>ok，大概效果就是这样的，下面进入教程</p>
 <h3 id="1、创建“分类”选项"><a href="#1、创建“分类”选项" class="headerlink" title="1、创建“分类”选项"></a>1、创建“分类”选项</h3><h4 id="1-1-生成“分类”页并添加tpye属性"><a href="#1-1-生成“分类”页并添加tpye属性" class="headerlink" title="1.1 生成“分类”页并添加tpye属性"></a>1.1 生成“分类”页并添加tpye属性</h4><p>打开命令行，进入博客所在文件夹。执行命令</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page categories</span><br></pre></td></tr></table></figure>
@@ -228,7 +213,7 @@
         </div>
         
             <div class="kratos-copyright text-center clearfix">
-                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow noopener noreferrer" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
             </div>
         
         <footer class="kratos-entry-footer clearfix">
@@ -277,7 +262,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2021/07/14/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/",
+                text: "https://eagmi.com/2021/07/14/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -289,7 +274,7 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2021/07/14/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/";
+            const hostUrl       = "https://eagmi.com/2021/07/14/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/";
             const title         = "「Hexo使用攻略-添加分类及标签」";
             const excerpt       = `本教程针对的是Mac环境下，nexT主题的文章分类和标签设置，其他主题也应该是类似的。添加成功后会在侧边栏或导航栏生成“分类”和“标签”这两个选项，看下图：
 
@@ -522,12 +507,12 @@ ok，大概效果就是这样...`;
                             <li>本站已运行<span id="span_dt">Loading...</span></li>
                         </div>
                         <div>
-                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank" rel="noopener noreferrer">Kratos:Rebirth</a></li>
                             <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 雕教授.</li>
                         </div>
                         <div>
-                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
-                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener noreferrer">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank" rel="noopener noreferrer">Github Pages</a></li>
                         </div>
                         <div>
                             
