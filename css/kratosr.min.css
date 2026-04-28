@@ -513,3 +513,392 @@ article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highl
   background:#b9cee4;
   color:#213f5f;
 }
+
+/* ========== 首页 UI v2：深蓝浅蓝 + 夕阳橙、毛玻璃导航、Banner 过渡、卡片层级 ========== */
+body.home-enhanced{
+  --home-blue-deep:#0f2744;
+  --home-blue-mid:#2a6cb0;
+  --home-blue-soft:#e8f4ff;
+  --home-sunset:#e8945c;
+  --home-sunset-soft:#ffd4a8;
+  --home-page-bg:#f5f7fa;
+}
+
+/* 导航：半透明深色 + 毛玻璃，与 Banner 一体 */
+body.home-enhanced #kratos-desktop-topnav.kratos-topnav,
+body.home-enhanced #kratos-mobile-topnav.kratos-topnav{
+  background:rgba(8,18,36,.48)!important;
+  -webkit-backdrop-filter:blur(14px) saturate(150%);
+  backdrop-filter:blur(14px) saturate(150%);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  box-shadow:0 1px 0 rgba(0,0,0,.06);
+}
+body.home-enhanced #kratos-menu-wrap .sf-menu>li:hover>a{
+  background:rgba(255,255,255,.14);
+  color:#fff;
+}
+body.home-enhanced #kratos-menu-wrap .sf-menu a{
+  color:rgba(255,255,255,.92);
+  font-weight:500;
+}
+
+/* Banner 舞台与底图裁切 */
+body.home-enhanced .home-hero-stage{
+  position:relative;
+  margin-bottom:0;
+}
+body.home-enhanced .home-hero-cover{
+  overflow:hidden;
+  border-radius:0;
+}
+
+/* 遮罩：左侧暗角可读 + 底部融进页面白底 */
+body.home-enhanced .kratos-cover.kratos-cover-2::before{
+  background:
+    linear-gradient(180deg,transparent 0%,transparent 52%,rgba(245,247,250,.15) 72%,rgba(245,247,250,.88) 88%,var(--home-page-bg) 100%),
+    linear-gradient(90deg,rgba(4,8,18,.9) 0%,rgba(6,14,28,.62) 36%,rgba(18,48,82,.22) 58%,transparent 76%);
+  opacity:1;
+}
+
+/* 主内容区与 Banner 衔接：轻微顶边晕影 */
+body.home-enhanced #kratos-blog-post{
+  position:relative;
+  padding-top:28px;
+  margin-top:-1px;
+  background:linear-gradient(180deg,rgba(245,247,250,.98) 0%,var(--home-page-bg) 28px);
+}
+
+/* Hero：左侧标题区，右侧无 DOM，仅 Banner 底图（人物由图本身呈现） */
+body.home-enhanced .home-hero-layout{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:flex-start;
+  min-height:100%;
+  padding:88px 15px 40px;
+  max-width:1170px;
+}
+body.home-enhanced .kratos-cover .desc.home-hero-intro{
+  position:relative;
+  top:auto;
+  left:auto;
+  margin:0!important;
+  flex:0 1 auto;
+  width:auto;
+  max-width:min(520px,52%);
+  text-align:left;
+  padding-bottom:8px;
+}
+body.home-enhanced .home-hero-intro h2,
+body.home-enhanced .home-hero-intro p{
+  top:0!important;
+}
+body.home-enhanced .home-hero-intro h2{
+  font-weight:700;
+  font-size:clamp(1.45rem,2.4vw,2.05rem);
+  letter-spacing:.03em;
+  line-height:1.2;
+  color:#fff;
+  text-shadow:0 2px 4px rgba(0,0,0,.55),0 0 28px rgba(0,0,0,.35),0 0 1px rgba(0,0,0,.8);
+}
+body.home-enhanced .home-hero-intro p{
+  font-weight:500;
+  font-size:clamp(.875rem,1.1vw,.98rem);
+  line-height:1.65;
+  color:#f0f6fc;
+  text-shadow:0 1px 3px rgba(0,0,0,.5),0 0 18px rgba(0,0,0,.25);
+}
+body.home-enhanced .home-hero-intro .hero-links{
+  margin-top:14px;
+}
+body.home-enhanced .home-hero-intro .hero-links a{
+  border-color:rgba(255,200,160,.55);
+  background:linear-gradient(180deg,rgba(66,156,224,.82) 0%,rgba(36,108,168,.78) 100%);
+  box-shadow:0 2px 8px rgba(8,24,48,.2);
+  font-weight:600;
+}
+body.home-enhanced .home-hero-intro .hero-links a:hover{
+  border-color:rgba(255,220,190,.85);
+  background:linear-gradient(180deg,rgba(90,170,232,.92) 0%,rgba(48,128,198,.88) 100%);
+}
+
+/* 文章列表卡片：白底、圆角、柔和阴影、hover 浮起 */
+body.home-enhanced .kratos-hentry{
+  background:#fff!important;
+  border-radius:10px!important;
+  border:1px solid rgba(30,80,140,.08);
+  box-shadow:0 4px 14px rgba(15,40,72,.08),0 1px 3px rgba(15,40,72,.04);
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+body.home-enhanced .container article.kratos-hentry:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 28px rgba(15,40,72,.12),0 4px 10px rgba(15,40,72,.06);
+}
+
+/* 首页区块与内嵌卡片 */
+body.home-enhanced .home-block{
+  background:#fff!important;
+  border-radius:10px!important;
+  border:1px solid rgba(30,80,140,.08);
+  box-shadow:0 4px 16px rgba(15,40,72,.07);
+  padding:20px 22px 16px;
+  margin-bottom:18px;
+}
+body.home-enhanced .home-block-head h3{
+  font-weight:700;
+  font-size:1.15rem;
+  color:#0f1f33;
+}
+body.home-enhanced .home-card,
+body.home-enhanced .home-category-item{
+  background:#fff!important;
+  border-radius:10px!important;
+  border:1px solid rgba(30,80,140,.1)!important;
+  box-shadow:0 2px 10px rgba(15,40,72,.06);
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+body.home-enhanced .home-card h4,
+body.home-enhanced .home-category-item strong{
+  font-weight:700;
+}
+body.home-enhanced .home-card:hover,
+body.home-enhanced .home-category-item:hover{
+  transform:translateY(-3px);
+  border-color:rgba(42,130,200,.35)!important;
+  box-shadow:0 10px 22px rgba(15,40,72,.1);
+  background:#fff!important;
+}
+
+body.home-enhanced .home-inline-search{
+  margin-bottom:18px;
+}
+body.home-enhanced .home-search-form{
+  border-radius:10px!important;
+  background:#fff!important;
+  box-shadow:0 4px 14px rgba(15,40,72,.07);
+  border:1px solid rgba(30,80,140,.1);
+  padding:12px 14px;
+}
+body.home-enhanced .home-search-input{
+  border-radius:8px!important;
+}
+body.home-enhanced .home-search-submit{
+  border-radius:8px!important;
+  font-weight:600;
+}
+
+/* 侧栏：关于卡片浅蓝渐变 + 头像立体 */
+body.home-enhanced #kratos-widget-area .widget.widget-kratos-about{
+  background:linear-gradient(165deg,#dff0ff 0%,#eef6ff 42%,#fff 100%)!important;
+  border-radius:12px!important;
+  border:1px solid rgba(42,130,200,.12);
+  box-shadow:0 8px 28px rgba(20,70,130,.1),0 2px 8px rgba(20,70,130,.05);
+  overflow:hidden;
+  padding-bottom:8px!important;
+}
+body.home-enhanced #kratos-widget-area .widget.widget-kratos-about .photo-background{
+  background-image:linear-gradient(115deg,#5a9fd6 0%,#8ec5f0 40%,#ffd4a8 95%)!important;
+  height:108px!important;
+}
+body.home-enhanced #kratos-widget-area .widget.widget-kratos-about .photo-wrapper img.about-photo,
+body.home-enhanced #kratos-widget-area .widget.widget-kratos-about .photo-wrapper .home-about-avatar{
+  width:84px!important;
+  height:84px!important;
+  max-width:84px!important;
+  margin:-46px 0 0!important;
+  border:3px solid #fff!important;
+  border-radius:50%!important;
+  box-shadow:0 6px 18px rgba(15,50,100,.28),0 0 0 1px rgba(42,130,200,.2);
+  object-fit:cover;
+}
+body.home-enhanced #kratos-widget-area .widget.widget-kratos-about .textwidget p{
+  font-weight:500;
+  color:#2a3f55;
+}
+
+/* 其它侧栏小部件统一一点层级 */
+body.home-enhanced #kratos-widget-area .widget:not(.widget-kratos-about){
+  border-radius:10px!important;
+  background:#fff!important;
+  border:1px solid rgba(30,80,140,.08);
+  box-shadow:0 4px 14px rgba(15,40,72,.06);
+}
+
+body.home-enhanced .pagination a,
+body.home-enhanced .pagination span{
+  border-radius:8px;
+  border:1px solid rgba(30,80,140,.1);
+}
+
+@media (max-width:768px){
+  body.home-enhanced .home-hero-layout{
+    align-items:flex-start;
+    justify-content:flex-start;
+    padding:72px 12px 28px;
+  }
+  body.home-enhanced .kratos-cover .desc.home-hero-intro{
+    max-width:100%;
+    text-align:left;
+    padding-bottom:0;
+  }
+  body.home-enhanced .home-hero-intro .hero-links a{
+    margin:0 4px 8px;
+  }
+}
+
+/* ========== 文章代码块 UI v2：现代文档站风格 ========== */
+/* 仅文章正文：不作用于首页卡片、导航、侧栏 */
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight{
+  position:relative!important;
+  margin:1.35em 0!important;
+  padding:0!important;
+  border-radius:12px!important;
+  background:linear-gradient(180deg,#edf3fa 0,#edf3fa 34px,#f6f8fb 34px,#f6f8fb 100%)!important;
+  border:1px solid rgba(15,39,68,.10)!important;
+  box-shadow:0 8px 24px rgba(15,39,68,.08)!important;
+  overflow:hidden!important;
+}
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight:before{
+  content:" "!important;
+  position:absolute!important;
+  left:14px!important;
+  top:12px!important;
+  width:10px!important;
+  height:10px!important;
+  border-radius:50%!important;
+  background-color:#fc625d!important;
+  box-shadow:17px 0 #fdbc40,34px 0 #35cd4b!important;
+  z-index:5!important;
+  margin:0!important;
+}
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight table{
+  margin-top:34px!important;
+  margin-bottom:0!important;
+  width:100%!important;
+  max-width:100%!important;
+  border-collapse:separate!important;
+  border-spacing:0!important;
+}
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight td{
+  border:none!important;
+}
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight td.gutter{
+  background:#eaf1f8!important;
+  color:#8a97a8!important;
+  border-right:1px solid rgba(15,39,68,.08)!important;
+}
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight td.gutter pre{
+  background:transparent!important;
+  color:#8a97a8!important;
+  padding:18px 12px 18px 16px!important;
+  font-family:Consolas,Monaco,"JetBrains Mono",monospace!important;
+  font-size:14px!important;
+  line-height:1.8!important;
+}
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight td.code{
+  background:#f6f8fb!important;
+  overflow-x:auto!important;
+  -webkit-overflow-scrolling:touch;
+}
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight td.code pre{
+  margin:0!important;
+  padding:18px 20px!important;
+  background:transparent!important;
+  border:none!important;
+  font-family:Consolas,Monaco,"JetBrains Mono",monospace!important;
+  font-size:14px!important;
+  line-height:1.8!important;
+  color:#1f2937!important;
+  white-space:pre!important;
+  word-break:normal!important;
+  overflow-x:auto!important;
+}
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight td.code code{
+  font-family:Consolas,Monaco,"JetBrains Mono",monospace!important;
+  font-size:inherit!important;
+  line-height:inherit!important;
+  background:transparent!important;
+  color:inherit!important;
+  padding:0!important;
+  border-radius:0!important;
+}
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight pre:has(code){
+  padding-top:18px!important;
+}
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight pre:has(code):before{
+  display:none!important;
+  content:none!important;
+}
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight .copy,
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight>button.copy,
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight .copy-btn,
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight .clipboard-btn{
+  position:absolute!important;
+  right:12px!important;
+  top:7px!important;
+  z-index:6!important;
+  border:1px solid rgba(15,39,68,.15)!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.72)!important;
+  color:#1f2937!important;
+  font-size:12px!important;
+  line-height:1.25!important;
+  padding:6px 12px!important;
+  cursor:pointer!important;
+  opacity:1!important;
+  transition:background .2s ease,transform .2s ease,box-shadow .2s ease!important;
+  box-shadow:0 1px 2px rgba(15,39,68,.06)!important;
+}
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight:hover>button.copy{
+  opacity:1!important;
+}
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight .copy:hover,
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight>button.copy:hover,
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight .copy-btn:hover,
+article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight .clipboard-btn:hover{
+  background:#fff!important;
+  transform:translateY(-1px)!important;
+  box-shadow:0 4px 12px rgba(15,39,68,.1)!important;
+  color:#0f172a!important;
+}
+@media (max-width:768px){
+  article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight{
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    -webkit-overflow-scrolling:touch;
+  }
+  article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight td.gutter pre,
+  article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight td.code pre{
+    font-size:13px!important;
+  }
+  article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight td.code pre{
+    padding:16px 14px!important;
+  }
+  article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight td.gutter pre{
+    padding:16px 10px 16px 12px!important;
+  }
+  article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight:before{
+    left:12px!important;
+    top:12px!important;
+  }
+  article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight .copy,
+  article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight>button.copy,
+  article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight .copy-btn,
+  article[itemtype="https://schema.org/Article"] .kratos-post-content figure.highlight .clipboard-btn{
+    right:10px!important;
+    top:6px!important;
+    font-size:11px!important;
+    padding:5px 10px!important;
+  }
+}
+
+
+/* homepage list stability: fallback thumbnails + excerpt clamp */
+.home-enhanced .kratos-entry-thumb-new{background:linear-gradient(145deg,#eef4fb,#dfe9f5);border-radius:8px}
+.home-enhanced .kratos-entry-thumb-new .kratos-entry-thumb-new-img{display:block;width:100%;height:100%;object-fit:cover}
+.home-enhanced .kratos-entry-border-new.no-thumb .kratos-entry-thumb-new{display:none}
+.home-enhanced .kratos-entry-border-new.no-thumb .kratos-post-inner-new{margin-left:0;padding-left:20px}
+.home-enhanced .kratos-entry-content-new p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;word-break:break-word}
+@media (max-width:768px){.home-enhanced .kratos-entry-content-new p{-webkit-line-clamp:4}}
