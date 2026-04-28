@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
-  <meta name="description" content="Eagmi personal blog about Hexo, Linux, OpenWrt, and technical notes." />
   <!-- 元数据 -->
   <meta charset="utf-8">
   
@@ -14,19 +13,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="robots" content="index,follow" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <meta name="format-detection" content="telephone=no, email=no" />
+  <meta name="format-detection" content="telphone=no, email=no" />
   
     <meta name="keywords" content="" />
   
   <meta property="og:type" content="website">
 <meta property="og:title" content="Eagmi">
 <meta property="og:url" content="https://eagmi.com/index.html">
-  <link rel="canonical" href="https://eagmi.com/index.html" />
 <meta property="og:site_name" content="Eagmi">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="雕教授">
 <meta name="twitter:card" content="summary">
-  
+  <link rel="alternate" href="atom.xml" type="application/atom+xml">
   <!-- 站点验证相关 -->
   
     
@@ -34,46 +32,43 @@
     
   
   <!-- 样式表文件 -->
-  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all">
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
   
-    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
     <script src="/js/kr-dark.min.js"></script>
   
   
-    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all">
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
   
-  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all">
-  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all">
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
   
   
   
-    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
   
   <!-- 不得不预先加载的一些JS文件 -->
-  <script defer src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
   
-    <script defer src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
   
   
   <style>
-      /* 首页 Banner：夕阳海天色 + 可选实拍/插画底图（右侧重人物剪影区） */
-      body.home-enhanced .kratos-cover.kratos-cover-2 {
-        background-color: #142a45;
-        background-image:
-          linear-gradient(165deg, rgba(12, 32, 58, 0.82) 0%, rgba(30, 90, 140, 0.45) 38%, rgba(232, 140, 88, 0.35) 72%, rgba(255, 190, 130, 0.28) 100%),
-          url('/images/banner.webp');
-        background-size: cover;
-        background-position: 82% 42%;
-        background-repeat: no-repeat;
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
       }
-      @media (min-width: 768px) {
-        body.home-enhanced.custom-background {
-          background-image: none !important;
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
         }
       }
+    
   </style>
   
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
     <body class="custom-background home-enhanced">
@@ -117,22 +112,24 @@
                 </div>
             </header>
         </div>
-        <div class="kratos-start kratos-hero-2 home-hero-stage">
-            <div class="kratos-cover kratos-cover-2 home-hero-cover">
-                <div class="container home-hero-layout">
-                    <div class="desc desc2 animate-box home-hero-intro">
-                        <h2>Eagmi 技术博客</h2>
-                        <p>主要写 Linux、OpenWrt、AI、本地部署和开发记录。</p>
-                        <p>能复现的就记下来。</p>
-                        <div class="hero-links">
-                            <a href="#featured-posts">推荐阅读</a>
-                            <a href="#category-entry">按主题看</a>
-                            <a href="#latest-posts">最新文章</a>
+        
+            <div class="kratos-start kratos-hero-2 home-hero-stage">
+                <div class="kratos-cover kratos-cover-2 home-hero-cover">
+                    <div class="container home-hero-layout">
+                        <div class="desc desc2 animate-box home-hero-intro">
+                            <h2>Eagmi 技术博客</h2>
+                            <p>主要写 Linux、OpenWrt、AI、本地部署和开发记录。</p>
+                            <p>能复现的就记下来。</p>
+                            <div class="hero-links">
+                                <a href="#featured-posts">推荐阅读</a>
+                                <a href="#category-entry">按主题看</a>
+                                <a href="#latest-posts">最新文章</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        
 
         <div id="kratos-blog-post">
             <div class="container">
@@ -147,63 +144,178 @@
 
             <!-- Breadcrumb for tag & category page -->
 
-            <section class="home-inline-search" aria-label="站内搜索">
-                <form class="home-search-form" action="/search/" method="get" role="search">
-                    <input class="home-search-input" type="search" name="s" maxlength="80" placeholder="搜索文章、命令、OpenWrt、AI、本地部署…" autocomplete="off" enterkeyhint="search" />
-                    <button class="home-search-submit" type="submit">搜索</button>
-                </form>
-            </section>
 
-            <section id="featured-posts" class="home-block featured-block">
-                <div class="home-block-head">
-                    <h3>推荐阅读</h3>
-                    <p>先从这几篇开始。</p>
+
+
+    <section class="home-inline-search" aria-label="站内搜索">
+        <form class="home-search-form" action="/search/" method="get" role="search">
+            <input class="home-search-input" type="search" name="s" maxlength="80" placeholder="搜索文章、命令、OpenWrt、AI、本地部署…" autocomplete="off" enterkeyhint="search" />
+            <button class="home-search-submit" type="submit">搜索</button>
+        </form>
+    </section>
+
+    <section id="featured-posts" class="home-block featured-block">
+        <div class="home-block-head">
+            <h3>推荐阅读</h3>
+            <p>先从这几篇开始。</p>
+        </div>
+        <div class="home-card-grid">
+            <a class="home-card" href="/2024/07/15/%E8%B0%B7%E6%AD%8C%E4%BA%91%E4%BD%BF%E7%94%A8xshell%E8%BF%9E%E6%8E%A5%E6%96%B9%E6%B3%95/">
+                <h4>谷歌云使用 Xshell 连接方法</h4>
+                <p>从登录策略到 SSH 配置，一步步走通。</p>
+            </a>
+            <a class="home-card" href="/2023/11/23/Hexo%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">
+                <h4>Hexo 使用心得</h4>
+                <p>Hexo 日常维护里常踩的点。</p>
+            </a>
+            <a class="home-card" href="/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
+                <h4>编译 OpenWRT 过程问题解决</h4>
+                <p>编译过程里常见报错与排查。</p>
+            </a>
+        </div>
+    </section>
+
+    <section id="category-entry" class="home-block category-entry-block">
+        <div class="home-block-head">
+            <h3>按主题阅读</h3>
+            <p>也可以按主题翻一翻。</p>
+        </div>
+        <div class="home-category-grid">
+            <a class="home-category-item" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">
+                <strong>Linux</strong>
+                <span>命令、环境和排障笔记。</span>
+            </a>
+            <a class="home-category-item" href="/categories/openwrt%E7%B3%BB%E5%88%97/">
+                <strong>OpenWrt</strong>
+                <span>编译、报错与固件折腾。</span>
+            </a>
+            <a class="home-category-item" href="/categories/HEXO%E7%B3%BB%E5%88%97/">
+                <strong>Hexo</strong>
+                <span>搭建、迁移和维护记录。</span>
+            </a>
+            <a class="home-category-item" href="/archives/">
+                <strong>折腾记录</strong>
+                <span>按时间线慢慢翻。</span>
+            </a>
+        </div>
+    </section>
+
+    <div id="latest-posts" class="home-latest-anchor"></div>
+
+
+    
+    
+        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
+            <div class="kratos-entry-border-new clearfix">
+                
+                <div class="kratos-entry-thumb-new">
+                    <a href="/2026/04/28/ai-1777371110170/">
+                        
+                        
+                            <img class="kratos-entry-thumb-new-img" src="/images/thumb/ai.jpg" alt="">
+                        
+                    </a>
                 </div>
-                <div class="home-card-grid">
-                    <a class="home-card" href="/2024/07/15/%E8%B0%B7%E6%AD%8C%E4%BA%91%E4%BD%BF%E7%94%A8xshell%E8%BF%9E%E6%8E%A5%E6%96%B9%E6%B3%95/">
-                        <h4>谷歌云使用 Xshell 连接方法</h4>
-                        <p>从登录策略到 SSH 配置，一步步走通。</p>
-                    </a>
-                    <a class="home-card" href="/2023/11/23/Hexo%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">
-                        <h4>Hexo 使用心得</h4>
-                        <p>Hexo 日常维护里常踩的点。</p>
-                    </a>
-                    <a class="home-card" href="/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
-                        <h4>编译 OpenWRT 过程问题解决</h4>
-                        <p>编译过程里常见报错与排查。</p>
+                <div class="kratos-post-inner-new">
+                    <header class="kratos-entry-header-new">
+                            <a class="label-link" href="/categories/AI%E5%AD%A6%E4%B9%A0/">AI学习</a>
+                        <h2 class="kratos-entry-title-new"><a href="/2026/04/28/ai-1777371110170/" itemprop="mainEntityOfPage"><span itemprop="name headline">从零搭建本地 AI 平台（完整实战指南）</span></a>
+                    </header>
+                    <div class="kratos-entry-content-new">
+                        <p itemProp="description">
+                            
+                                这篇文章不是泛泛而谈，而是一步步带你真正搭建一个可用的本地 AI 系统（对话 + 编程 + 多模型切换）。
+📌 一、为什么要自己搭建 AI？
+现在很多 AI（比如在线服务）都有这些问题：
+❌ 速度慢 &#x2F; 不稳定❌ 数据不安...
+                            
+                        </p>
+                    </div>
+                </div>
+                <footer class="kratos-post-meta-new">
+                    <span class="pull-left">
+                        <time datetime="2026-04-28T10:05:30.000Z" itemprop="datePublished">
+                            <a><i class="fa fa-calendar"></i> 2026-04-28</a>
+                        </time>
+                        <a>
+                            
+                                <i class="fa fa-tags"></i>
+                                <a class="tag-none-link" href="/tags/AI/" rel="tag">AI</a>, <a class="tag-none-link" href="/tags/AI%E5%AE%9E%E6%88%98/" rel="tag">AI实战</a>, <a class="tag-none-link" href="/tags/AI%E9%83%A8%E7%BD%B2/" rel="tag">AI部署</a>
+                            
+                        </a>
+                        
+                            <!-- 当前仅支持valine/waline自带的统计功能 -->
+                            
+                        
+                        
+                            <!-- 当前仅支持waline自带的统计功能 -->
+                            
+                        
+                    </span>
+                    <span class="pull-right">
+                        <a class="read-more" href="/2026/04/28/ai-1777371110170/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
+                    </span>
+                </footer>
+            </div>
+        </article>
+    
+
+    
+    
+        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
+            <div class="kratos-entry-border-new clearfix">
+                
+                <div class="kratos-entry-thumb-new">
+                    <a href="/2026/04/28/linux-1777347752960/">
+                        
+                        
+                            <img class="kratos-entry-thumb-new-img" src="/images/covers/linux1.webp" alt="">
+                        
                     </a>
                 </div>
-            </section>
-
-            <section id="category-entry" class="home-block category-entry-block">
-                <div class="home-block-head">
-                    <h3>按主题阅读</h3>
-                    <p>也可以按主题翻一翻。</p>
+                <div class="kratos-post-inner-new">
+                    <header class="kratos-entry-header-new">
+                            <a class="label-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a>
+                        <h2 class="kratos-entry-title-new"><a href="/2026/04/28/linux-1777347752960/" itemprop="mainEntityOfPage"><span itemprop="name headline">🐧 Linux 常用命令使用指南（从入门到实战）</span></a>
+                    </header>
+                    <div class="kratos-entry-content-new">
+                        <p itemProp="description">
+                            
+                                📌 一、Linux 基础认知
+Linux 是一个类 Unix 操作系统，核心由 Linux kernel 驱动，常见发行版包括：
+Ubuntu（新手友好）CentOS（服务器常见）Debian（稳定）
+👉 Linux 的核心理念：...
+                            
+                        </p>
+                    </div>
                 </div>
-                <div class="home-category-grid">
-                    <a class="home-category-item" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">
-                        <strong>Linux</strong>
-                        <span>命令、环境和排障笔记。</span>
-                    </a>
-                    <a class="home-category-item" href="/categories/openwrt%E7%B3%BB%E5%88%97/">
-                        <strong>OpenWrt</strong>
-                        <span>编译、报错与固件折腾。</span>
-                    </a>
-                    <a class="home-category-item" href="/categories/HEXO%E7%B3%BB%E5%88%97/">
-                        <strong>Hexo</strong>
-                        <span>搭建、迁移和维护记录。</span>
-                    </a>
-                    <a class="home-category-item" href="/archives/">
-                        <strong>折腾记录</strong>
-                        <span>按时间线慢慢翻。</span>
-                    </a>
-                </div>
-            </section>
-
-            <div id="latest-posts" class="home-latest-anchor"></div>
-
-
-
+                <footer class="kratos-post-meta-new">
+                    <span class="pull-left">
+                        <time datetime="2026-04-28T09:43:56.000Z" itemprop="datePublished">
+                            <a><i class="fa fa-calendar"></i> 2026-04-28</a>
+                        </time>
+                        <a>
+                            
+                                <i class="fa fa-tags"></i>
+                                <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a>, <a class="tag-none-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a>, <a class="tag-none-link" href="/tags/Shell/" rel="tag">Shell</a>
+                            
+                        </a>
+                        
+                            <!-- 当前仅支持valine/waline自带的统计功能 -->
+                            
+                        
+                        
+                            <!-- 当前仅支持waline自带的统计功能 -->
+                            
+                        
+                    </span>
+                    <span class="pull-right">
+                        <a class="read-more" href="/2026/04/28/linux-1777347752960/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
+                    </span>
+                </footer>
+            </div>
+        </article>
+    
 
     
     
@@ -213,7 +325,8 @@
                 <div class="kratos-entry-thumb-new">
                     <a href="/2024/07/15/%E8%B0%B7%E6%AD%8C%E4%BA%91%E4%BD%BF%E7%94%A8xshell%E8%BF%9E%E6%8E%A5%E6%96%B9%E6%B3%95/">
                         
-                            <img class="kratos-entry-thumb-new-img" alt="" loading="lazy" decoding="async">
+                        
+                            <img class="kratos-entry-thumb-new-img" alt="">
                         
                     </a>
                 </div>
@@ -272,7 +385,8 @@
                 <div class="kratos-entry-thumb-new">
                     <a href="/2023/11/24/X-ui%E9%9D%A2%E6%9D%BF%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">
                         
-                            <img class="kratos-entry-thumb-new-img" alt="" loading="lazy" decoding="async">
+                        
+                            <img class="kratos-entry-thumb-new-img" alt="">
                         
                     </a>
                 </div>
@@ -322,7 +436,8 @@
                 <div class="kratos-entry-thumb-new">
                     <a href="/2023/11/23/Hexo%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">
                         
-                            <img class="kratos-entry-thumb-new-img" alt="" loading="lazy" decoding="async">
+                        
+                            <img class="kratos-entry-thumb-new-img" alt="">
                         
                     </a>
                 </div>
@@ -376,7 +491,8 @@
                 <div class="kratos-entry-thumb-new">
                     <a href="/2021/07/22/%E4%BD%BF%E7%94%A8hexo%E6%8D%A2%E4%BA%86%E7%94%B5%E8%84%91%E5%90%8E%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2/">
                         
-                            <img class="kratos-entry-thumb-new-img" alt="" loading="lazy" decoding="async">
+                        
+                            <img class="kratos-entry-thumb-new-img" alt="">
                         
                     </a>
                 </div>
@@ -429,7 +545,8 @@
                 <div class="kratos-entry-thumb-new">
                     <a href="/2021/07/22/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8/">
                         
-                            <img class="kratos-entry-thumb-new-img" alt="" loading="lazy" decoding="async">
+                        
+                            <img class="kratos-entry-thumb-new-img" alt="">
                         
                     </a>
                 </div>
@@ -490,7 +607,8 @@ Remote：远程仓库
                 <div class="kratos-entry-thumb-new">
                     <a href="/2021/07/22/tar%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/">
                         
-                            <img class="kratos-entry-thumb-new-img" alt="" loading="lazy" decoding="async">
+                        
+                            <img class="kratos-entry-thumb-new-img" alt="">
                         
                     </a>
                 </div>
@@ -550,7 +668,8 @@ Remote：远程仓库
                 <div class="kratos-entry-thumb-new">
                     <a href="/2021/07/22/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8DUbuntu%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%88%E6%9C%AC/">
                         
-                            <img class="kratos-entry-thumb-new-img" alt="" loading="lazy" decoding="async">
+                        
+                            <img class="kratos-entry-thumb-new-img" alt="">
                         
                     </a>
                 </div>
@@ -604,7 +723,8 @@ Remote：远程仓库
                 <div class="kratos-entry-thumb-new">
                     <a href="/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
                         
-                            <img class="kratos-entry-thumb-new-img" alt="" loading="lazy" decoding="async">
+                        
+                            <img class="kratos-entry-thumb-new-img" alt="">
                         
                     </a>
                 </div>
@@ -651,113 +771,6 @@ Remote：远程仓库
         </article>
     
 
-    
-    
-        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
-            <div class="kratos-entry-border-new clearfix">
-                
-                <div class="kratos-entry-thumb-new">
-                    <a href="/2021/07/22/openwrt-feeds-update%E6%8A%A5%E9%94%99/">
-                        
-                            <img class="kratos-entry-thumb-new-img" alt="" loading="lazy" decoding="async">
-                        
-                    </a>
-                </div>
-                <div class="kratos-post-inner-new">
-                    <header class="kratos-entry-header-new">
-                            <a class="label-link" href="/categories/openwrt%E7%B3%BB%E5%88%97/">openwrt系列</a>
-                        <h2 class="kratos-entry-title-new"><a href="/2021/07/22/openwrt-feeds-update%E6%8A%A5%E9%94%99/" itemprop="mainEntityOfPage"><span itemprop="name headline">openwrt_feeds update报错</span></a>
-                    </header>
-                    <div class="kratos-entry-content-new">
-                        <p itemProp="description">
-                            
-                                问题：下载好openwrt后，进行.&#x2F;scripts&#x2F;feeds update -a 这一步时报错。    
-原因：是因为git-core的路径没有在path中，这导致里面的git-remote-https, gi...
-                            
-                        </p>
-                    </div>
-                </div>
-                <footer class="kratos-post-meta-new">
-                    <span class="pull-left">
-                        <time datetime="2021-07-22T07:38:03.000Z" itemprop="datePublished">
-                            <a><i class="fa fa-calendar"></i> 2021-07-22</a>
-                        </time>
-                        <a>
-                            
-                                <i class="fa fa-tags"></i>
-                                <a class="tag-none-link" href="/tags/openwrt%E5%88%B7%E6%9C%BA/" rel="tag">openwrt刷机</a>, <a class="tag-none-link" href="/tags/openwrt%E5%9B%BA%E4%BB%B6/" rel="tag">openwrt固件</a>, <a class="tag-none-link" href="/tags/openwrt%E7%BC%96%E8%AF%91/" rel="tag">openwrt编译</a>
-                            
-                        </a>
-                        
-                            <!-- 当前仅支持valine/waline自带的统计功能 -->
-                            
-                        
-                        
-                            <!-- 当前仅支持waline自带的统计功能 -->
-                            
-                        
-                    </span>
-                    <span class="pull-right">
-                        <a class="read-more" href="/2021/07/22/openwrt-feeds-update%E6%8A%A5%E9%94%99/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
-                    </span>
-                </footer>
-            </div>
-        </article>
-    
-
-    
-    
-        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
-            <div class="kratos-entry-border-new clearfix">
-                
-                <div class="kratos-entry-thumb-new">
-                    <a href="/2021/07/22/linux%E4%BD%BF%E7%94%A8find%E5%91%BD%E4%BB%A4%E5%92%8Cgrep%E5%91%BD%E4%BB%A4%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/">
-                        
-                            <img class="kratos-entry-thumb-new-img" alt="" loading="lazy" decoding="async">
-                        
-                    </a>
-                </div>
-                <div class="kratos-post-inner-new">
-                    <header class="kratos-entry-header-new">
-                            <a class="label-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a>
-                        <h2 class="kratos-entry-title-new"><a href="/2021/07/22/linux%E4%BD%BF%E7%94%A8find%E5%91%BD%E4%BB%A4%E5%92%8Cgrep%E5%91%BD%E4%BB%A4%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/" itemprop="mainEntityOfPage"><span itemprop="name headline">linux使用find命令和grep命令查找文件和文件内容</span></a>
-                    </header>
-                    <div class="kratos-entry-content-new">
-                        <p itemProp="description">
-                            
-                                1【摘要】区别： 在使用linux时，经常需要进行文件查找。其中查找的命令主要有find和grep。两个命令是有区的。 find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。 gre...
-                            
-                        </p>
-                    </div>
-                </div>
-                <footer class="kratos-post-meta-new">
-                    <span class="pull-left">
-                        <time datetime="2021-07-22T01:15:05.000Z" itemprop="datePublished">
-                            <a><i class="fa fa-calendar"></i> 2021-07-22</a>
-                        </time>
-                        <a>
-                            
-                                <i class="fa fa-tags"></i>
-                                <a class="tag-none-link" href="/tags/Linux%E6%8A%80%E5%B7%A7/" rel="tag">Linux技巧</a>, <a class="tag-none-link" href="/tags/Linux%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/" rel="tag">Linux查找命令</a>, <a class="tag-none-link" href="/tags/find%E4%BD%BF%E7%94%A8/" rel="tag">find使用</a>
-                            
-                        </a>
-                        
-                            <!-- 当前仅支持valine/waline自带的统计功能 -->
-                            
-                        
-                        
-                            <!-- 当前仅支持waline自带的统计功能 -->
-                            
-                        
-                    </span>
-                    <span class="pull-right">
-                        <a class="read-more" href="/2021/07/22/linux%E4%BD%BF%E7%94%A8find%E5%91%BD%E4%BB%A4%E5%92%8Cgrep%E5%91%BD%E4%BB%A4%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
-                    </span>
-                </footer>
-            </div>
-        </article>
-    
-
 
 
     <div class='text-center pagination'>
@@ -792,11 +805,11 @@ Remote：远程仓库
     <div class="photo-background"></div>
     <div class="photo-wrapper clearfix">
         <div class="photo-wrapper-tip text-center">
-            <img class="about-photo home-about-avatar" src="/images/avatar.webp" width="84" height="84" alt="站点头像" loading="lazy" decoding="auto" />
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
         </div>
     </div>
     <div class="textwidget">
-        <p class="text-center">长期记录技术折腾与实践。</p>
+        <p class="text-center"></p>
     </div>
     <div class="site-meta">
         <a class="meta-item" href="/archives/">
@@ -804,7 +817,7 @@ Remote：远程仓库
                 文章
             </span>
             <span class="count">
-                24
+                26
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -812,7 +825,7 @@ Remote：远程仓库
                 分类
             </span>
             <span class="count">
-                5
+                6
             </span>
         </a>
         <a class="meta-item" href="/tags/">
@@ -820,7 +833,7 @@ Remote：远程仓库
                 标签
             </span>
             <span class="count">
-                38
+                57
             </span>
         </a>
     </div>
@@ -829,7 +842,7 @@ Remote：远程仓库
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GIT%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">GIT使用技巧</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HEXO%E7%B3%BB%E5%88%97/">HEXO系列</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/openwrt%E7%B3%BB%E5%88%97/">openwrt系列</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E6%9C%BA%E6%8A%80%E5%B7%A7/">玩机技巧</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI%E5%AD%A6%E4%B9%A0/">AI学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GIT%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">GIT使用技巧</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HEXO%E7%B3%BB%E5%88%97/">HEXO系列</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/openwrt%E7%B3%BB%E5%88%97/">openwrt系列</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E6%9C%BA%E6%8A%80%E5%B7%A7/">玩机技巧</a><span class="category-list-count">1</span></li></ul>
   </aside>
 
 
@@ -838,7 +851,7 @@ Remote：远程仓库
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/Git%E5%AE%98%E6%96%B9%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%BA%90/" style="font-size: 0.6em;">Git官方的软件源</a> <a href="/tags/Hexo%E6%8A%80%E5%B7%A7/" style="font-size: 0.8em;">Hexo技巧</a> <a href="/tags/Hexo%E6%8F%92%E4%BB%B6/" style="font-size: 0.8em;">Hexo插件</a> <a href="/tags/Lede/" style="font-size: 0.6em;">Lede</a> <a href="/tags/Linux-%E7%B3%BB%E7%BB%9F%E6%8A%80%E5%B7%A7/" style="font-size: 0.8em;">Linux 系统技巧</a> <a href="/tags/Linux%E6%8A%80%E5%B7%A7/" style="font-size: 0.6em;">Linux技巧</a> <a href="/tags/Linux%E6%96%87%E4%BB%B6%E8%A7%A3%E5%8E%8B/" style="font-size: 0.6em;">Linux文件解压</a> <a href="/tags/Linux%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/" style="font-size: 0.6em;">Linux查找命令</a> <a href="/tags/OpenWrt/" style="font-size: 0.6em;">OpenWrt</a> <a href="/tags/Openwrt%E7%89%88%E6%9C%AC/" style="font-size: 0.6em;">Openwrt版本</a> <a href="/tags/SVN/" style="font-size: 0.6em;">SVN</a> <a href="/tags/Ubuntu%E7%B3%BB%E7%BB%9F/" style="font-size: 0.6em;">Ubuntu系统</a> <a href="/tags/Ubuntu%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/" style="font-size: 0.8em;">Ubuntu系统命令</a> <a href="/tags/Uname/" style="font-size: 0.8em;">Uname</a> <a href="/tags/feeds-update/" style="font-size: 0.6em;">feeds update</a> <a href="/tags/find%E4%BD%BF%E7%94%A8/" style="font-size: 0.6em;">find使用</a> <a href="/tags/git/" style="font-size: 0.6em;">git</a> <a href="/tags/git-version/" style="font-size: 0.6em;">git --version</a>
+        <a href="/tags/AI/" style="font-size: 0.6em;">AI</a> <a href="/tags/AI%E5%AE%9E%E6%88%98/" style="font-size: 0.6em;">AI实战</a> <a href="/tags/AI%E9%83%A8%E7%BD%B2/" style="font-size: 0.6em;">AI部署</a> <a href="/tags/Aider/" style="font-size: 0.6em;">Aider</a> <a href="/tags/Git%E5%AE%98%E6%96%B9%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%BA%90/" style="font-size: 0.6em;">Git官方的软件源</a> <a href="/tags/Hexo%E6%8A%80%E5%B7%A7/" style="font-size: 0.8em;">Hexo技巧</a> <a href="/tags/Hexo%E6%8F%92%E4%BB%B6/" style="font-size: 0.8em;">Hexo插件</a> <a href="/tags/LLM/" style="font-size: 0.6em;">LLM</a> <a href="/tags/Lede/" style="font-size: 0.6em;">Lede</a> <a href="/tags/Linux/" style="font-size: 0.8em;">Linux</a> <a href="/tags/Linux-%E7%B3%BB%E7%BB%9F%E6%8A%80%E5%B7%A7/" style="font-size: 0.8em;">Linux 系统技巧</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 0.6em;">Linux命令</a> <a href="/tags/Linux%E6%8A%80%E5%B7%A7/" style="font-size: 0.6em;">Linux技巧</a> <a href="/tags/Linux%E6%96%87%E4%BB%B6%E8%A7%A3%E5%8E%8B/" style="font-size: 0.6em;">Linux文件解压</a> <a href="/tags/Linux%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/" style="font-size: 0.6em;">Linux查找命令</a> <a href="/tags/Ollama/" style="font-size: 0.6em;">Ollama</a> <a href="/tags/OpenWebUI/" style="font-size: 0.6em;">OpenWebUI</a> <a href="/tags/OpenWrt/" style="font-size: 0.6em;">OpenWrt</a>
       </div>
   </aside>
 
@@ -849,6 +862,18 @@ Remote：远程仓库
   <div class="tab-content">
       <ul class="list-group">
         
+        
+          
+          
+            <a class="list-group-item" href="/2026/04/28/ai-1777371110170/"><i class="fa  fa-book"></i> 从零搭建本地 AI 平台（完整实战指南）</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2026/04/28/linux-1777347752960/"><i class="fa  fa-book"></i> 🐧 Linux 常用命令使用指南（从入门到实战）</a>
+            
+          
         
           
           
@@ -869,17 +894,9 @@ Remote：远程仓库
           
         
           
-          
-            <a class="list-group-item" href="/2021/07/22/%E4%BD%BF%E7%94%A8hexo%E6%8D%A2%E4%BA%86%E7%94%B5%E8%84%91%E5%90%8E%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2/"><i class="fa  fa-book"></i> 使用hexo换了电脑后如何更新博客</a>
             
           
-        
-          
-          
-            <a class="list-group-item" href="/2021/07/22/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8/"><i class="fa  fa-book"></i> Git常用命令及方法大全</a>
             
-          
-        
           
             
           
@@ -950,16 +967,16 @@ Remote：远程仓库
                     </ul>
                     <ul class="kratos-copyright">
                         <div>
-                            <li>&copy; 2024 Eagmi 版权所有.</li>
+                            <li>&copy; 2026 Eagmi 版权所有.</li>
                             <li>本站已运行<span id="span_dt">Loading...</span></li>
                         </div>
                         <div>
-                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank" rel="noopener noreferrer">Kratos:Rebirth</a></li>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
                             <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 雕教授.</li>
                         </div>
                         <div>
-                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener noreferrer">Hexo</a></li>
-                            <li>Hosted on <a href="https://github.io" target="_blank" rel="noopener noreferrer">Github Pages</a></li>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
                         </div>
                         <div>
                             
@@ -1004,33 +1021,6 @@ Remote：远程仓库
     window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
     window.kr.siteRoot = "/";
 </script>
-<script>
-    (function () {
-        function fixHomeThumbs() {
-            var cards = document.querySelectorAll(".kratos-entry-border-new");
-            cards.forEach(function (card) {
-                var img = card.querySelector(".kratos-entry-thumb-new-img");
-                if (!img) return;
-                var src = (img.getAttribute("src") || "").trim();
-                if (!src) {
-                    img.setAttribute("src", "/images/avatar.webp");
-                }
-                if (!img.dataset.thumbBound) {
-                    img.dataset.thumbBound = "1";
-                    img.addEventListener("error", function () {
-                        card.classList.add("no-thumb");
-                    });
-                    img.addEventListener("load", function () {
-                        card.classList.remove("no-thumb");
-                    });
-                }
-            });
-        }
-
-        document.addEventListener("DOMContentLoaded", fixHomeThumbs);
-        document.addEventListener("pjax:complete", fixHomeThumbs);
-    })();
-</script>
 
 
     <script async src="/js/candy.min.js"></script>
@@ -1050,4 +1040,3 @@ Remote：远程仓库
 
     </body>
 </html>
-
