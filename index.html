@@ -32,20 +32,20 @@
     
   
   <!-- 样式表文件 -->
-  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all" />
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
   
-    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)" />
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
     <script src="/js/kr-dark.min.js"></script>
   
   
-    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all" />
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
   
-  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all" />
-  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all" />
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
   
   
   
-    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
   
   <!-- 不得不预先加载的一些JS文件 -->
   <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -95,6 +95,13 @@
                                             <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
                                         
                                     
+                                
+                                
+                                    <li>
+                                        <a href="/atom.xml">
+                                            <i class="fa fa-rss"></i> RSS
+                                        </a>
+                                    </li>
                                 
                             </ul>
                         </nav>
@@ -154,24 +161,49 @@
         </form>
     </section>
 
-    <section id="featured-posts" class="home-block featured-block">
+    <section id="featured-posts" class="home-block featured-block latest-posts-card">
         <div class="home-block-head">
-            <h3>推荐阅读</h3>
-            <p>先从这几篇开始。</p>
+            <h3>最新文章</h3>
+            <p>按时间最新更新。</p>
         </div>
-        <div class="home-card-grid">
-            <a class="home-card" href="/2024/07/15/%E8%B0%B7%E6%AD%8C%E4%BA%91%E4%BD%BF%E7%94%A8xshell%E8%BF%9E%E6%8E%A5%E6%96%B9%E6%B3%95/">
-                <h4>谷歌云使用 Xshell 连接方法</h4>
-                <p>从登录策略到 SSH 配置，一步步走通。</p>
-            </a>
-            <a class="home-card" href="/2023/11/23/Hexo%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">
-                <h4>Hexo 使用心得</h4>
-                <p>Hexo 日常维护里常踩的点。</p>
-            </a>
-            <a class="home-card" href="/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
-                <h4>编译 OpenWRT 过程问题解决</h4>
-                <p>编译过程里常见报错与排查。</p>
-            </a>
+        
+        <div class="home-card-grid latest-posts-list">
+            
+              <a class="home-card latest-posts-item" href="/2026/04/28/ai-1777371110170/">
+                  <h4 class="latest-posts-title">从零搭建本地 AI 平台（完整实战指南）</h4>
+                  <time class="home-card-time latest-posts-date" datetime="2026-04-28T10:05:30.000Z">
+                    2026-04-28 18:05
+                  </time>
+              </a>
+            
+              <a class="home-card latest-posts-item" href="/2026/04/28/linux-1777347752960/">
+                  <h4 class="latest-posts-title">🐧 Linux 常用命令使用指南（从入门到实战）</h4>
+                  <time class="home-card-time latest-posts-date" datetime="2026-04-28T09:43:56.000Z">
+                    2026-04-28 17:43
+                  </time>
+              </a>
+            
+              <a class="home-card latest-posts-item" href="/2024/07/15/%E8%B0%B7%E6%AD%8C%E4%BA%91%E4%BD%BF%E7%94%A8xshell%E8%BF%9E%E6%8E%A5%E6%96%B9%E6%B3%95/">
+                  <h4 class="latest-posts-title">谷歌云使用xshell连接方法</h4>
+                  <time class="home-card-time latest-posts-date" datetime="2024-07-15T09:58:37.000Z">
+                    2024-07-15 17:58
+                  </time>
+              </a>
+            
+              <a class="home-card latest-posts-item" href="/2023/11/24/X-ui%E9%9D%A2%E6%9D%BF%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">
+                  <h4 class="latest-posts-title">X-ui面板的安装与配置</h4>
+                  <time class="home-card-time latest-posts-date" datetime="2023-11-24T08:13:57.000Z">
+                    2023-11-24 16:13
+                  </time>
+              </a>
+            
+              <a class="home-card latest-posts-item" href="/2023/11/23/Hexo%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">
+                  <h4 class="latest-posts-title">Hexo使用心得</h4>
+                  <time class="home-card-time latest-posts-date" datetime="2023-11-23T09:50:25.000Z">
+                    2023-11-23 17:50
+                  </time>
+              </a>
+            
         </div>
     </section>
 
@@ -193,9 +225,17 @@
                 <strong>Hexo</strong>
                 <span>搭建、迁移和维护记录。</span>
             </a>
-            <a class="home-category-item" href="/archives/">
-                <strong>折腾记录</strong>
-                <span>按时间线慢慢翻。</span>
+            <a class="home-category-item" href="/categories/AI%E5%AD%A6%E4%B9%A0/">
+                <strong>AI学习</strong>
+                <span>本地 AI、工程实践与部署。</span>
+            </a>
+            <a class="home-category-item" href="/categories/GIT%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">
+                <strong>GIT使用技巧</strong>
+                <span>常用操作与高效协作备忘。</span>
+            </a>
+            <a class="home-category-item" href="/categories/%E7%8E%A9%E6%9C%BA%E6%8A%80%E5%B7%A7/">
+                <strong>玩机技巧</strong>
+                <span>软硬件折腾与问题解法。</span>
             </a>
         </div>
     </section>
@@ -208,11 +248,16 @@
         <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
             <div class="kratos-entry-border-new clearfix">
                 
-                <div class="kratos-entry-thumb-new">
+                <div class="kratos-entry-thumb-new post-thumb">
                     <a href="/2026/04/28/ai-1777371110170/">
                         
                         
-                            <img class="kratos-entry-thumb-new-img" src="/images/thumb/ai.jpg" alt="">
+                            <img class="kratos-entry-thumb-new-img post-thumb-img"
+                              src="/images/thumb/ai.jpg"
+                              alt="从零搭建本地 AI 平台（完整实战指南）"
+                              loading="lazy"
+                              decoding="async"
+                              onerror="this.onerror=null;this.src='/images/default-post.webp';" />
                         
                     </a>
                 </div>
@@ -265,11 +310,16 @@
         <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
             <div class="kratos-entry-border-new clearfix">
                 
-                <div class="kratos-entry-thumb-new">
+                <div class="kratos-entry-thumb-new post-thumb">
                     <a href="/2026/04/28/linux-1777347752960/">
                         
                         
-                            <img class="kratos-entry-thumb-new-img" src="/images/covers/linux1.webp" alt="">
+                            <img class="kratos-entry-thumb-new-img post-thumb-img"
+                              src="/images/covers/linux1.webp"
+                              alt="🐧 Linux 常用命令使用指南（从入门到实战）"
+                              loading="lazy"
+                              decoding="async"
+                              onerror="this.onerror=null;this.src='/images/default-post.webp';" />
                         
                     </a>
                 </div>
@@ -322,11 +372,15 @@ Ubuntu（新手友好）CentOS（服务器常见）Debian（稳定）
         <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
             <div class="kratos-entry-border-new clearfix">
                 
-                <div class="kratos-entry-thumb-new">
+                <div class="kratos-entry-thumb-new post-thumb">
                     <a href="/2024/07/15/%E8%B0%B7%E6%AD%8C%E4%BA%91%E4%BD%BF%E7%94%A8xshell%E8%BF%9E%E6%8E%A5%E6%96%B9%E6%B3%95/">
                         
                         
-                            <img class="kratos-entry-thumb-new-img" alt="">
+                            <img class="kratos-entry-thumb-new-img post-thumb-img"
+                              alt="谷歌云使用xshell连接方法"
+                              loading="lazy"
+                              decoding="async"
+                              onerror="this.onerror=null;this.src='/images/default-post.webp';" />
                         
                     </a>
                 </div>
@@ -382,11 +436,15 @@ Ubuntu（新手友好）CentOS（服务器常见）Debian（稳定）
         <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
             <div class="kratos-entry-border-new clearfix">
                 
-                <div class="kratos-entry-thumb-new">
+                <div class="kratos-entry-thumb-new post-thumb">
                     <a href="/2023/11/24/X-ui%E9%9D%A2%E6%9D%BF%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">
                         
                         
-                            <img class="kratos-entry-thumb-new-img" alt="">
+                            <img class="kratos-entry-thumb-new-img post-thumb-img"
+                              alt="X-ui面板的安装与配置"
+                              loading="lazy"
+                              decoding="async"
+                              onerror="this.onerror=null;this.src='/images/default-post.webp';" />
                         
                     </a>
                 </div>
@@ -433,11 +491,15 @@ Ubuntu（新手友好）CentOS（服务器常见）Debian（稳定）
         <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
             <div class="kratos-entry-border-new clearfix">
                 
-                <div class="kratos-entry-thumb-new">
+                <div class="kratos-entry-thumb-new post-thumb">
                     <a href="/2023/11/23/Hexo%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">
                         
                         
-                            <img class="kratos-entry-thumb-new-img" alt="">
+                            <img class="kratos-entry-thumb-new-img post-thumb-img"
+                              alt="Hexo使用心得"
+                              loading="lazy"
+                              decoding="async"
+                              onerror="this.onerror=null;this.src='/images/default-post.webp';" />
                         
                     </a>
                 </div>
@@ -488,11 +550,15 @@ Ubuntu（新手友好）CentOS（服务器常见）Debian（稳定）
         <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
             <div class="kratos-entry-border-new clearfix">
                 
-                <div class="kratos-entry-thumb-new">
+                <div class="kratos-entry-thumb-new post-thumb">
                     <a href="/2021/07/22/%E4%BD%BF%E7%94%A8hexo%E6%8D%A2%E4%BA%86%E7%94%B5%E8%84%91%E5%90%8E%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2/">
                         
                         
-                            <img class="kratos-entry-thumb-new-img" alt="">
+                            <img class="kratos-entry-thumb-new-img post-thumb-img"
+                              alt="使用hexo换了电脑后如何更新博客"
+                              loading="lazy"
+                              decoding="async"
+                              onerror="this.onerror=null;this.src='/images/default-post.webp';" />
                         
                     </a>
                 </div>
@@ -542,11 +608,15 @@ Ubuntu（新手友好）CentOS（服务器常见）Debian（稳定）
         <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
             <div class="kratos-entry-border-new clearfix">
                 
-                <div class="kratos-entry-thumb-new">
+                <div class="kratos-entry-thumb-new post-thumb">
                     <a href="/2021/07/22/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8/">
                         
                         
-                            <img class="kratos-entry-thumb-new-img" alt="">
+                            <img class="kratos-entry-thumb-new-img post-thumb-img"
+                              alt="Git常用命令及方法大全"
+                              loading="lazy"
+                              decoding="async"
+                              onerror="this.onerror=null;this.src='/images/default-post.webp';" />
                         
                     </a>
                 </div>
@@ -604,11 +674,15 @@ Remote：远程仓库
         <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
             <div class="kratos-entry-border-new clearfix">
                 
-                <div class="kratos-entry-thumb-new">
+                <div class="kratos-entry-thumb-new post-thumb">
                     <a href="/2021/07/22/tar%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/">
                         
                         
-                            <img class="kratos-entry-thumb-new-img" alt="">
+                            <img class="kratos-entry-thumb-new-img post-thumb-img"
+                              alt="tar压缩解压缩命令详解"
+                              loading="lazy"
+                              decoding="async"
+                              onerror="this.onerror=null;this.src='/images/default-post.webp';" />
                         
                     </a>
                 </div>
@@ -665,11 +739,15 @@ Remote：远程仓库
         <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
             <div class="kratos-entry-border-new clearfix">
                 
-                <div class="kratos-entry-thumb-new">
+                <div class="kratos-entry-thumb-new post-thumb">
                     <a href="/2021/07/22/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8DUbuntu%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%88%E6%9C%AC/">
                         
                         
-                            <img class="kratos-entry-thumb-new-img" alt="">
+                            <img class="kratos-entry-thumb-new-img post-thumb-img"
+                              alt="如何查看当前Ubuntu系统的版本"
+                              loading="lazy"
+                              decoding="async"
+                              onerror="this.onerror=null;this.src='/images/default-post.webp';" />
                         
                     </a>
                 </div>
@@ -720,11 +798,15 @@ Remote：远程仓库
         <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
             <div class="kratos-entry-border-new clearfix">
                 
-                <div class="kratos-entry-thumb-new">
+                <div class="kratos-entry-thumb-new post-thumb">
                     <a href="/2021/07/22/%E7%BC%96%E8%AF%91OpenWRT%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
                         
                         
-                            <img class="kratos-entry-thumb-new-img" alt="">
+                            <img class="kratos-entry-thumb-new-img post-thumb-img"
+                              alt="编译OpenWRT过程问题解决"
+                              loading="lazy"
+                              decoding="async"
+                              onerror="this.onerror=null;this.src='/images/default-post.webp';" />
                         
                     </a>
                 </div>
@@ -805,7 +887,7 @@ Remote：远程仓库
     <div class="photo-background"></div>
     <div class="photo-wrapper clearfix">
         <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/images/avatar.webp" loading="eager" decoding="auto" />
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
         </div>
     </div>
     <div class="textwidget">
@@ -1021,7 +1103,12 @@ Remote：远程仓库
     window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
     window.kr.siteRoot = "/";
 </script>
-<script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
 <script defer src="/js/kratosr.min.js"></script>
 <script defer src="/js/pjax.min.js"></script>
